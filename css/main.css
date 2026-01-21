@@ -1,4 +1,7 @@
 /* Timeline custom component */
+p {
+  text-align: justify;
+}
 .timeline-card {
   position: relative;
   margin-left: 16px; }
