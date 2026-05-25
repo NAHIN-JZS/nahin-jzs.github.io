@@ -1,977 +1,1128 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Syed Nahin Hossain</title>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin"/>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap" media="print" onload="this.media='all'"/>
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&amp;family=Roboto:wght@300;400;500;700&amp;display=swap"/>
-    </noscript>
-    <link href="css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
-    <link href="css/mdb.min.css?ver=1.2.1" rel="stylesheet">
-    <link href="css/aos.css?ver=1.2.1" rel="stylesheet">
-    <link href="css/main.css?ver=1.2.1" rel="stylesheet">
-    <noscript>
-      <style type="text/css">
-        [data-aos] {
-            opacity: 1 !important;
-            transform: translate(0) scale(1) !important;
-        }
-        p {
-            text-align: justify;
-          }
-      </style>
-    </noscript>
-  </head>
-  <body class="bg-light" id="top">
-    <header class="d-print-none">
-      <div class="container text-center text-lg-left">
-        <div class="pt-4 clearfix">
-          <h1 class="site-title mb-0">Syed Nahin Hossain</h1>
-          <div class="site-nav"> 
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="#about" title="About"><span class="menu-title">About</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#skills" title="Skills"><span class="menu-title">Skills</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#experience" title="Experience"><span class="menu-title">Experience</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#education" title="Education"><span class="menu-title">Education</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#research" title="Publication"><span class="menu-title">Publication</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#courses_Taught" title="Courses Taught"><span class="menu-title">Courses Taught</span></a>
-                </li> 
-                <li class="nav-item"><a class="nav-link" href="#contact" title="Contact"><span class="menu-title">Contact</span></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Syed Nahin Hossain — Researcher & Educator</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:        #1a1a2e;
+      --ink-light:  #3d3d5c;
+      --muted:      #7a7a9a;
+      --rule:       #d8d8e8;
+      --bg:         #f8f8fc;
+      --paper:      #ffffff;
+      --accent:     #1a3a5c;
+      --accent2:    #b8860b;
+      --success:    #2e6b4f;
+      --teal:       #1a6b6b;
+
+      --serif:      'Cormorant Garamond', Georgia, serif;
+      --sans:       'Jost', 'Segoe UI', sans-serif;
+      --mono:       'Fira Mono', monospace;
+
+      --max-w:      900px;
+      --section-gap: 5rem;
+      --card-radius: 3px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    p { text-align: justify; color: var(--ink-light); }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; text-underline-offset: 3px; }
+    strong, b { font-weight: 600; color: var(--ink); }
+
+    /* ─── Typography helpers ────────────────────────────────── */
+    .serif   { font-family: var(--serif); }
+    .section-title {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 2.1rem;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+    }
+    .section-title::after {
+      content: '';
+      display: block;
+      margin-top: 0.5rem;
+      height: 2px;
+      width: 100%;
+      background: linear-gradient(90deg, var(--accent2), transparent);
+    }
+
+    .label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ─── Layout ────────────────────────────────────────────── */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+
+    section { padding: var(--section-gap) 0; border-top: 1px solid var(--rule); }
+    section:first-of-type { border-top: none; }
+
+    /* ─── Navigation ────────────────────────────────────────── */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(248,248,252,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    #nav .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    #nav .brand {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    #nav ul {
+      list-style: none;
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    #nav ul li a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.4rem 0.65rem;
+      display: block;
+      transition: color 0.2s;
+    }
+    #nav ul li a:hover { color: var(--accent); text-decoration: none; }
+
+    /* ─── Hero ──────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: var(--accent);
+      position: relative;
+      overflow: hidden;
+      border-top: none;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('images/header-background.jpg') center/cover no-repeat;
+      opacity: 0.15;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(transparent, var(--bg));
+    }
+    #hero .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    #hero .avatar-wrap img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--accent2);
+      display: block;
+    }
+    #hero .hero-text .name {
+      font-family: var(--serif);
+      font-size: 3.4rem;
+      font-weight: 300;
+      color: #ffffff;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+    }
+    #hero .hero-text .tagline {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.6rem;
+      margin-bottom: 1.6rem;
+    }
+    #hero .hero-text .affiliation {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 1.8rem;
+    }
+    #hero .hero-text .affiliation i { margin-right: 0.4rem; opacity: 0.65; }
+    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    .btn-outline-light-custom {
+      padding: 0.55rem 1.3rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .btn-outline-light-custom:hover {
+      background: rgba(255,255,255,0.12);
+      text-decoration: none;
+      color: #fff;
+    }
+    .btn-gold {
+      padding: 0.55rem 1.3rem;
+      background: var(--accent2);
+      border: 1px solid var(--accent2);
+      color: #fff;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-gold:hover { background: #a07808; text-decoration: none; color: #fff; }
+    .hero-social { display: flex; gap: 1rem; }
+    .hero-social a {
+      color: rgba(255,255,255,0.55);
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .hero-social a:hover { color: var(--accent2); text-decoration: none; }
+
+    /* ─── About ─────────────────────────────────────────────── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 4rem;
+      align-items: start;
+    }
+    #about .about-grid p + p { margin-top: 1rem; }
+    #about .bio-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--card-radius);
+      padding: 1.5rem;
+    }
+    #about .bio-card h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .bio-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.85rem;
+    }
+    .bio-row .bio-label {
+      font-weight: 500;
+      color: var(--ink);
+      min-width: 68px;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+    }
+    .bio-row .bio-label i { color: var(--muted); margin-top: 3px; font-size: 0.8rem; }
+    .bio-row .bio-val { color: var(--ink-light); word-break: break-word; }
+
+    /* ─── Skills ─────────────────────────────────────────────── */
+    #skills .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3rem;
+    }
+    .skill-item { margin-bottom: 1.4rem; }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+      font-size: 0.85rem;
+    }
+    .skill-header .skill-name { font-weight: 500; color: var(--ink); }
+    .skill-header .skill-level { color: var(--muted); font-size: 0.75rem; }
+    .skill-bar {
+      height: 4px;
+      background: var(--rule);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
+      transform-origin: left;
+      animation: barGrow 1s ease both;
+    }
+    @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+    /* ─── Timeline ───────────────────────────────────────────── */
+    .timeline { position: relative; padding-left: 1.5rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 1px;
+      background: var(--rule);
+    }
+    .tl-item {
+      position: relative;
+      padding: 0 0 2.5rem 1.75rem;
+    }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent2);
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--accent2);
+    }
+    .tl-item.success::before { background: var(--success); box-shadow: 0 0 0 1px var(--success); }
+
+    .tl-header { margin-bottom: 0.3rem; }
+    .tl-title {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      font-weight: 500;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+    .tl-sub { color: var(--teal); font-size: 0.85rem; font-weight: 400; }
+    .tl-date { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-family: var(--mono); }
+    .tl-body { font-size: 0.88rem; color: var(--ink-light); }
+
+    /* nested timeline (co-curricular) */
+    .tl-nested {
+      margin-top: 1.25rem;
+      padding-left: 1rem;
+      border-left: 1px dashed var(--rule);
+    }
+    .tl-nested-title {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+    .tl-nested-item { margin-bottom: 0.9rem; }
+    .tl-nested-item .tl-title { font-size: 0.9rem; }
+    .tl-nested-item .tl-date { font-size: 0.7rem; }
+
+    /* ─── Courses grid ───────────────────────────────────────── */
+    #courses .courses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+    .course-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--card-radius);
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--teal);
+    }
+    .course-card .course-name { font-weight: 500; font-size: 0.88rem; color: var(--ink); }
+    .course-card .course-type {
+      font-size: 0.7rem;
+      color: var(--muted);
+      font-family: var(--mono);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.15rem;
+    }
+
+    /* ─── Publications ───────────────────────────────────────── */
+    #research .pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
+    .pub-card {
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--card-radius);
+      padding: 1.5rem 1.75rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .pub-num {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--rule);
+      line-height: 1;
+      min-width: 2.5rem;
+      text-align: center;
+      padding-top: 0.2rem;
+    }
+    .pub-badge {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      border-radius: 2px;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      margin-bottom: 0.6rem;
+    }
+    .badge-journal   { background: #e8f0e8; color: var(--success); }
+    .badge-conf      { background: #e8ecf5; color: var(--accent); }
+    .badge-review    { background: #fef6e4; color: var(--accent2); }
+    .badge-award     { background: #fff0e0; color: #c0592a; }
+    .pub-title { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.4; font-weight: 500; }
+    .pub-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .pub-abstract { font-size: 0.83rem; color: var(--ink-light); margin-bottom: 0.75rem; line-height: 1.65; text-align: justify; }
+    .pub-link { font-size: 0.78rem; font-weight: 500; color: var(--accent); letter-spacing: 0.04em; }
+    .pub-link i { font-size: 0.7rem; margin-right: 0.25rem; }
+
+    /* ─── Projects ───────────────────────────────────────────── */
+    #projects .projects-list { display: flex; flex-direction: column; gap: 2.5rem; }
+    .project-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+      padding: 0 0 2.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .project-card:last-child { border-bottom: none; padding-bottom: 0; }
+    .project-card .media-side video,
+    .project-card .media-side img {
+      width: 100%;
+      border-radius: var(--card-radius);
+      border: 1px solid var(--rule);
+      display: block;
+    }
+    .project-card .info-side .proj-tech {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--teal);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .project-card .info-side h3 {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .project-card .info-side p { font-size: 0.85rem; margin-bottom: 0.75rem; }
+    .repo-link { font-size: 0.78rem; font-weight: 500; }
+    .repo-link i { margin-right: 0.3rem; }
+
+    /* ─── Awards ─────────────────────────────────────────────── */
+    #awards .awards-list { display: flex; flex-direction: column; gap: 1rem; }
+    .award-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1rem 1.25rem;
+      background: var(--paper);
+      border: 1px solid var(--rule);
+      border-radius: var(--card-radius);
+      border-left: 3px solid var(--accent2);
+    }
+    .award-icon { color: var(--accent2); font-size: 0.9rem; margin-top: 3px; }
+    .award-title { font-weight: 500; font-size: 0.9rem; color: var(--ink); }
+    .award-sub { font-size: 0.8rem; color: var(--muted); }
+
+    /* ─── Contact ────────────────────────────────────────────── */
+    #contact .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+    .contact-info .ci-row {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      font-size: 0.88rem;
+      color: var(--ink-light);
+    }
+    .contact-info .ci-row i { color: var(--muted); width: 16px; margin-top: 3px; }
+    .contact-form label {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+      margin-top: 1rem;
+    }
+    .contact-form label:first-child { margin-top: 0; }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      border: 1px solid var(--rule);
+      border-radius: var(--card-radius);
+      padding: 0.6rem 0.85rem;
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: var(--ink);
+      background: var(--paper);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--accent); }
+    .contact-form textarea { resize: vertical; min-height: 110px; }
+    .btn-primary-custom {
+      margin-top: 1.1rem;
+      padding: 0.65rem 1.6rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: var(--card-radius);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary-custom:hover { background: #0f2b47; }
+    .contact-map iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      border: 1px solid var(--rule);
+      border-radius: var(--card-radius);
+      display: block;
+    }
+
+    /* ─── Footer ─────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 2.5rem 0;
+      text-align: center;
+    }
+    footer .f-name { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.75rem; }
+    footer .f-social { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 1rem; }
+    footer .f-social a { color: var(--muted); font-size: 1rem; transition: color 0.2s; }
+    footer .f-social a:hover { color: var(--accent); text-decoration: none; }
+    footer .f-copy { font-size: 0.75rem; color: var(--muted); }
+
+    /* ─── Utility ─────────────────────────────────────────────── */
+    .spacer { margin-top: var(--section-gap); }
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
+
+    /* ─── Responsive ──────────────────────────────────────────── */
+    @media (max-width: 760px) {
+      #hero .hero-content { grid-template-columns: 1fr; text-align: center; }
+      #hero .hero-text .name { font-size: 2.4rem; }
+      #hero .hero-actions, #hero .hero-social { justify-content: center; }
+      #hero .avatar-wrap { display: flex; justify-content: center; }
+      #about .about-grid { grid-template-columns: 1fr; }
+      #skills .skills-grid { grid-template-columns: 1fr; }
+      .two-col { grid-template-columns: 1fr; }
+      .pub-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pub-num { display: none; }
+      .project-card { grid-template-columns: 1fr; }
+      #contact .contact-grid { grid-template-columns: 1fr; }
+      #nav ul li a { font-size: 0.65rem; padding: 0.3rem 0.4rem; }
+      #nav .brand { font-size: 1rem; }
+    }
+
+    /* ─── Print ───────────────────────────────────────────────── */
+    @media print {
+      #nav, .d-print-none { display: none !important; }
+      #hero { min-height: auto; padding: 2rem 0; }
+      section { padding: 2rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ░░ Navigation ░░ -->
+<nav id="nav">
+  <div class="inner">
+    <span class="brand serif">Syed Nahin Hossain</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#research">Publications</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ░░ Hero ░░ -->
+<section id="hero" style="border-top:none; padding:0;">
+  <div class="container" style="padding-top:56px;">
+    <div class="hero-content">
+      <div class="avatar-wrap">
+        <img src="images/avatar.jpg" alt="Syed Nahin Hossain" width="160" height="160">
       </div>
-    </header>
-    <div class="page-content">
-      <div class="container">
-<div class="resume-container">
-  <div class="shadow-1-strong bg-white my-5" id="intro">
-    <div class="bg-info text-white">
-      <div class="cover bg-image"><img src="images/header-background.jpg"/>
-        <div class="mask" style="background-color: rgba(0, 0, 0, 0.7);backdrop-filter: blur(2px);">
-          <div class="text-center p-5">
-            <div class="avatar p-1"><img class="img-thumbnail shadow-2-strong" src="images/avatar.jpg" width="160" height="160"/></div>
-            <div class="header-bio mt-3">
-              <div data-aos="zoom-in" data-aos-delay="0">
-                <h2 class="h1">Syed Nahin Hossain</h2>
-                <p>Computer vision enthusiast</p>
-              </div>
-              <div class="header-social mb-3 d-print-none" data-aos="zoom-in" data-aos-delay="200">
-                <nav role="navigation">
-                  <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" title="LinkedIn"><i class="fab fa-linkedin"></i><span class="menu-title sr-only">Twitter</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://github.com/NAHIN-JZS" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="https://orcid.org/0000-0003-2528-7573" title="Orcid"><i class="fab fa-orcid"></i><span class="menu-title sr-only">Orcid</span></a>
-                    </li>
-                    
-                  </ul>
-                </nav>
-              </div>
-              <div class="d-print-none"><a class="btn btn-outline-light btn-lg shadow-sm mt-1 me-3" href="CV_of_Syed_Nahin_Hossain.pdf" data-aos="fade-right" data-aos-delay="700">Download CV</a><a class="btn btn-info btn-lg shadow-sm mt-1" href="#contact" data-aos="fade-left" data-aos-delay="700">Hire Me</a></div>
-            </div>
-          </div>
+      <div class="hero-text">
+        <h1 class="name">Syed Nahin<br>Hossain</h1>
+        <p class="tagline">Researcher &nbsp;·&nbsp; Educator &nbsp;·&nbsp; Computer Vision</p>
+        <p class="affiliation">
+          <i class="fas fa-university"></i>
+          Lecturer, Department of CSE<br>
+          <span style="padding-left:1.4rem;">Bangladesh Army University of Science &amp; Technology, Khulna</span>
+        </p>
+        <div class="hero-actions">
+          <a class="btn-outline-light-custom" href="CV_of_Syed_Nahin_Hossain.pdf">
+            <i class="fas fa-file-pdf" style="margin-right:0.4rem;"></i>Download CV
+          </a>
+          <a class="btn-gold" href="#contact">Get in Touch</a>
+        </div>
+        <div class="hero-social">
+          <a href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/NAHIN-JZS" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://orcid.org/0000-0003-2528-7573" title="ORCID" target="_blank"><i class="fab fa-orcid"></i></a>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Start of About section  -->
-
-  <div class="shadow-1-strong bg-white my-5 p-5" id="about">
-    <div class="about-section">
-      <div class="row">
-        <div class="col-md-6">
-          <h2 class="h2 fw-light mb-4">About Me</h2>
-          <!-- <p>Welcome to my portfolio! This is <strong>Nahin</strong> and I am passionate about the field of deep learning, with a specific focus on <strong>computer vision</strong>.
-             I hold an undergraduate degree in Computer Science and Engineering from KUET, and am constantly seeking to expand my knowledge base through my natural curiosity and dedication to personal growth.</p>
-
-            <p> As you explore my portfolio, you will see that I am a quick learner, hard worker, and self-motivated individual who is always eager to take on new challenges.
-               I am particularly drawn to projects that require creative problem-solving and a deep understanding of the latest developments in my field.</p>
-              <p> Outside of my technical skills, I have also demonstrated leadership abilities as the President of the Jashore Association of KUET (JAK). 
-                I hope you will find my portfolio to be a reflection of my enthusiasm for the work that I do and my commitment to personal and professional growth.</p> -->
-
-
-
-                
-              <p style="text-align: justify;">Welcome to my portfolio. I'm Nahin, a Computer Vision researcher and educator with a B.Sc in Computer Science & Engineering from Khulna University of Engineering & Technology (KUET). 
-                Currently, I serve as a Lecturer at Bangladesh Army University of Science & Technology, Khulna (BAUSTK), where I share my passion for cutting-edge technologies with the next generation of engineers.</p>
-          
-              <p style="text-align: justify;">My primary research focuses on <b>Computer Vision</b> and <b>Machine Learning</b>, with multiple published works and project implementations in these domains. 
-                I thrive on solving complex problems through innovative algorithmic approaches and enjoy translating theoretical concepts into practical applications.</p>
-          
-              <p style="text-align: justify;">Beyond academia, I bring leadership experience from my tenure as President of the Jashore Association of KUET (JAK), where I honed my abilities in team management and strategic planning. 
-                Known for my dedication and rapid learning ability, I approach every challenge with both technical rigor and creative thinking.</p>
-          
-              <p style="text-align: justify;">This portfolio showcases my professional journey, research contributions, and commitment to advancing technology education. 
-                I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives.</p>
-          
-
-
+<!-- ░░ About ░░ -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Welcome to my academic portfolio. I am Nahin — a Computer Vision researcher and educator holding a B.Sc. in Computer Science &amp; Engineering from Khulna University of Engineering &amp; Technology (KUET). Currently, I serve as a Lecturer at Bangladesh Army University of Science &amp; Technology, Khulna (BAUSTK), where I share my passion for cutting-edge technologies with the next generation of engineers.</p>
+        <p style="margin-top:1rem;">My primary research is centered on <strong>Computer Vision</strong> and <strong>Machine Learning</strong>, with multiple published works spanning deep learning-based license plate recognition, vehicle classification, image colorization, and environmental quality prediction. I thrive on bridging theoretical foundations with real-world applications.</p>
+        <p style="margin-top:1rem;">Beyond research, I bring leadership experience from my tenure as President of the Jashore Association of KUET (JAK), where I honed abilities in team management and strategic planning. I approach every challenge with technical rigor, creative thinking, and a commitment to continuous growth.</p>
+        <p style="margin-top:1rem;">I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives.</p>
+      </div>
+      <div class="bio-card">
+        <h3 class="serif">Biographical Notes</h3>
+        <div class="bio-row">
+          <span class="bio-label"><i class="fas fa-envelope"></i> Email</span>
+          <span class="bio-val"><a href="mailto:syednahinhossain@gmail.com">syednahinhossain@gmail.com</a></span>
         </div>
-        <div class="col-md-5 offset-lg-1">
-          <div class="row mt-2">
-            <h2 class="h2 fw-light mb-4">Bio</h2>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="far fa-calendar-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Age</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">25</div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Email</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">syednahinhossain@gmail.com</div>
-            </div>
-            <!-- <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fab fa-skype pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Skype</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">live:syednahinhossain</div>
-            </div> -->
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Phone</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">+8801521-522856</div>
-            </div>
-            <div class="col-sm-5">
-              <div class="pb-2 fw-bolder"><i class="fas fa-map-marker-alt pe-2 text-muted" style="width:24px;opacity:0.85;"></i> Address</div>
-            </div>
-            <div class="col-sm-7">
-              <div class="pb-2">169, East Barandipara, Dhaka-road, Jashore, Khulna, Bangladesh</div>
-            </div>
-          </div>
+        <div class="bio-row">
+          <span class="bio-label"><i class="fas fa-phone"></i> Phone</span>
+          <span class="bio-val">+880 1521-522856</span>
+        </div>
+        <div class="bio-row">
+          <span class="bio-label"><i class="fas fa-map-marker-alt"></i> Address</span>
+          <span class="bio-val">169, East Barandipara, Dhaka Road, Jashore, Khulna, Bangladesh</span>
+        </div>
+        <div class="bio-row" style="margin-top:0.5rem; padding-top:0.5rem; border-top:1px solid var(--rule);">
+          <span class="bio-label"><i class="fas fa-flask"></i> Research</span>
+          <span class="bio-val">Computer Vision · Machine Learning · Deep Learning</span>
+        </div>
+        <div class="bio-row">
+          <span class="bio-label"><i class="fas fa-book"></i> Teaching</span>
+          <span class="bio-val">AI · Digital Image Processing · Discrete Mathematics</span>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- End of About Section -->
-
-
-  <!-- Start of expericence section -->
-
-  <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
-    <div class="work-experience-section">
-      <h2 class="h2 fw-light mb-4">Work Experience</h2>
-      <div class="timeline">
-
-        <!-- start Copy to add more experience -->
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Lecturer (CSE) <span class="text-muted h6">at Bangladesh Army University of Science & Technology, Khulna</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">July, 2025 - Current</div>
-            <div>Working as a full time Lecturer.</div>
-          </div>
+<!-- ░░ Skills ░░ -->
+<section id="skills">
+  <div class="container">
+    <h2 class="section-title">Professional Skills</h2>
+    <div class="skills-grid">
+      <!-- Column 1: Programming Languages -->
+      <div>
+        <p class="label" style="margin-bottom:1.2rem;">Programming Languages</p>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Python</span><span class="skill-level">Expert (85%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.1s;"></div></div>
         </div>
-        <!-- End Copy to add more experience -->
-
-
-        <!-- start Copy to add more experience -->
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Lecturer (CSE) <span class="text-muted h6">at Bangladesh Army University of Engineering & Technology</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">July, 2023 - July, 2025</div>
-            <div>Working as a full time Lecturer.</div>
-          </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">SQL</span><span class="skill-level">Expert (85%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.15s;"></div></div>
         </div>
-        <!-- End Copy to add more experience -->
-
-        
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Machine Learning Engineer(Part Time) <span class="text-muted h6">at MazeGeek Technologies BD Ltd</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">September, 2020 - May, 2021</div>
-            <div>Worked with a research team, which is focused on Augmented Reality. I was a collaborator of virtual makeup research team.</div>
-          </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">C++</span><span class="skill-level">Advanced (75%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.2s;"></div></div>
         </div>
-
-
-<!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="200">
-  <div class="timeline-head px-4 pt-3">
-    <div class="h5">Graphic Designer <span class="text-muted h6">at Design Studio</span></div>
-  </div>
-  <div class="timeline-body px-4 pb-4">
-    <div class="text-muted text-small mb-3">June, 2013 - May, 2015</div>
-    <div>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</div>
-  </div>
-</div> -->
-<!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="400">
-  <div class="timeline-head px-4 pt-3">
-    <div class="h5">Junior Web Developer <span class="text-muted h6">at Indie Studio</span></div>
-  </div>
-  <div class="timeline-body px-4 pb-4">
-    <div class="text-muted text-small mb-3">Jan, 2011 - May, 2013</div>
-    <div>User generated content in real-time will have multiple touchpoints for offshoring. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</div>
-  </div>
-</div> -->
-</div>
-</div>
-</div>
-
-<!-- End of Experience Section -->
-
-
-  <!-- Start of Courses Taught -->
-  <div class="shadow-1-strong bg-white my-5 p-5" id="courses_Taught">
-    <div class="work-experience-section">
-      <h2 class="h2 fw-light mb-4">Teaching Life</h2>
-      <div class="timeline">
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Digital Image Processing Sessional <span class="text-muted h6">Sessional</span></div>
-          </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">C</span><span class="skill-level">Advanced (75%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.25s;"></div></div>
         </div>
-
-        <!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Data Mining and Data Warehousing <span class="text-muted h6">Sessional</span></div>
-          </div>
-        </div> -->
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Artificial Intelligent Sessional <span class="text-muted h6">Sessional</span></div>
-          </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Java</span><span class="skill-level">Intermediate (60%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:60%;animation-delay:0.3s;"></div></div>
         </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Numerical Analysis Sessional <span class="text-muted h6">Sessional</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Digital Image Processing  <span class="text-muted h6">Theory</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Artificial Intelligent <span class="text-muted h6">Theory</span></div>
-          </div>
-        </div>
-
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Numerical Analysis  <span class="text-muted h6">Theory</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Discrete Mathematics <span class="text-muted h6">Theory</span></div>
-          </div>
-        </div>
-
-        <!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="200">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Graphic Designer <span class="text-muted h6">at Design Studio</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">June, 2013 - May, 2015</div>
-            <div>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</div>
-          </div>
-        </div> -->
-        <!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="400">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Junior Web Developer <span class="text-muted h6">at Indie Studio</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">Jan, 2011 - May, 2013</div>
-            <div>User generated content in real-time will have multiple touchpoints for offshoring. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</div>
-          </div>
-        </div> -->
       </div>
-    </div>
-  </div>
-
-
-  <!-- End of Award and Scholarship Section -->
-
-
-
-
-<!-- Start of Professional Skills Section -->
-  <div class="shadow-1-strong bg-white my-5 p-5" id="skills">
-    <div class="skills-section">
-      <h2 class="h2 fw-light mb-4">Professional Skills</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3"><span class="fw-bolder">Python</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="100" data-aos-anchor=".skills-section" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">SQL</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">C++</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">C</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="200" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Java</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-info" role="progressbar" data-aos="zoom-in-right" data-aos-delay="300" data-aos-anchor=".skills-section" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">Inermediate</div>
-            </div>
-          </div>
+      <!-- Column 2: Frameworks & Tools -->
+      <div>
+        <p class="label" style="margin-bottom:1.2rem;">Frameworks &amp; Tools</p>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">TensorFlow</span><span class="skill-level">Expert (85%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.35s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
         </div>
-        <div class="col-md-6">
-          <div class="mb-3"><span class="fw-bolder">Tensorflow</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">Expert</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">OpenCV</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">git</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="500" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">LaTeX</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="400" data-aos-anchor=".skills-section" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Advance</div>
-            </div>
-          </div>
-          <div class="mb-3"><span class="fw-bolder">Pytorch</span>
-            <div class="progress my-2 rounded" style="height: 20px">
-              <div class="progress-bar bg-secondary" role="progressbar" data-aos="zoom-in-right" data-aos-delay="600" data-aos-anchor=".skills-section" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">Beginner</div>
-            </div>
-          </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">OpenCV</span><span class="skill-level">Advanced (75%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.4s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">Git</span><span class="skill-level">Advanced (75%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.45s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">LaTeX</span><span class="skill-level">Advanced (75%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.5s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-header"><span class="skill-name">PyTorch</span><span class="skill-level">Beginner (40%)</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;animation-delay:0.55s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- End of Professional Experience section -->
+<!-- ░░ Experience ░░ -->
+<section id="experience">
+  <div class="container">
+    <h2 class="section-title">Work Experience</h2>
+    <div class="timeline">
 
-  <!-- Start of Education section -->
-
-  <div class="shadow-1-strong bg-white my-5 p-5" id="education">
-    <div class="education-section">
-      <h2 class="h2 fw-light mb-4">Education</h2>
-      <div class="timeline">
-        <!-- <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Masters in Information Technology <span class="text-muted h6">from International University</span>          </div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2011 - 2013</div>
-            <div>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.</div>
-          </div>
-        </div> -->
-        <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Bachelor of Computer Science and Engineering <span class="text-muted h6">from Khulna University of  Engineering & Technology</span>          </div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2018 - 2023</div>
-            <div>CGPA 3.50 out of 4.00</div>
-            <br>
-            <h5 class="h5  mb-4">Co-Curricular Activities</h5>
-            <div class="timeline">
-
-
-            <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
-              <div class="timeline-head px-4 pt-3">
-                <div class="h5">President <span class="text-muted h6">Jashore Association of KUET (JAK)</span>          </div>
-              </div>
-              <div class="timeline-body px-4 pb-4">
-                <div class="text-muted text-small mb-3">2022 - 2023</div>
-                <div>Leads, guides, directs and evaluates all other member of the committee and junior members, and ensures they are carrying out all the activities of the Association</div>
-              </div>
-              </div>
-            
-              <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
-                <div class="timeline-head px-4 pt-3">
-                  <div class="h5">Organizing Secretary <span class="text-muted h6">Hardware Accerelation Club of KUET (HACK)</span>          </div>
-                </div>
-                <div class="timeline-body px-4 pb-4">
-                  <div class="text-muted text-small mb-3">2022 - 2023</div>
-                  <div>Organize the events hosted by the club</div>
-                </div>
-                </div>
-
-              
-              
-                <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
-                  <div class="timeline-head px-4 pt-3">
-                    <div class="h5">Assistant General Secretary <span class="text-muted h6">Jashore Association of KUET (JAK)</span>          </div>
-                  </div>
-                  <div class="timeline-body px-4 pb-4">
-                    <div class="text-muted text-small mb-3">2019 - 2020</div>
-                    <div>Follow the instructions given by the seniors and lead the junior to make every event successful</div>
-                  </div>
-
-
-              
-              </div>
-            </div>
-
-
-          </div>
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title">Lecturer, Computer Science &amp; Engineering</div>
+          <div class="tl-sub">Bangladesh Army University of Science &amp; Technology, Khulna (BAUSTK)</div>
         </div>
-        <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="400">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Science <span class="text-muted h6">from  Govt. M M College, Jashore</span>          </div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2015 - 2017</div>
-            <div>GPA 5.00 out of 5.00</div>
-
-          </div>
-        </div>
-        
-        <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="400">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Science <span class="text-muted h6">from  Jashore Zilla School, Jashore</span>          </div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">2010 - 2015</div>
-            <div>GPA 5.00 out of 5.00</div>
-
-
-            <br>
-            <h5 class="h5  mb-4">Co-Curricular Activities</h5>
-            <div class="timeline">
-
-
-            <div class="timeline-card timeline-card-success" data-aos="fade-in" data-aos-delay="200">
-              <div class="timeline-head px-4 pt-3">
-                <div class="h5">Petrol Leader <span class="text-muted h6">Jashore Zilla School Scout Team</span>          </div>
-              </div>
-              <div class="timeline-body px-4 pb-4">
-                <div class="text-muted text-small mb-3">2013 - 2015</div>
-                <div>Led my team</div>
-              </div>
-              </div>
-            
-            </div>
-            </div>
-
-
-
-          </div>
-        </div>
-
+        <div class="tl-date">July 2025 — Present</div>
+        <div class="tl-body">Serving as a full-time faculty member, delivering lectures and conducting sessionals in core CSE courses at the undergraduate level.</div>
       </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title">Lecturer, Computer Science &amp; Engineering</div>
+          <div class="tl-sub">Bangladesh Army University of Engineering &amp; Technology (BAUET)</div>
+        </div>
+        <div class="tl-date">July 2023 — July 2025</div>
+        <div class="tl-body">Served as a full-time Lecturer, contributing to curriculum delivery and student mentorship in CSE departments.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-header">
+          <div class="tl-title">Machine Learning Engineer <span style="font-weight:300;font-size:0.9rem;">(Part-Time)</span></div>
+          <div class="tl-sub">MazeGeek Technologies BD Ltd</div>
+        </div>
+        <div class="tl-date">September 2020 — May 2021</div>
+        <div class="tl-body">Collaborated with a research team focused on Augmented Reality; contributed as a member of the virtual makeup research group, exploring ML-driven visual effects and real-time facial feature analysis.</div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <!-- End of education-section -->
+<!-- ░░ Education ░░ -->
+<section id="education">
+  <div class="container">
+    <h2 class="section-title">Education</h2>
+    <div class="timeline">
 
-  
-
-
-  <!-- Start of Publication section -->
-
-  <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="research">
-    <div class="portfolio-section">
-      <h2 class="h2 fw-light mb-4">Publication</h2>
-
-      <!-- Start of add new research -->
-      <div class="row g-0">
-        <div class="col-md-6" style="padding-top: 50px;">
-          
-          <img class="img-fluid" src="images/journal-2.png" style="width: 500px; height: 80%;"/> 
-          
+      <div class="tl-item success">
+        <div class="tl-header">
+          <div class="tl-title">B.Sc. in Computer Science &amp; Engineering</div>
+          <div class="tl-sub">Khulna University of Engineering &amp; Technology (KUET)</div>
         </div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">Under Review</p>
-            <h5>Gray Scale to Color Image Conversion using Generative Adversarial Network</h5>
-            <!-- <p class="text-muted">The research was divided into three parts.<br>
-                                  1.License Plate Recognition<br>
-                                2.Character Recognition and <br>
-                              3. Proper formatted output generation<br>
-                            We have tested 7 different pre-trained models for the first two parts and developed an
-                            algorithm to make properly formatted output generation.<br>
-                          </p> -->
-            <p class="text-muted">
-                                  <b>Under review in a Q1 journal.</b><br> 
-                                  <p> 
-                                    This study explores image colorization using deep learning, 
-                                    particularly conditional Generative Adversarial Networks (cGANs), 
-                                    which outperform traditional reference-based methods by generating realistic colors more efficiently.
-                                  </p>
-                                  
-                                  <!-- Author = "Hossain, Syed Nahin
-                                  and Hassan, Md. Zahim
-                                  and Masba, Md. Masum Al <br> -->
-                                  <!-- Journal = "Environmental Sciences Europe"<br>
-                                  Publisher = "Springer Nature Link"<br> -->
-                                  <!-- booktitle="Proceedings of the International Conference on Big Data, IoT, and Machine Learning" <br> -->
-                                  <!-- Year="2025"<br>
-                                  <a href="https://link.springer.com/article/10.1186/s12302-025-01078-w">Read the paper</a> -->
-                          </p>
+        <div class="tl-date">2018 — 2023</div>
+        <div class="tl-body">CGPA: 3.50 / 4.00</div>
+        <div class="tl-nested">
+          <p class="tl-nested-title">Co-Curricular Activities</p>
+          <div class="tl-nested-item">
+            <div class="tl-title">President — Jashore Association of KUET (JAK)</div>
+            <div class="tl-date">2022 — 2023</div>
+            <div class="tl-body">Led, guided, and directed committee members; organised association events and ensured strategic continuity of activities.</div>
+          </div>
+          <div class="tl-nested-item">
+            <div class="tl-title">Organizing Secretary — Hardware Acceleration Club of KUET (HACK)</div>
+            <div class="tl-date">2022 — 2023</div>
+            <div class="tl-body">Coordinated events hosted by the club, managing logistics and participant engagement.</div>
+          </div>
+          <div class="tl-nested-item">
+            <div class="tl-title">Assistant General Secretary — Jashore Association of KUET (JAK)</div>
+            <div class="tl-date">2019 — 2020</div>
+            <div class="tl-body">Supported senior leadership and mentored junior members to ensure successful event outcomes.</div>
           </div>
         </div>
       </div>
-      <!-- End of add new research -->
 
+      <div class="tl-item success">
+        <div class="tl-header">
+          <div class="tl-title">Higher Secondary Certificate (HSC) — Science</div>
+          <div class="tl-sub">Govt. M. M. College, Jashore</div>
+        </div>
+        <div class="tl-date">2015 — 2017</div>
+        <div class="tl-body">GPA: 5.00 / 5.00</div>
+      </div>
 
+      <div class="tl-item success">
+        <div class="tl-header">
+          <div class="tl-title">Secondary School Certificate (SSC) — Science</div>
+          <div class="tl-sub">Jashore Zilla School, Jashore</div>
+        </div>
+        <div class="tl-date">2010 — 2015</div>
+        <div class="tl-body">GPA: 5.00 / 5.00</div>
+        <div class="tl-nested">
+          <p class="tl-nested-title">Co-Curricular Activities</p>
+          <div class="tl-nested-item">
+            <div class="tl-title">Patrol Leader — Jashore Zilla School Scout Team</div>
+            <div class="tl-date">2013 — 2015</div>
+            <div class="tl-body">Led the scouting patrol, developing teamwork and leadership abilities.</div>
+          </div>
+        </div>
+      </div>
 
-      <!-- Start of add new research -->
-      <div class="row g-0">
-        <div class="col-md-6" style="padding-top: 172px;">
-          <a href="https://link.springer.com/article/10.1186/s12302-025-01078-w" target="_blank">
-            <img class="img-fluid" src="images/journal-1.png" style="width: 500px; height: 80%;"/> 
+    </div>
+  </div>
+</section>
+
+<!-- ░░ Publications ░░ -->
+<section id="research">
+  <div class="container">
+    <h2 class="section-title">Publications</h2>
+    <div class="pub-list">
+
+      <!-- Paper 1: Under Review -->
+      <div class="pub-card">
+        <div class="pub-num">01</div>
+        <div>
+          <span class="pub-badge badge-review">Under Review</span>
+          <div class="pub-title">Gray Scale to Color Image Conversion using Generative Adversarial Networks</div>
+          <div class="pub-meta">Under review in a Q1 journal &nbsp;·&nbsp; 2025</div>
+          <p class="pub-abstract">This study explores image colorization using deep learning, particularly conditional Generative Adversarial Networks (cGANs), which outperform traditional reference-based methods by generating realistic colors more efficiently and without requiring manual reference images.</p>
+        </div>
+      </div>
+
+      <!-- Paper 2: Journal -->
+      <div class="pub-card">
+        <div class="pub-num">02</div>
+        <div>
+          <span class="pub-badge badge-journal">Journal Article</span>
+          <div class="pub-title">Comparative Analysis of Machine Learning Models for Predicting Water Quality Index in Dhaka's Rivers of Bangladesh</div>
+          <div class="pub-meta">
+            <em>Environmental Sciences Europe</em> &nbsp;·&nbsp; Springer Nature &nbsp;·&nbsp; 2025<br>
+            <strong style="font-weight:500;">Impact Factor: 6.0 (2023) &nbsp;|&nbsp; 5-Year IF: 6.6</strong>
+          </div>
+          <p class="pub-abstract">This study addresses severe pollution in Dhaka's key rivers due to industrialization and inadequate waste management. Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI). Artificial Neural Network (ANN) and Random Forest Regressor demonstrated the highest accuracy, with ANN achieving top overall performance metrics — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.</p>
+          <a class="pub-link" href="https://link.springer.com/article/10.1186/s12302-025-01078-w" target="_blank">
+            <i class="fas fa-external-link-alt"></i>Read the Paper
           </a>
         </div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">Journal paper</p>
-            <h5>Comparative analysis of machine learning models for predicting water quality index in Dhaka’s rivers of Bangladesh</h5>
-            <!-- <p class="text-muted">The research was divided into three parts.<br>
-                                  1.License Plate Recognition<br>
-                                2.Character Recognition and <br>
-                              3. Proper formatted output generation<br>
-                            We have tested 7 different pre-trained models for the first two parts and developed an
-                            algorithm to make properly formatted output generation.<br>
-                          </p> -->
-            <p class="text-muted">
-                                  <b>Journal Impact Factor: 6.0 (2023) ; 5-year Journal Impact Factor: 6.6 (2023)</b><br> 
-                                  <p> 
-                                    The study addresses severe pollution in Dhaka's key rivers due to industrialization and poor waste management. 
-                                    It aims to predict the Water Quality Index (WQI) using 14 machine learning models to identify the most effective approach for monitoring urban water quality.
-                                    Among the models tested, Artificial Neural Network (ANN) and Random Forest Regressor showed the highest accuracy, with ANN achieving top performance metrics. 
-                                    This research uniquely applies a wide range of ML techniques to Dhaka's waterways, offering a reliable, cost-effective method for environmental monitoring and decision-making.
-                                  </p>
-                                  
-                                  <!-- Author = "Hossain, Syed Nahin
-                                  and Hassan, Md. Zahim
-                                  and Masba, Md. Masum Al <br> -->
-                                  Journal = "Environmental Sciences Europe"<br>
-                                  Publisher = "Springer Nature Link"<br>
-                                  <!-- booktitle="Proceedings of the International Conference on Big Data, IoT, and Machine Learning" <br> -->
-                                  Year="2025"<br>
-                                  <a href="https://link.springer.com/article/10.1186/s12302-025-01078-w">Read the paper</a>
-                          </p>
-          </div>
-        </div>
       </div>
-      <!-- End of add new research -->
 
-      <div class="row g-0">
-        <div class="col-md-6" style="padding-top: 172px;">
-          <a href="https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8" target="_blank">
-            <img class="img-fluid" src="images/research-1.jpg" width="800" height="700"/>
+      <!-- Paper 3: Conference -->
+      <div class="pub-card">
+        <div class="pub-num">03</div>
+        <div>
+          <span class="pub-badge badge-conf">Conference Paper</span>
+          <span class="pub-badge badge-award" style="margin-left:0.4rem;">Best Paper Award</span>
+          <div class="pub-title">Automatic License Plate Recognition System for Bangladeshi Vehicles Using Deep Neural Network</div>
+          <div class="pub-meta">
+            International Conference on Big Data, IoT and Machine Learning (BIM 2021) &nbsp;·&nbsp; Springer Singapore &nbsp;·&nbsp; 2022
+          </div>
+          <p class="pub-abstract">This paper proposes an optimal end-to-end ALPR system for Bangladeshi vehicles by experimenting with various DNN models trained on a rich, novel dataset of Bangladeshi vehicles and license plates. A custom algorithm eliminates the typical segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% accuracy in text recognition. Awarded Best Paper in the Machine Learning track.</p>
+          <a class="pub-link" href="https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8" target="_blank">
+            <i class="fas fa-external-link-alt"></i>Read the Paper
           </a>
         </div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">Conference paper</p>
-            <h5>Automatic License Plate Recognition System For Bangladeshi Vehicles Using Deep Neural Network</h5>
-            <!-- <p class="text-muted">The research was divided into three parts.<br>
-                                  1.License Plate Recognition<br>
-                                2.Character Recognition and <br>
-                              3. Proper formatted output generation<br>
-                            We have tested 7 different pre-trained models for the first two parts and developed an
-                            algorithm to make properly formatted output generation.<br>
-                          </p> -->
-            <p class="text-muted">
-                                  <b>This paper was awarded as the best paper at the conference in Machine Learning track.</b><br> 
-                                  <p> 
-                                    This paper has proposed an optimal end-to-end approach for the Automatic License Plate Recognition(ALPR) system for Bangladeshi vehicles
-                                    by experimenting with the various Deep Neural Network(DNN) models. These models have been trained and evaluated on our rich datasets
-                                    of Bangladeshi vehicles and license plates. We have also introduced an
-                                    algorithm that eliminates the need for the typical segmentation phase
-                                    and generates properly formatted output efficiently. The final proposed
-                                    system offers 99.37% accuracy in license plate localization and 96.31%
-                                    accuracy in text recognition from the license plate(LP)s.
-                                  </p>
-                                  
-                                  <!-- Author = "Hossain, Syed Nahin
-                                  and Hassan, Md. Zahim
-                                  and Masba, Md. Masum Al <br> -->
-                                  Publisher = "Springer Singapore"<br>
-                                  <!-- booktitle="Proceedings of the International Conference on Big Data, IoT, and Machine Learning" <br> -->
-                                  Year="2022"<br>
-                                  <a href="https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8">Read the paper</a>
-                          </p>
-          </div>
-        </div>
       </div>
 
-
-      <div class="row g-0">
-        <div class="col-md-6" style="padding-top: 126px;">
-          <a href="https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8" target="_blank">
-            <img class="img-fluid" src="images/research-2.PNG" width="800" height="700"/>
+      <!-- Paper 4: Conference -->
+      <div class="pub-card">
+        <div class="pub-num">04</div>
+        <div>
+          <span class="pub-badge badge-conf">Conference Paper</span>
+          <div class="pub-title">Bangladeshi Local Vehicle Recognition with a Comprehensive Dataset using Transfer Learning Techniques</div>
+          <div class="pub-meta">IEEE &nbsp;·&nbsp; 2023</div>
+          <p class="pub-abstract">A challenging dataset of Bangladeshi vehicles was developed to assess model performance on Intelligent Transport System (ITS) tasks. Various pre-trained models were trained and evaluated; the proposed model achieved leading results in both localization and categorization. The dataset was shown to better reflect real-life scenarios than pre-existing alternatives.</p>
+          <a class="pub-link" href="https://ieeexplore.ieee.org/document/10103325" target="_blank">
+            <i class="fas fa-external-link-alt"></i>Read the Paper
           </a>
         </div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">Conference paper</p>
-            <h5>Bangladeshi Local Vehicle Recognition with A Comprehensive Dataset using Transfer Learning Techniques</h5>
-            <!-- <p class="text-muted">The research was divided into three parts.<br>
-                                  1.License Plate Recognition<br>
-                                2.Character Recognition and <br>
-                              3. Proper formatted output generation<br>
-                            We have tested 7 different pre-trained models for the first two parts and developed an
-                            algorithm to make properly formatted output generation.<br>
-                          </p> -->
-            <p class="text-muted">
-                                  <p>A demanding dataset of Bangladeshi vehicles was developed in order to assess the models' performance and the dataset's suitability for
-                                     the Intelligent Transport System (ITS) task. 
-                                    A variety of pre-trained models were trained using it, and the performance of the model on the image database was carefully examined.
-                                     The most accurate results for the localization and categorization tasks of Bangladeshi vehicles were proposed through a model. 
-                                     It was indicated by the study that the newly introduced dataset is more challenging and offers more similar scenarios that resemble
-                                      real-life situations than pre-existing datasets. The performance of the model was examined on the image database. 
-                                    The proposal of the model and examination of performance were done.</p>
+      </div>
 
-                                  Publisher = "IEEE"<br>
-                                  <!-- booktitle="Proceedings of the International Conference on Big Data, IoT, and Machine Learning" <br> -->
-                                  Year="2023"<br>
-                                  <a href="https://ieeexplore.ieee.org/document/10103325">Read the paper</a>
-                          </p>
-          </div>
-        </div>
-      </div>
-      <!-- <div class="row g-0 portfolio-reverse">
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-right" data-aos-delay="100">
-          <div class="m-4 mt-md-2 text-end">
-            <p class="text-teal text-small">Graphic Design / Photoshop / Sketch</p>
-            <h3>Restaurant Website Design</h3>
-            <p class="text-muted">Web design for popular resturant chain involving complex layouts done in both Photoshop and Sketch. Collaborated with back-end and front-end team for finished product.</p>
-          </div>
-        </div>
-        <div class="col-md-6"><a href="https://www.behance.net/" target="_blank"><img class="img-fluid" src="images/project-2.jpg" width="800" height="500"/></a></div>
-      </div> -->
-      <!-- <div class="row g-0">
-        <div class="col-md-6"><a href="https://dribbble.com/" target="_blank"><img class="img-fluid" src="images/project-3.jpg" width="800" height="500"/></a></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <p class="text-teal text-small">Frontend / HTML / CSS / JavaScript</p>
-            <h3>E-Commerce Website</h3>
-            <p class="text-muted">Built highly performant website for an E-commerce Portal. Worked with back-end team to timely deliver codebase in HTML, CSS and modern JavaScript.</p>
-          </div>
-        </div>
-      </div>
-    </div> -->
-  </div>
-  </div>
-  <!-- <div class="shadow-1-strong bg-white my-5 p-5" id="references">
-    <div class="reference-section">
-      <h2 class="h2 fw-light mb-4">References</h2>
-      <div class="row"> 
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/reference-image-1.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Aiyana</h3>
-              <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">CEO / Web Design Company</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Walter displays exemplary professionalism and is able to take on challenges. He learns quickly and is an asset to any team.</p>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="d-flex mb-2">
-            <div class="avatar"><img src="images/reference-image-2.jpg" width="60" height="60"/></div>
-            <div class="header-bio m-3 mb-0">
-              <h3 class="h6 mb-1" data-aos="fade-left" data-aos-delay="0">Alexander</h3>
-              <p class="text-muted text-small" data-aos="fade-left" data-aos-delay="100">Front-end Developer / Web Design Company</p>
-            </div>
-          </div>
-          <div class="d-flex"><i class="text-secondary fas fa-quote-left"></i>
-            <p class="lead mx-2" data-aos="fade-left" data-aos-delay="100">Walter is a great co-worker and problem solver. He is quick to extend his helping hand and makes a good team player.</p>
-          </div>
-        </div>
-      </div>
     </div>
-  </div> -->
-
-
-  <!-- End of Publication Section -->
-
-
-  <!-- Start of project section -->
-  <div class="shadow-1-strong bg-white my-5 p-5 d-print-none" id="projects">
-    <div class="portfolio-section">
-      <h2 class="h2 fw-light mb-4">Projects</h2>
-      <div class="row g-0">
-        <div class="col-md-6"><video width="500" height="400" controls>
-          <source src="images/project_1.mkv" type="video/mp4">
-          Video of the Project.Your browser does not support HTML video.
-        </video></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <h4>Automatic License Plate Recognizer</h4>
-            <p class="text-teal text-small">Python YOLO OpenCV </p>
-            <!-- <p class="text-muted">The research was divided into three parts.<br>
-                                  1.License Plate Recognition<br>
-                                2.Character Recognition and <br>
-                              3. Proper formatted output generation<br>
-                            We have tested 7 different pre-trained models for the first two parts and developed an
-                            algorithm to make properly formatted output generation.<br>
-                          </p> -->
-            <p class="text-muted">
-              An AI system that can automatically detect Bangladeshi license plates and then recognize what is written on them.
-               After that, the plate number with some additional information(time/date) is written into a CSV file.
-              We have used a pre-trained model to detect and recognize.
-               We have made several version with the combination of YoloV4 and Tensorflow object detection model 
-               (such as:EfficientDetD0, EfficientDetD1,EfficientDet2, SSD MobileNet V2 FPNLite 320x320 , SSD MobileNet V1 FPN 640x640, SSD ResNet50 V1 FPN 640x640 (RetinaNet50)).
-                Later we used OpenCV and TensorFlow object detection API to make our desired output. It is written in python. This was made for my varsity project.
-                          </p>
-            <p class=" text-muted"><a href="https://github.com/NAHIN-JZS/License-Plate-Recognizer">Github Repository</a></p>
-          </div>
-        </div>
-      </div>
-
-
-      
-      <div class="row g-0">
-        <div class="col-md-6"><video width="500" height="400" controls>
-          <source src="images/kill_the_man_game.mkv" type="video/mp4">
-          Video of the Project.Your browser does not support HTML video.
-        </video></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <h4>Kill The Man Game</h4>
-            <p class="text-teal text-small">C++ OpenGL</p>
-            <p class="text-muted">
-              This is a video game that is completely made in C++ and OpenGL. The gamer needed to kill a specific man is passing through the gamer in a car. This project is made for my Graphics lab project.
-                          </p>
-
-            <p class="text-muted"><a href="https://github.com/NAHIN-JZS/kill_the_man_game_OpenGL">Github Repository</a>
-          </div>
-        </div>
-      </div>
-      
-
-
-
-      <div class="row g-0">
-        <div class="col-md-6"><a href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank"><img class="img-fluid" src="images/project-2.png" width="800" height="700"/></a></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <h4>Home Rental Website</h4>
-            <p class="text-teal text-small">HTML CSS php mysqli</p>
-            <p class="text-muted">
-              This is a website where house renter can find house location wise and house owner can advertise their empty house so that the house renter can find it.
-              This is written in php, mysqli, CSS and HTML. I have used XAMPP for local hosting. This was made for my varsity project.
-                          </p>
-
-            <p class="text-muted"><a href="https://github.com/NAHIN-JZS/ghor_bari_web">Github Repository</a>
-          </div>
-        </div>
-      </div>
-      
-
-
-      
-      <div class="row g-0"><br>
-        <div class="col-md-6"><video width="500" height="400" controls>
-          <source src="images/project_ghor_bariHD.mp4" type="video/mp4">
-          Video of the Project.Your browser does not support HTML video.
-        </video></div>
-        <div class="col-md-6 d-flex align-items-center" data-aos="fade-left" data-aos-delay="100">
-          <div class="m-4 mt-md-2">
-            <h4>Ghorbari</h4>
-            <p class="text-teal text-small">Java, Firebase </p>
-            <p class="text-muted">
-              An android application where a house renter can find house location wise and the house owner 
-              can advertise their empty house so that the house renter can find it.
-              It is written in python. This was made for my varsity project.
-                          </p>
-            <p class=" text-muted"><a href="https://github.com/NAHIN-JZS/Ghorbari">Github Repository</a></p>
-          </div>
-        </div>
-      </div>
-
-
-
-
   </div>
-  </div>
+</section>
 
-  <!-- End of Project Section -->
-
-
-  <!-- Start of Award and Scholarship -->
-  <div class="shadow-1-strong bg-white my-5 p-5" id="experience">
-    <div class="work-experience-section">
-      <h2 class="h2 fw-light mb-4">Awards and Scholarships</h2>
-      <div class="timeline">
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Dean’s Award <span class="text-muted h6">from Khulna University of Engineering & Technology</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Best Paper Award <span class="text-muted h6">at International Conference on Big Data, IoT and Machine Learning (BIM 2021)</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Board Scholarship for Higher Secondary Certificate Examination (HSC) <span class="text-muted h6">form Jashore Board (2017)</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Board Scholarship for Secondary School Certificate Examination (SSC) <span class="text-muted h6">form Jashore Board (2015)</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Board Scholarship for Junior School Certificate Examination (JSC) <span class="text-muted h6">form Jashore Board (2012)</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Non-Goverment Scholarship for excellent result  <span class="text-muted h6">from Jashore Students Welfare Foundation(2011)</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="0">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Non-Goverment Scholarship for excellent result <span class="text-muted h6">from Jashore Students Welfare Foundation(2006)</span></div>
-          </div>
-        </div>
-
-        <!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="200">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Graphic Designer <span class="text-muted h6">at Design Studio</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">June, 2013 - May, 2015</div>
-            <div>Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</div>
-          </div>
-        </div> -->
-        <!-- <div class="timeline-card timeline-card-info" data-aos="fade-in" data-aos-delay="400">
-          <div class="timeline-head px-4 pt-3">
-            <div class="h5">Junior Web Developer <span class="text-muted h6">at Indie Studio</span></div>
-          </div>
-          <div class="timeline-body px-4 pb-4">
-            <div class="text-muted text-small mb-3">Jan, 2011 - May, 2013</div>
-            <div>User generated content in real-time will have multiple touchpoints for offshoring. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</div>
-          </div>
-        </div> -->
+<!-- ░░ Courses Taught ░░ -->
+<section id="courses">
+  <div class="container">
+    <h2 class="section-title">Courses Taught</h2>
+    <div class="courses-grid">
+      <div class="course-card">
+        <div class="course-name">Digital Image Processing</div>
+        <div class="course-type">Theory &amp; Sessional</div>
+      </div>
+      <div class="course-card">
+        <div class="course-name">Artificial Intelligence</div>
+        <div class="course-type">Theory &amp; Sessional</div>
+      </div>
+      <div class="course-card">
+        <div class="course-name">Numerical Analysis</div>
+        <div class="course-type">Theory &amp; Sessional</div>
+      </div>
+      <div class="course-card">
+        <div class="course-name">Discrete Mathematics</div>
+        <div class="course-type">Theory</div>
       </div>
     </div>
   </div>
+</section>
 
+<!-- ░░ Projects ░░ -->
+<section id="projects">
+  <div class="container">
+    <h2 class="section-title">Selected Projects</h2>
+    <div class="projects-list">
 
-  <!-- End of Award and Scholarship Section -->
-
-
-  <!-- Start of Contract Section -->
-
-  <div class="shadow-1-strong bg-white my-5 p-5" id="contact">
-    <div class="contant-section">
-      <h2 class="h2 fw-light text mb-4">Contact</h2>
-      <div class="row mb-4">
-        <div class="col-md-5" data-aos="fade-left" data-aos-delay="200">
-          <div class="mt-1">
-            <div class="h6"><i class="fas fa-phone pe-2 text-muted" style="width:24px;opacity:0.85;"></i> +8801521-522856</div>
-            <div class="h6"><i class="far fa-envelope pe-2 text-muted" style="width:24px;opacity:0.85;"></i> syednahinhossain@gmail.com</div>
-          </div>
-          <div class="mt-5 d-print-none">
-            <form action= "https://formspree.io/f/mqknyewj"
-                  method="POST">
-  <div class="form-outline mb-4">
-    <input type="text" id="name" name="name" class="form-control" required/>
-    <label class="form-label" for="name">Name</label>
-  </div>
-  <div class="form-outline mb-4">
-    <input type="email" id="email" name="email" class="form-control" required/>
-    <label class="form-label" for="email">Email address</label>
-  </div>
-  <div class="form-outline mb-4">
-    <textarea class="form-control" style="resize: none;" name = "message" id="message" rows="4" required></textarea>
-    <label class="form-label" for="message">Message</label>
-  </div>
-  <button class="btn btn-info btn-block mb-4" type="submit">Send</button>
-</form>
-          </div>
+      <div class="project-card">
+        <div class="media-side">
+          <video controls>
+            <source src="images/project_1.mkv" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
         </div>
-        <div class="col-md-7 d-print-none" data-aos="zoom-in" data-aos-delay="100"><iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14709.916900049911!2d89.52144935!3d22.821753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1649618548962!5m2!1sen!2sbd" width="500" height="400" style="border:0;width:100%;" allowfullscreen="" loading="lazy"></iframe></div>
+        <div class="info-side">
+          <div class="proj-tech">Python &nbsp;·&nbsp; YOLOv4 &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; OpenCV</div>
+          <h3>Automatic License Plate Recognizer</h3>
+          <p>An end-to-end AI pipeline for automatically detecting Bangladeshi license plates and recognising the inscribed characters. Results (timestamp, plate number) are logged to CSV. Seven DNN architectures were benchmarked including EfficientDet variants, SSD MobileNet, and SSD ResNet50, before arriving at the final optimised configuration. Developed as an undergraduate capstone project.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/License-Plate-Recognizer" target="_blank">
+            <i class="fab fa-github"></i>View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="media-side">
+          <video controls>
+            <source src="images/kill_the_man_game.mkv" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
+        </div>
+        <div class="info-side">
+          <div class="proj-tech">C++ &nbsp;·&nbsp; OpenGL</div>
+          <h3>Kill The Man — OpenGL Game</h3>
+          <p>A 2D video game implemented entirely in C++ with OpenGL, built as a Computer Graphics laboratory project. The gameplay involves intercepting a target character passing through the scene by vehicle.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/kill_the_man_game_OpenGL" target="_blank">
+            <i class="fab fa-github"></i>View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="media-side">
+          <a href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank">
+            <img src="images/project-2.png" alt="Home Rental Website screenshot">
+          </a>
+        </div>
+        <div class="info-side">
+          <div class="proj-tech">PHP &nbsp;·&nbsp; MySQLi &nbsp;·&nbsp; HTML &nbsp;·&nbsp; CSS</div>
+          <h3>Home Rental Web Platform</h3>
+          <p>A web application where tenants can search for available properties by location, and property owners can list vacant houses for prospective renters. Built with PHP and MySQLi and hosted locally using XAMPP. Developed as an undergraduate project.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank">
+            <i class="fab fa-github"></i>View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="media-side">
+          <video controls>
+            <source src="images/project_ghor_bariHD.mp4" type="video/mp4">
+            Your browser does not support HTML video.
+          </video>
+        </div>
+        <div class="info-side">
+          <div class="proj-tech">Java &nbsp;·&nbsp; Firebase</div>
+          <h3>Ghorbari — Android Housing App</h3>
+          <p>An Android application analogous to the web platform, enabling location-based property discovery for tenants and advertisement tools for owners. Built with Java and Firebase as a real-time backend. Developed as an undergraduate project.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/Ghorbari" target="_blank">
+            <i class="fab fa-github"></i>View on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░ Awards & Scholarships ░░ -->
+<section id="awards">
+  <div class="container">
+    <h2 class="section-title">Awards &amp; Scholarships</h2>
+    <div class="awards-list">
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-trophy"></i></div>
+        <div>
+          <div class="award-title">Dean's Award</div>
+          <div class="award-sub">Khulna University of Engineering &amp; Technology</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-medal"></i></div>
+        <div>
+          <div class="award-title">Best Paper Award — Machine Learning Track</div>
+          <div class="award-sub">International Conference on Big Data, IoT and Machine Learning (BIM 2021)</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-award"></i></div>
+        <div>
+          <div class="award-title">Board Scholarship for Higher Secondary Certificate (HSC)</div>
+          <div class="award-sub">Jashore Education Board &nbsp;·&nbsp; 2017</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-award"></i></div>
+        <div>
+          <div class="award-title">Board Scholarship for Secondary School Certificate (SSC)</div>
+          <div class="award-sub">Jashore Education Board &nbsp;·&nbsp; 2015</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-award"></i></div>
+        <div>
+          <div class="award-title">Board Scholarship for Junior School Certificate (JSC)</div>
+          <div class="award-sub">Jashore Education Board &nbsp;·&nbsp; 2012</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-star"></i></div>
+        <div>
+          <div class="award-title">Non-Government Scholarship for Academic Excellence</div>
+          <div class="award-sub">Jashore Students Welfare Foundation &nbsp;·&nbsp; 2011</div>
+        </div>
+      </div>
+
+      <div class="award-item">
+        <div class="award-icon"><i class="fas fa-star"></i></div>
+        <div>
+          <div class="award-title">Non-Government Scholarship for Academic Excellence</div>
+          <div class="award-sub">Jashore Students Welfare Foundation &nbsp;·&nbsp; 2006</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ░░ Contact ░░ -->
+<section id="contact">
+  <div class="container">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info">
+          <div class="ci-row"><i class="fas fa-phone"></i><span>+880 1521-522856</span></div>
+          <div class="ci-row"><i class="fas fa-envelope"></i><a href="mailto:syednahinhossain@gmail.com">syednahinhossain@gmail.com</a></div>
+          <div class="ci-row"><i class="fas fa-map-marker-alt"></i><span>169, East Barandipara, Dhaka Road, Jashore, Khulna, Bangladesh</span></div>
+          <div class="ci-row"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" target="_blank">LinkedIn Profile</a></div>
+          <div class="ci-row"><i class="fab fa-orcid"></i><a href="https://orcid.org/0000-0003-2528-7573" target="_blank">ORCID: 0000-0003-2528-7573</a></div>
+        </div>
+
+        <form class="contact-form" action="https://formspree.io/f/mqknyewj" method="POST">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" required placeholder="Full name">
+
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required placeholder="you@example.com">
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Your message…"></textarea>
+
+          <button class="btn-primary-custom" type="submit">Send Message</button>
+        </form>
+      </div>
+
+      <div class="contact-map">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14709.916900049911!2d89.52144935!3d22.821753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sbd!4v1649618548962!5m2!1sen!2sbd"
+          allowfullscreen
+          loading="lazy"
+          title="Jashore, Bangladesh"></iframe>
       </div>
     </div>
   </div>
-</div>
-</div>
-</div>
+</section>
 
-<!-- End of contract Section -->
+<!-- ░░ Footer ░░ -->
+<footer>
+  <div class="container">
+    <div class="f-name">Syed Nahin Hossain</div>
+    <div class="f-social">
+      <a href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://orcid.org/0000-0003-2528-7573" title="ORCID" target="_blank"><i class="fab fa-orcid"></i></a>
+      <a href="https://github.com/NAHIN-JZS" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <p class="f-copy">&copy; Syed Nahin Hossain. All rights reserved.</p>
+  </div>
+</footer>
 
+<!-- Original scripts preserved -->
+<script src="scripts/mdb.min.js?ver=1.2.1"></script>
+<script src="scripts/aos.js?ver=1.2.1"></script>
+<script src="scripts/main.js?ver=1.2.1"></script>
 
-<!-- Start if footer -->
-    <footer class="pt-4 pb-4 text-muted text-center d-print-none">
-      <div class="container">
-        <div class="my-3">
-          <div class="h4">Syed Nahin Hossain</div>
-          <div class="footer-nav">
-            <nav role="navigation">
-              <ul class="nav justify-content-center">
-                <li class="nav-item"><a class="nav-link" href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" title="LinkedIn"><i class="fab fa-linkedin"></i><span class="menu-title sr-only">Twitter</span></a>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="https://orcid.org/0000-0003-2528-7573" title="Orcid"><i class="fab fa-orcid"></i><span class="menu-title sr-only">Orcid</span></a>
-                </li>
-                <!-- <li class="nav-item"><a class="nav-link" href="https://www.instagram.com/templateflip" title="Instagram"><i class="fab fa-instagram"></i><span class="menu-title sr-only">Instagram</span></a>
-                </li> -->
-                <li class="nav-item"><a class="nav-link" href="https://github.com/NAHIN-JZS" title="Github"><i class="fab fa-github"></i><span class="menu-title sr-only">Github</span></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-        <div class="text-small">
-          <div class="mb-1">&copy; Syed Nahin Hossain. All rights reserved.</div>
-          <!-- <div>Design - <a href="https://templateflip.com/" target="_blank">TemplateFlip</a></div> -->
-        </div>
-      </div>
-    </footer>
-
-    <!-- End of footer -->
-
-    <script src="scripts/mdb.min.js?ver=1.2.1"></script>
-    <script src="scripts/aos.js?ver=1.2.1"></script>
-    <script src="scripts/main.js?ver=1.2.1"></script>
-  </body>
+</body>
 </html>
