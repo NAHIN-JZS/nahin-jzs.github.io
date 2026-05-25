@@ -13,6 +13,7 @@
 
   <!-- Icons -->
   <link href="css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
+  
 
   <style>
     /* ─── Reset & Base ─────────────────────────────────────── */
@@ -95,44 +96,65 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(248,248,252,0.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--rule);
+      background: #0f2440;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
     #nav .inner {
-      max-width: var(--max-w);
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
-      height: 56px;
+      height: 52px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 1.5rem;
     }
     #nav .brand {
       font-family: var(--serif);
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 500;
-      color: var(--ink);
+      color: #ffffff;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     #nav ul {
       list-style: none;
       display: flex;
+      flex-wrap: nowrap;
       gap: 0;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      align-items: center;
     }
     #nav ul li a {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
+      font-size: 0.67rem;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
-      color: var(--muted);
-      padding: 0.4rem 0.65rem;
+      color: rgba(255,255,255,0.65);
+      padding: 0.35rem 0.55rem;
       display: block;
       transition: color 0.2s;
+      white-space: nowrap;
     }
-    #nav ul li a:hover { color: var(--accent); text-decoration: none; }
+    #nav ul li a:hover { color: var(--accent2); text-decoration: none; }
+    #nav ul li a.active { color: #ffffff; }
+
+    /* Hamburger (mobile) */
+    #nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.4rem;
+      flex-direction: column;
+      gap: 5px;
+    }
+    #nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
 
     /* ─── Hero ──────────────────────────────────────────────── */
     #hero {
@@ -572,15 +594,197 @@
       .pub-num { display: none; }
       .project-card { grid-template-columns: 1fr; }
       #contact .contact-grid { grid-template-columns: 1fr; }
-      #nav ul li a { font-size: 0.65rem; padding: 0.3rem 0.4rem; }
-      #nav .brand { font-size: 1rem; }
     }
+
+    /* ─── Photography ────────────────────────────────────────── */
+    #photography .photo-intro {
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+    }
+    /* Filter tabs */
+    .photo-filters {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .photo-filter-btn {
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      background: var(--paper);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .photo-filter-btn:hover,
+    .photo-filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    /* Masonry-style grid */
+    .photo-grid {
+      columns: 3;
+      column-gap: 1rem;
+    }
+    .photo-item {
+      break-inside: avoid;
+      margin-bottom: 1rem;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--card-radius);
+      cursor: pointer;
+    }
+    .photo-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.4s ease;
+      border-radius: var(--card-radius);
+    }
+    .photo-item:hover img { transform: scale(1.04); }
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,36,64,0.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      border-radius: var(--card-radius);
+      display: flex;
+      align-items: flex-end;
+      padding: 0.9rem;
+    }
+    .photo-item:hover .photo-overlay { opacity: 1; }
+    .photo-caption {
+      color: #fff;
+      font-size: 0.78rem;
+      line-height: 1.3;
+    }
+    .photo-caption .ph-cat {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.2rem;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(10,18,30,0.95);
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 2px;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.6);
+    }
+    #lb-close {
+      position: absolute;
+      top: 1.2rem; right: 1.5rem;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    #lb-close:hover { color: #fff; }
+    #lb-prev, #lb-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.8);
+      font-size: 1.2rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    #lb-prev { left: 1.5rem; }
+    #lb-next { right: 1.5rem; }
+    #lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,0.18); }
+    #lb-info {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.8rem;
+    }
+    #lb-info .lb-cat {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 0.2rem;
+    }
+
+    /* Notice box */
+    .photo-notice {
+      background: #e8f0f8;
+      border-left: 3px solid var(--accent);
+      padding: 1rem 1.25rem;
+      border-radius: var(--card-radius);
+      margin-bottom: 2rem;
+      font-size: 0.83rem;
+      color: var(--ink-light);
+    }
+    .photo-notice strong { color: var(--accent); }
 
     /* ─── Print ───────────────────────────────────────────────── */
     @media print {
       #nav, .d-print-none { display: none !important; }
       #hero { min-height: auto; padding: 2rem 0; }
       section { padding: 2rem 0; }
+    }
+
+    /* ─── Mobile nav ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #nav-toggle { display: flex; }
+      #nav-menu {
+        display: none;
+        position: absolute;
+        top: 52px;
+        left: 0; right: 0;
+        background: #0f2440;
+        border-top: 1px solid rgba(255,255,255,0.08);
+        padding: 0.75rem 0;
+      }
+      #nav-menu.open { display: block; }
+      #nav-menu ul {
+        flex-direction: column;
+        gap: 0;
+      }
+      #nav-menu ul li a {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.72rem;
+      }
+      .photo-grid { columns: 2; }
+    }
+    @media (max-width: 500px) {
+      .photo-grid { columns: 1; }
     }
   </style>
 </head>
@@ -590,17 +794,23 @@
 <nav id="nav">
   <div class="inner">
     <span class="brand serif">Syed Nahin Hossain</span>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#research">Publications</a></li>
-      <li><a href="#courses">Courses</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#awards">Awards</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+    <button id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div id="nav-menu">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#research">Publications</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#awards">Awards</a></li>
+        <li><a href="#photography">Photography</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
 
@@ -629,6 +839,7 @@
           <a href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
           <a href="https://github.com/NAHIN-JZS" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
           <a href="https://orcid.org/0000-0003-2528-7573" title="ORCID" target="_blank"><i class="fab fa-orcid"></i></a>
+          <a href="https://scholar.google.com/citations?user=25LhIz0AAAAJ&hl=en" title="Google Scholar" target="_blank"><i class="fas fa-graduation-cap"></i></a>
         </div>
       </div>
     </div>
@@ -682,48 +893,48 @@
       <div>
         <p class="label" style="margin-bottom:1.2rem;">Programming Languages</p>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Python</span><span class="skill-level">Expert (85%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.1s;"></div></div>
+          <div class="skill-header"><span class="skill-name">Python</span><span class="skill-level">Expert</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.1s;"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">SQL</span><span class="skill-level">Expert (85%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.15s;"></div></div>
+          <div class="skill-header"><span class="skill-name">SQL</span><span class="skill-level">Expert</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.15s;"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">C++</span><span class="skill-level">Advanced (75%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.2s;"></div></div>
+          <div class="skill-header"><span class="skill-name">C++</span><span class="skill-level">Advanced</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.2s;"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">C</span><span class="skill-level">Advanced (75%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.25s;"></div></div>
+          <div class="skill-header"><span class="skill-name">C</span><span class="skill-level">Advanced</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.25s;"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Java</span><span class="skill-level">Intermediate (60%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:60%;animation-delay:0.3s;"></div></div>
+          <div class="skill-header"><span class="skill-name">Java</span><span class="skill-level">Intermediate</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:60%;animation-delay:0.3s;"></div></div> -->
         </div>
       </div>
       <!-- Column 2: Frameworks & Tools -->
       <div>
         <p class="label" style="margin-bottom:1.2rem;">Frameworks &amp; Tools</p>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">TensorFlow</span><span class="skill-level">Expert (85%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.35s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+          <div class="skill-header"><span class="skill-name">TensorFlow</span><span class="skill-level">Expert</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.35s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">OpenCV</span><span class="skill-level">Advanced (75%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.4s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+          <div class="skill-header"><span class="skill-name">OpenCV</span><span class="skill-level">Advanced</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.4s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Git</span><span class="skill-level">Advanced (75%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.45s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+          <div class="skill-header"><span class="skill-name">Git</span><span class="skill-level">Advanced</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.45s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">LaTeX</span><span class="skill-level">Advanced (75%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.5s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+          <div class="skill-header"><span class="skill-name">LaTeX</span><span class="skill-level">Advanced</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.5s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
         </div>
         <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">PyTorch</span><span class="skill-level">Beginner (40%)</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;animation-delay:0.55s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div>
+          <div class="skill-header"><span class="skill-name">PyTorch</span><span class="skill-level">Beginner</span></div>
+          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;animation-delay:0.55s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
         </div>
       </div>
     </div>
@@ -913,6 +1124,14 @@
         <div class="course-type">Theory &amp; Sessional</div>
       </div>
       <div class="course-card">
+        <div class="course-name">Database Management System</div>
+        <div class="course-type">Theory &amp; Sessional</div>
+      </div>
+      <div class="course-card">
+        <div class="course-name">Data Structures and Algorithms</div>
+        <div class="course-type">Theory &amp; Sessional</div>
+      </div>
+      <div class="course-card">
         <div class="course-name">Numerical Analysis</div>
         <div class="course-type">Theory &amp; Sessional</div>
       </div>
@@ -1067,7 +1286,144 @@
   </div>
 </section>
 
-<!-- ░░ Contact ░░ -->
+<!-- ░░ Photography ░░ -->
+<section id="photography">
+  <div class="container">
+    <h2 class="section-title">Photography</h2>
+
+
+    <p class="photo-intro">Beyond research and teaching, I find creative expression through the lens. I photograph nature, architecture, urban life, and the quiet moments of everyday existence — an exercise in careful observation that mirrors the attention to detail I bring to my academic work.</p>
+
+    <div class="photo-filters">
+      <button class="photo-filter-btn active" data-filter="all">All</button>
+      <button class="photo-filter-btn" data-filter="nature">Nature</button>
+      <button class="photo-filter-btn" data-filter="urban">Urban</button>
+      <button class="photo-filter-btn" data-filter="architecture">Architecture</button>
+      <button class="photo-filter-btn" data-filter="portrait">Portrait</button>
+      <button class="photo-filter-btn" data-filter="travel">Travel</button>
+    </div>
+
+    <div class="photo-grid" id="photoGrid">
+      <!--
+        ═══════════════════════════════════════════════════════════════
+        HOW TO ADD YOUR OWN PHOTOS:
+        1. Upload your photos to:  images/photography/
+        2. Copy one of the blocks below and change:
+             src="images/photography/YOUR-FILE.jpg"
+             data-category="nature"  ← one of: nature, urban, architecture, portrait, travel
+             data-title="Your Caption"
+        ═══════════════════════════════════════════════════════════════
+
+        PLACEHOLDER tiles are shown below so the grid looks good right away.
+        Replace each src with your own image path.
+      -->
+
+      <div class="photo-item" data-category="nature" data-title="Morning Light" data-cat-label="Nature">
+        <img src="images/photography/PXL_20231201_004906707.MP-01.jpg" alt="Morning Light — Nature" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Nature</div>
+            Morning Light
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="urban" data-title="City Pulse" data-cat-label="Urban">
+        <img src="images/photography/PXL_20251023_001737809.MP.jpg" alt="City Pulse — Urban" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Urban</div>
+            City Pulse
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="architecture" data-title="Mosque" data-cat-label="Architecture">
+        <img src="images/photography/IMG_1772965317219.jpg" alt="Mosque — Architecture" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Architecture</div>
+            <!-- Lines &amp; Angles -->
+             Mosque
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="nature" data-title="Flowers" data-cat-label="Nature">
+        <img src="images/photography/1000066279.jpg" alt="Flowers — Nature" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Nature</div>
+            Flowers
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="travel" data-title="On the Road" data-cat-label="Travel">
+        <img src="images/photography/PXL_20231006_022357310.MP~2-01.jpg" alt="On the Road — Travel" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Travel</div>
+            On the Road
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="urban" data-title="Tea Stall" data-cat-label="Urban">
+        <img src="images/photography/PXL_20231116_135620967.MP~2-01.jpg" alt="Tea Stall — Urban" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Urban</div>
+            Tea Stall
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="portrait" data-title="In Thought" data-cat-label="Portrait">
+        <img src="images/photography/received_870893850063708~3.jpg" alt="In Thought — Portrait" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Portrait</div>
+            In Thought
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="architecture" data-title="Symmetry" data-cat-label="Architecture">
+        <img src="images/photography/PXL_20250510_160220182.MP.jpg" alt="Symmetry — Architecture" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Architecture</div>
+            Symmetry
+          </div>
+        </div>
+      </div>
+
+      <div class="photo-item" data-category="nature" data-title="Golden Hour" data-cat-label="Nature">
+        <img src="images/photography/PXL_20250530_122601970 (2).jpg" alt="Golden Hour — Nature" loading="lazy">
+        <div class="photo-overlay">
+          <div class="photo-caption">
+            <div class="ph-cat">Nature</div>
+            Golden Hour
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /photo-grid -->
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" role="dialog" aria-modal="true">
+  <button id="lb-close" aria-label="Close">&times;</button>
+  <button id="lb-prev" aria-label="Previous">&#8249;</button>
+  <img id="lb-img" src="" alt="">
+  <button id="lb-next" aria-label="Next">&#8250;</button>
+  <div id="lb-info">
+    <div class="lb-cat" id="lb-cat"></div>
+    <div id="lb-title"></div>
+  </div>
+</div>
 <section id="contact">
   <div class="container">
     <h2 class="section-title">Contact</h2>
@@ -1119,7 +1475,99 @@
   </div>
 </footer>
 
-<!-- Original scripts preserved -->
+<!-- Photography & Nav Scripts -->
+<script>
+  // ── Mobile nav toggle ─────────────────────────────────────
+  const toggle = document.getElementById('nav-toggle');
+  const menu   = document.getElementById('nav-menu');
+  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  document.querySelectorAll('#nav-menu a').forEach(a =>
+    a.addEventListener('click', () => menu.classList.remove('open'))
+  );
+
+  // ── Photo filter ──────────────────────────────────────────
+  const filterBtns = document.querySelectorAll('.photo-filter-btn');
+  const photoItems = document.querySelectorAll('.photo-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.filter;
+      photoItems.forEach(item => {
+        const show = cat === 'all' || item.dataset.category === cat;
+        item.style.display = show ? 'block' : 'none';
+      });
+    });
+  });
+
+  // ── Lightbox ──────────────────────────────────────────────
+  const lb      = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lb-img');
+  const lbTitle = document.getElementById('lb-title');
+  const lbCat   = document.getElementById('lb-cat');
+  const lbClose = document.getElementById('lb-close');
+  const lbPrev  = document.getElementById('lb-prev');
+  const lbNext  = document.getElementById('lb-next');
+
+  let visibleItems = [];
+  let currentIdx = 0;
+
+  function getVisible() {
+    return [...photoItems].filter(i => i.style.display !== 'none');
+  }
+
+  function openLightbox(item) {
+    visibleItems = getVisible();
+    currentIdx = visibleItems.indexOf(item);
+    showLbItem(currentIdx);
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function showLbItem(idx) {
+    const item = visibleItems[idx];
+    if (!item) return;
+    lbImg.src = item.querySelector('img').src;
+    lbImg.alt = item.dataset.title || '';
+    lbTitle.textContent = item.dataset.title || '';
+    lbCat.textContent   = item.dataset.catLabel || item.dataset.category || '';
+  }
+
+  function closeLightbox() {
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    lbImg.src = '';
+  }
+
+  photoItems.forEach(item => {
+    item.addEventListener('click', () => openLightbox(item));
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+  lbPrev.addEventListener('click', e => {
+    e.stopPropagation();
+    visibleItems = getVisible();
+    currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
+    showLbItem(currentIdx);
+  });
+  lbNext.addEventListener('click', e => {
+    e.stopPropagation();
+    visibleItems = getVisible();
+    currentIdx = (currentIdx + 1) % visibleItems.length;
+    showLbItem(currentIdx);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft')  lbPrev.click();
+    if (e.key === 'ArrowRight') lbNext.click();
+  });
+</script>
+
 <script src="scripts/mdb.min.js?ver=1.2.1"></script>
 <script src="scripts/aos.js?ver=1.2.1"></script>
 <script src="scripts/main.js?ver=1.2.1"></script>
