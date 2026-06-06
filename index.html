@@ -4,799 +4,450 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Syed Nahin Hossain — Researcher & Educator</title>
-
-  <!-- Fonts -->
+  <title>Syed Nahin Hossain — Researcher &amp; Educator</title>
+  <meta name="description" content="Academic portfolio of Syed Nahin Hossain — Computer Vision researcher and Lecturer at BAUSTK.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-  <!-- Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link href="css/font-awesome/css/all.min.css?ver=1.2.1" rel="stylesheet">
-  
-
   <style>
-    /* ─── Reset & Base ─────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:       #0c0c0c;
+    --surface:  #141414;
+    --surface2: #1c1c1c;
+    --border:   rgba(255,255,255,0.07);
+    --border2:  rgba(255,255,255,0.13);
+    --text:     #f0f0f0;
+    --text2:    #9a9a9a;
+    --text3:    #555;
+    --gold:     #c9a84c;
+    --gold-dim: rgba(201,168,76,0.12);
+    --white:    #ffffff;
+    --serif:    'Cormorant Garamond', Georgia, serif;
+    --sans:     'Jost', 'Segoe UI', sans-serif;
+    --mono:     'Fira Mono', monospace;
+    --max-w:    920px;
+    --gap:      5rem;
+    --r:        2px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); font-weight: 300; font-size: 17px; line-height: 1.8; color: var(--text2); background: var(--bg); }
+  ::selection { background: var(--gold); color: #000; }
+  a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+  a:hover { color: var(--white); }
+  p { text-align: justify; }
+  strong, b { font-weight: 500; color: var(--text); }
 
-    :root {
-      --ink:        #1a1a2e;
-      --ink-light:  #3d3d5c;
-      --muted:      #7a7a9a;
-      --rule:       #d8d8e8;
-      --bg:         #f8f8fc;
-      --paper:      #ffffff;
-      --accent:     #1a3a5c;
-      --accent2:    #b8860b;
-      --success:    #2e6b4f;
-      --teal:       #1a6b6b;
+  /* ── Typography ── */
+  .section-title {
+    font-family: var(--serif); font-weight: 300; font-size: 2.6rem;
+    letter-spacing: 0.03em; color: var(--white);
+    display: flex; align-items: center; gap: 1.25rem;
+    margin-bottom: 3rem; line-height: 1;
+  }
+  .section-title::before {
+    content: ''; display: block; width: 28px; height: 1px;
+    background: var(--gold); flex-shrink: 0;
+  }
 
-      --serif:      'Cormorant Garamond', Georgia, serif;
-      --sans:       'Jost', 'Segoe UI', sans-serif;
-      --mono:       'Fira Mono', monospace;
+  /* ── Layout ── */
+  .container { max-width: var(--max-w); margin: 0 auto; padding: 0 2rem; }
+  section { padding: var(--gap) 0; border-top: 1px solid var(--border); }
+  section:first-of-type { border-top: none; }
 
-      --max-w:      900px;
-      --section-gap: 5rem;
-      --card-radius: 3px;
-    }
+  /* ════════════════════════════
+     NAV
+  ════════════════════════════ */
+  #nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: rgba(12,12,12,0.93); backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+  #nav .inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 2rem;
+    height: 54px; display: flex; align-items: center;
+    justify-content: space-between; gap: 2rem;
+  }
+  #nav .brand {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+    color: var(--white); white-space: nowrap; flex-shrink: 0; letter-spacing: 0.04em;
+  }
+  #nav-menu ul {
+    list-style: none; display: flex; flex-wrap: nowrap; align-items: center;
+  }
+  #nav-menu ul li a {
+    font-family: var(--mono); font-size: 0.69rem; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text3); padding: 0.4rem 0.55rem;
+    display: block; transition: color 0.2s; white-space: nowrap;
+  }
+  #nav-menu ul li a:hover { color: var(--gold); }
+  #nav-menu ul li a.active { color: var(--text); }
+  #nav-menu ul li a.nav-photo {
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.28);
+    border-radius: var(--r); padding: 0.28rem 0.65rem; margin-left: 0.3rem;
+  }
+  #nav-menu ul li a.nav-photo:hover { background: var(--gold-dim); color: var(--gold); }
+  #nav-toggle {
+    display: none; background: none; border: none; cursor: pointer;
+    padding: 0.4rem; flex-direction: column; gap: 5px;
+  }
+  #nav-toggle span { display: block; width: 22px; height: 1px; background: var(--text2); border-radius: 1px; }
 
-    html { scroll-behavior: smooth; }
+  /* ════════════════════════════
+     HERO
+  ════════════════════════════ */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    position: relative; overflow: hidden; border-top: none; padding: 0;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('images/header-background.jpg') center/cover no-repeat;
+    opacity: 0.05;
+  }
+  #hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+  #hero::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 180px; background: linear-gradient(transparent, var(--bg)); pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 185px 1fr;
+    gap: 4rem; align-items: center; padding-top: 54px;
+  }
+  .avatar-wrap { position: relative; display: flex; justify-content: center; }
+  .avatar-wrap img {
+    width: 170px; height: 170px; border-radius: 50%; object-fit: cover;
+    display: block; filter: grayscale(15%);
+    box-shadow: 0 0 0 1px var(--border2), 0 0 0 5px var(--bg), 0 0 0 6px var(--gold);
+  }
+  .avatar-wrap::after {
+    content: ''; position: absolute; inset: -12px; border-radius: 50%;
+    border: 1px solid var(--border); pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before { content: ''; display: block; width: 22px; height: 1px; background: var(--gold); }
+  .name {
+    font-family: var(--serif); font-size: clamp(3.2rem, 5vw, 4.6rem);
+    font-weight: 300; color: var(--white); line-height: 1.05;
+    letter-spacing: 0.01em; margin-bottom: 0.9rem;
+  }
+  .tagline {
+    font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 1.4rem;
+  }
+  .affiliation {
+    font-size: 1rem; color: var(--text2); line-height: 1.75;
+    margin-bottom: 2rem; padding-left: 1rem;
+    border-left: 2px solid var(--border2);
+  }
+  .affiliation strong { color: var(--text); font-weight: 400; }
+  .hero-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 1.8rem; }
+  .btn-outline {
+    padding: 0.52rem 1.35rem; border: 1px solid var(--border2); color: var(--text2);
+    font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.12em;
+    text-transform: uppercase; border-radius: var(--r); transition: all 0.2s;
+    background: transparent; display: inline-flex; align-items: center; gap: 0.45rem;
+  }
+  .btn-outline:hover { border-color: var(--text2); color: var(--white); background: rgba(255,255,255,0.04); }
+  .btn-gold {
+    padding: 0.52rem 1.35rem; background: var(--gold); border: 1px solid var(--gold);
+    color: #000; font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.12em;
+    text-transform: uppercase; border-radius: var(--r); transition: all 0.2s; font-weight: 500;
+  }
+  .btn-gold:hover { background: #d4b360; color: #000; }
+  .hero-social { display: flex; gap: 1rem; align-items: center; }
+  .hero-social a { color: var(--text3); font-size: 1.2rem; transition: color 0.2s; }
+  .hero-social a:hover { color: var(--gold); }
 
-    body {
-      font-family: var(--sans);
-      font-weight: 300;
-      font-size: 15px;
-      line-height: 1.75;
-      color: var(--ink);
-      background: var(--bg);
-    }
+  /* ════════════════════════════
+     ABOUT
+  ════════════════════════════ */
+  .about-grid { display: grid; grid-template-columns: 1fr 272px; gap: 4rem; align-items: start; }
+  .about-text p + p { margin-top: 1.1rem; }
+  .bio-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 1.6rem;
+  }
+  .bio-card-title {
+    font-family: var(--serif); font-size: 1.15rem; font-weight: 400;
+    color: var(--text); letter-spacing: 0.04em; margin-bottom: 1.2rem;
+    padding-bottom: 0.75rem; border-bottom: 1px solid var(--border);
+  }
+  .bio-row { display: flex; gap: 0.7rem; margin-bottom: 0.75rem; font-size: 0.95rem; }
+  .bio-row i { color: var(--text3); width: 14px; margin-top: 4px; flex-shrink: 0; font-size: 0.86rem; }
+  .bio-lbl { color: var(--text3); min-width: 60px; font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.06em; text-transform: uppercase; padding-top: 2px; }
+  .bio-val { color: var(--text2); word-break: break-word; }
+  .bio-val a { color: var(--gold); }
+  .bio-divider { border: none; border-top: 1px solid var(--border); margin: 0.9rem 0; }
 
-    p { text-align: justify; color: var(--ink-light); }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; text-underline-offset: 3px; }
-    strong, b { font-weight: 600; color: var(--ink); }
+  /* ════════════════════════════
+     SKILLS
+  ════════════════════════════ */
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 4rem; }
+  .skills-col-lbl {
+    font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+  .skill-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.55rem 0; border-bottom: 1px solid var(--border); font-size: 1rem;
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .sk-name { color: var(--text); font-weight: 400; }
+  .sk-lvl { font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.07em; color: var(--text3); }
+  .sk-lvl.expert { color: var(--gold); }
+  .sk-lvl.advanced { color: var(--text2); }
 
-    /* ─── Typography helpers ────────────────────────────────── */
-    .serif   { font-family: var(--serif); }
-    .section-title {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 2.1rem;
-      letter-spacing: 0.02em;
-      color: var(--ink);
-      position: relative;
-      display: inline-block;
-      margin-bottom: 2.5rem;
-    }
-    .section-title::after {
-      content: '';
-      display: block;
-      margin-top: 0.5rem;
-      height: 2px;
-      width: 100%;
-      background: linear-gradient(90deg, var(--accent2), transparent);
-    }
+  /* ════════════════════════════
+     TIMELINE
+  ════════════════════════════ */
+  .timeline { position: relative; padding-left: 1.5rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 1px; background: var(--border2);
+  }
+  .tl-item { position: relative; padding: 0 0 2.75rem 2rem; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ''; position: absolute; left: -4px; top: 6px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--bg); border: 1px solid var(--gold);
+  }
+  .tl-item.edu::before { border-color: var(--text3); }
+  .tl-title { font-family: var(--serif); font-size: 1.24rem; font-weight: 400; color: var(--white); line-height: 1.3; }
+  .tl-org { font-size: 0.94rem; color: var(--gold); margin-top: 0.15rem; font-weight: 300; }
+  .tl-date { font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.1em; color: var(--text3); margin: 0.4rem 0 0.55rem; }
+  .tl-body { font-size: 0.98rem; color: var(--text2); line-height: 1.7; }
+  .tl-nested {
+    margin-top: 1.2rem; padding: 1.1rem 1.25rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+  }
+  .tl-nested-lbl {
+    font-family: var(--mono); font-size: 0.69rem; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--text3); margin-bottom: 0.9rem;
+  }
+  .tl-ni { margin-bottom: 0.9rem; padding-bottom: 0.9rem; border-bottom: 1px solid var(--border); }
+  .tl-ni:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+  .tl-ni .tl-title { font-size: 1.01rem; }
+  .tl-ni .tl-date { font-size: 0.69rem; margin: 0.2rem 0 0.35rem; }
+  .tl-ni .tl-body { font-size: 0.92rem; }
 
-    .label {
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+  /* ════════════════════════════
+     COURSES
+  ════════════════════════════ */
+  .courses-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 0.65rem; }
+  .course-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 1rem 1.25rem;
+    border-top: 2px solid var(--gold); transition: background 0.2s;
+  }
+  .course-card:hover { background: var(--surface2); }
+  .course-name { font-weight: 400; font-size: 1rem; color: var(--text); }
+  .course-type { font-family: var(--mono); font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
 
-    /* ─── Layout ────────────────────────────────────────────── */
-    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 1.5rem; }
+  /* ════════════════════════════
+     PUBLICATIONS
+  ════════════════════════════ */
+  .pub-list { display: flex; flex-direction: column; gap: 1px; }
+  .pub-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 1.75rem 2rem; display: grid; grid-template-columns: 50px 1fr;
+    gap: 1.5rem; align-items: start; transition: background 0.2s;
+  }
+  .pub-card:hover { background: var(--surface2); }
+  .pub-num {
+    font-family: var(--serif); font-size: 2.4rem; font-weight: 300;
+    color: var(--border2); line-height: 1; text-align: right; user-select: none;
+  }
+  .pub-badge {
+    display: inline-block; padding: 0.1rem 0.5rem; border-radius: var(--r);
+    font-family: var(--mono); font-size: 0.67rem; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.6rem; margin-right: 0.3rem;
+  }
+  .badge-journal { background: rgba(46,107,79,0.18); color: #5fba8a; border: 1px solid rgba(95,186,138,0.18); }
+  .badge-conf    { background: rgba(201,168,76,0.1);  color: var(--gold); border: 1px solid rgba(201,168,76,0.22); }
+  .badge-review  { background: rgba(100,100,200,0.1); color: #8a8aea;  border: 1px solid rgba(138,138,234,0.18); }
+  .badge-award   { background: rgba(200,80,40,0.13);  color: #e0845a;  border: 1px solid rgba(224,132,90,0.22); }
+  .pub-title { font-family: var(--serif); font-size: 1.22rem; font-weight: 400; color: var(--white); line-height: 1.4; margin-bottom: 0.4rem; }
+  .pub-meta { font-size: 0.89rem; color: var(--text3); margin-bottom: 0.55rem; line-height: 1.65; }
+  .pub-meta em { font-style: italic; color: var(--text2); }
+  .pub-abstract { font-size: 0.94rem; color: var(--text2); margin-bottom: 0.8rem; line-height: 1.7; }
+  .pub-link { font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); display: inline-flex; align-items: center; gap: 0.4rem; }
+  .pub-link:hover { color: var(--white); }
+  .pub-link i { font-size: 0.67rem; }
 
-    section { padding: var(--section-gap) 0; border-top: 1px solid var(--rule); }
-    section:first-of-type { border-top: none; }
+  /* ════════════════════════════
+     PROJECTS
+  ════════════════════════════ */
+  .projects-list { display: flex; flex-direction: column; }
+  .project-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;
+    align-items: start; padding: 2.5rem 0; border-bottom: 1px solid var(--border);
+  }
+  .project-card:first-child { padding-top: 0; }
+  .project-card:last-child { border-bottom: none; }
+  .project-card video, .project-card .media-side img {
+    width: 100%; display: block; border-radius: var(--r);
+    border: 1px solid var(--border); background: var(--surface);
+  }
+  .proj-tech { font-family: var(--mono); font-size: 0.69rem; letter-spacing: 0.1em; color: var(--gold); margin-bottom: 0.5rem; text-transform: uppercase; }
+  .proj-title { font-family: var(--serif); font-size: 1.32rem; font-weight: 400; color: var(--white); margin-bottom: 0.65rem; line-height: 1.3; }
+  .project-card p { font-size: 0.97rem; margin-bottom: 0.85rem; }
+  .repo-link { font-family: var(--mono); font-size: 0.71rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); display: inline-flex; align-items: center; gap: 0.4rem; }
+  .repo-link:hover { color: var(--gold); }
 
-    /* ─── Navigation ────────────────────────────────────────── */
-    #nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: #0f2440;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-    #nav .inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-    #nav .brand {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: #ffffff;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    #nav ul {
-      list-style: none;
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0;
-      align-items: center;
-    }
-    #nav ul li a {
-      font-size: 0.67rem;
-      letter-spacing: 0.09em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.65);
-      padding: 0.35rem 0.55rem;
-      display: block;
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
-    #nav ul li a:hover { color: var(--accent2); text-decoration: none; }
-    #nav ul li a.active { color: #ffffff; }
+  /* ════════════════════════════
+     AWARDS
+  ════════════════════════════ */
+  .awards-list { display: flex; flex-direction: column; }
+  .award-item {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 0.95rem 1.1rem; border-bottom: 1px solid var(--border); transition: background 0.2s;
+  }
+  .award-item:first-child { border-top: 1px solid var(--border); }
+  .award-item:hover { background: var(--surface); }
+  .award-icon {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--border2); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0; color: var(--gold); font-size: 0.8rem;
+  }
+  .award-title { font-size: 1rem; font-weight: 400; color: var(--text); }
+  .award-sub { font-family: var(--mono); font-size: 0.75rem; color: var(--text3); letter-spacing: 0.04em; margin-top: 0.12rem; }
 
-    /* Hamburger (mobile) */
-    #nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.4rem;
-      flex-direction: column;
-      gap: 5px;
-    }
-    #nav-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: rgba(255,255,255,0.8);
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
+  /* ════════════════════════════
+     PHOTOGRAPHY TEASER
+  ════════════════════════════ */
+  .photo-intro { max-width: 600px; margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.85; }
+  .photo-mosaic {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 175px 175px;
+    gap: 5px; margin-bottom: 2rem;
+  }
+  .pm-item {
+    overflow: hidden; border-radius: var(--r); position: relative;
+    cursor: pointer; background: var(--surface);
+  }
+  .pm-item:first-child { grid-row: span 2; }
+  .pm-item img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease, opacity 0.3s; opacity: 0.82;
+  }
+  .pm-item:hover img { transform: scale(1.06); opacity: 1; }
+  .pm-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.65), transparent 55%);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: flex-end; padding: 0.7rem;
+  }
+  .pm-item:hover .pm-overlay { opacity: 1; }
+  .pm-label { font-family: var(--mono); font-size: 0.67rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.75); }
 
-    /* ─── Hero ──────────────────────────────────────────────── */
-    #hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      background: var(--accent);
-      position: relative;
-      overflow: hidden;
-      border-top: none;
-    }
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: url('images/header-background.jpg') center/cover no-repeat;
-      opacity: 0.15;
-    }
-    #hero::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 120px;
-      background: linear-gradient(transparent, var(--bg));
-    }
-    #hero .hero-content {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    #hero .avatar-wrap img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid var(--accent2);
-      display: block;
-    }
-    #hero .hero-text .name {
-      font-family: var(--serif);
-      font-size: 3.4rem;
-      font-weight: 300;
-      color: #ffffff;
-      line-height: 1.1;
-      letter-spacing: 0.01em;
-    }
-    #hero .hero-text .tagline {
-      font-family: var(--sans);
-      font-size: 0.8rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-top: 0.6rem;
-      margin-bottom: 1.6rem;
-    }
-    #hero .hero-text .affiliation {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 1.8rem;
-    }
-    #hero .hero-text .affiliation i { margin-right: 0.4rem; opacity: 0.65; }
-    .hero-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2rem; }
-    .btn-outline-light-custom {
-      padding: 0.55rem 1.3rem;
-      border: 1px solid rgba(255,255,255,0.5);
-      color: #fff;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.2s;
-      background: transparent;
-    }
-    .btn-outline-light-custom:hover {
-      background: rgba(255,255,255,0.12);
-      text-decoration: none;
-      color: #fff;
-    }
-    .btn-gold {
-      padding: 0.55rem 1.3rem;
-      background: var(--accent2);
-      border: 1px solid var(--accent2);
-      color: #fff;
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border-radius: 2px;
-      transition: all 0.2s;
-    }
-    .btn-gold:hover { background: #a07808; text-decoration: none; color: #fff; }
-    .hero-social { display: flex; gap: 1rem; }
-    .hero-social a {
-      color: rgba(255,255,255,0.55);
-      font-size: 1rem;
-      transition: color 0.2s;
-    }
-    .hero-social a:hover { color: var(--accent2); text-decoration: none; }
+  .photo-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 0.8rem 1.75rem; border: 1px solid var(--border2);
+    border-radius: var(--r); color: var(--text2);
+    font-family: var(--mono); font-size: 0.71rem;
+    letter-spacing: 0.13em; text-transform: uppercase; transition: all 0.25s;
+  }
+  .photo-cta i { color: var(--gold); transition: transform 0.25s; }
+  .photo-cta:hover { border-color: var(--gold); color: var(--white); background: var(--gold-dim); }
+  .photo-cta:hover i { transform: translateX(4px); }
 
-    /* ─── About ─────────────────────────────────────────────── */
-    #about .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 260px;
-      gap: 4rem;
-      align-items: start;
-    }
-    #about .about-grid p + p { margin-top: 1rem; }
-    #about .bio-card {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: var(--card-radius);
-      padding: 1.5rem;
-    }
-    #about .bio-card h3 {
-      font-family: var(--serif);
-      font-weight: 400;
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .bio-row {
-      display: flex;
-      gap: 0.75rem;
-      margin-bottom: 0.7rem;
-      font-size: 0.85rem;
-    }
-    .bio-row .bio-label {
-      font-weight: 500;
-      color: var(--ink);
-      min-width: 68px;
-      display: flex;
-      align-items: flex-start;
-      gap: 0.35rem;
-    }
-    .bio-row .bio-label i { color: var(--muted); margin-top: 3px; font-size: 0.8rem; }
-    .bio-row .bio-val { color: var(--ink-light); word-break: break-word; }
+  /* ════════════════════════════
+     CONTACT
+  ════════════════════════════ */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-info { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2.25rem; }
+  .ci-row { display: flex; gap: 0.85rem; align-items: flex-start; font-size: 0.98rem; color: var(--text2); }
+  .ci-row i { color: var(--text3); width: 14px; margin-top: 4px; flex-shrink: 0; font-size: 0.86rem; }
+  .ci-row a { color: var(--text2); }
+  .ci-row a:hover { color: var(--gold); }
+  .contact-form label { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 0.38rem; margin-top: 1.05rem; }
+  .contact-form label:first-child { margin-top: 0; }
+  .contact-form input, .contact-form textarea {
+    width: 100%; background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--r); padding: 0.62rem 0.88rem;
+    font-family: var(--sans); font-size: 1rem; color: var(--text); outline: none; transition: border-color 0.2s;
+  }
+  .contact-form input::placeholder, .contact-form textarea::placeholder { color: var(--text3); }
+  .contact-form input:focus, .contact-form textarea:focus { border-color: var(--border2); }
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+  .btn-submit {
+    margin-top: 1.2rem; padding: 0.68rem 1.75rem; background: var(--white); color: #000;
+    border: none; border-radius: var(--r); font-family: var(--mono); font-size: 0.71rem;
+    letter-spacing: 0.13em; text-transform: uppercase; cursor: pointer; font-weight: 500; transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--gold); }
+  .contact-map iframe {
+    width: 100%; height: 100%; min-height: 320px;
+    border: 1px solid var(--border); border-radius: var(--r); display: block;
+    filter: grayscale(100%) brightness(0.38) contrast(1.15);
+  }
 
-    /* ─── Skills ─────────────────────────────────────────────── */
-    #skills .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 3rem;
-    }
-    .skill-item { margin-bottom: 1.4rem; }
-    .skill-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 0.4rem;
-      font-size: 0.85rem;
-    }
-    .skill-header .skill-name { font-weight: 500; color: var(--ink); }
-    .skill-header .skill-level { color: var(--muted); font-size: 0.75rem; }
-    .skill-bar {
-      height: 4px;
-      background: var(--rule);
-      border-radius: 2px;
-      overflow: hidden;
-    }
-    .skill-bar-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--teal));
-      transform-origin: left;
-      animation: barGrow 1s ease both;
-    }
-    @keyframes barGrow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  /* ════════════════════════════
+     FOOTER
+  ════════════════════════════ */
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 0; text-align: center; }
+  .f-name { font-family: var(--serif); font-size: 1.27rem; font-weight: 300; color: var(--text2); margin-bottom: 1rem; letter-spacing: 0.04em; }
+  .f-social { display: flex; justify-content: center; gap: 1.2rem; margin-bottom: 1rem; }
+  .f-social a { color: var(--text3); font-size: 1.2rem; transition: color 0.2s; }
+  .f-social a:hover { color: var(--gold); }
+  .f-copy { font-family: var(--mono); font-size: 0.69rem; color: var(--text3); letter-spacing: 0.1em; }
 
-    /* ─── Timeline ───────────────────────────────────────────── */
-    .timeline { position: relative; padding-left: 1.5rem; }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 1px;
-      background: var(--rule);
-    }
-    .tl-item {
-      position: relative;
-      padding: 0 0 2.5rem 1.75rem;
-    }
-    .tl-item:last-child { padding-bottom: 0; }
-    .tl-item::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 5px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--accent2);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 1px var(--accent2);
-    }
-    .tl-item.success::before { background: var(--success); box-shadow: 0 0 0 1px var(--success); }
-
-    .tl-header { margin-bottom: 0.3rem; }
-    .tl-title {
-      font-family: var(--serif);
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--ink);
-      line-height: 1.3;
-    }
-    .tl-sub { color: var(--teal); font-size: 0.85rem; font-weight: 400; }
-    .tl-date { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; font-family: var(--mono); }
-    .tl-body { font-size: 0.88rem; color: var(--ink-light); }
-
-    /* nested timeline (co-curricular) */
-    .tl-nested {
-      margin-top: 1.25rem;
-      padding-left: 1rem;
-      border-left: 1px dashed var(--rule);
-    }
-    .tl-nested-title {
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.75rem;
-    }
-    .tl-nested-item { margin-bottom: 0.9rem; }
-    .tl-nested-item .tl-title { font-size: 0.9rem; }
-    .tl-nested-item .tl-date { font-size: 0.7rem; }
-
-    /* ─── Courses grid ───────────────────────────────────────── */
-    #courses .courses-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1rem;
-    }
-    .course-card {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: var(--card-radius);
-      padding: 1rem 1.25rem;
-      border-left: 3px solid var(--teal);
-    }
-    .course-card .course-name { font-weight: 500; font-size: 0.88rem; color: var(--ink); }
-    .course-card .course-type {
-      font-size: 0.7rem;
-      color: var(--muted);
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 0.15rem;
-    }
-
-    /* ─── Publications ───────────────────────────────────────── */
-    #research .pub-list { display: flex; flex-direction: column; gap: 1.75rem; }
-    .pub-card {
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: var(--card-radius);
-      padding: 1.5rem 1.75rem;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-    .pub-num {
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 300;
-      color: var(--rule);
-      line-height: 1;
-      min-width: 2.5rem;
-      text-align: center;
-      padding-top: 0.2rem;
-    }
-    .pub-badge {
-      display: inline-block;
-      padding: 0.15rem 0.6rem;
-      border-radius: 2px;
-      font-size: 0.65rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-family: var(--mono);
-      margin-bottom: 0.6rem;
-    }
-    .badge-journal   { background: #e8f0e8; color: var(--success); }
-    .badge-conf      { background: #e8ecf5; color: var(--accent); }
-    .badge-review    { background: #fef6e4; color: var(--accent2); }
-    .badge-award     { background: #fff0e0; color: #c0592a; }
-    .pub-title { font-family: var(--serif); font-size: 1.05rem; color: var(--ink); margin-bottom: 0.35rem; line-height: 1.4; font-weight: 500; }
-    .pub-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 0.5rem; }
-    .pub-abstract { font-size: 0.83rem; color: var(--ink-light); margin-bottom: 0.75rem; line-height: 1.65; text-align: justify; }
-    .pub-link { font-size: 0.78rem; font-weight: 500; color: var(--accent); letter-spacing: 0.04em; }
-    .pub-link i { font-size: 0.7rem; margin-right: 0.25rem; }
-
-    /* ─── Projects ───────────────────────────────────────────── */
-    #projects .projects-list { display: flex; flex-direction: column; gap: 2.5rem; }
-    .project-card {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-      padding: 0 0 2.5rem;
-      border-bottom: 1px solid var(--rule);
-    }
-    .project-card:last-child { border-bottom: none; padding-bottom: 0; }
-    .project-card .media-side video,
-    .project-card .media-side img {
-      width: 100%;
-      border-radius: var(--card-radius);
-      border: 1px solid var(--rule);
-      display: block;
-    }
-    .project-card .info-side .proj-tech {
-      font-family: var(--mono);
-      font-size: 0.7rem;
-      color: var(--teal);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.4rem;
-    }
-    .project-card .info-side h3 {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--ink);
-      margin-bottom: 0.6rem;
-    }
-    .project-card .info-side p { font-size: 0.85rem; margin-bottom: 0.75rem; }
-    .repo-link { font-size: 0.78rem; font-weight: 500; }
-    .repo-link i { margin-right: 0.3rem; }
-
-    /* ─── Awards ─────────────────────────────────────────────── */
-    #awards .awards-list { display: flex; flex-direction: column; gap: 1rem; }
-    .award-item {
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-      padding: 1rem 1.25rem;
-      background: var(--paper);
-      border: 1px solid var(--rule);
-      border-radius: var(--card-radius);
-      border-left: 3px solid var(--accent2);
-    }
-    .award-icon { color: var(--accent2); font-size: 0.9rem; margin-top: 3px; }
-    .award-title { font-weight: 500; font-size: 0.9rem; color: var(--ink); }
-    .award-sub { font-size: 0.8rem; color: var(--muted); }
-
-    /* ─── Contact ────────────────────────────────────────────── */
-    #contact .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-    .contact-info { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
-    .contact-info .ci-row {
-      display: flex;
-      gap: 0.75rem;
-      align-items: flex-start;
-      font-size: 0.88rem;
-      color: var(--ink-light);
-    }
-    .contact-info .ci-row i { color: var(--muted); width: 16px; margin-top: 3px; }
-    .contact-form label {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.35rem;
-      margin-top: 1rem;
-    }
-    .contact-form label:first-child { margin-top: 0; }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      border: 1px solid var(--rule);
-      border-radius: var(--card-radius);
-      padding: 0.6rem 0.85rem;
-      font-family: var(--sans);
-      font-size: 0.88rem;
-      color: var(--ink);
-      background: var(--paper);
-      transition: border-color 0.2s;
-      outline: none;
-    }
-    .contact-form input:focus,
-    .contact-form textarea:focus { border-color: var(--accent); }
-    .contact-form textarea { resize: vertical; min-height: 110px; }
-    .btn-primary-custom {
-      margin-top: 1.1rem;
-      padding: 0.65rem 1.6rem;
-      background: var(--accent);
-      color: #fff;
-      border: none;
-      border-radius: var(--card-radius);
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .btn-primary-custom:hover { background: #0f2b47; }
-    .contact-map iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 300px;
-      border: 1px solid var(--rule);
-      border-radius: var(--card-radius);
-      display: block;
-    }
-
-    /* ─── Footer ─────────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 2.5rem 0;
-      text-align: center;
-    }
-    footer .f-name { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.75rem; }
-    footer .f-social { display: flex; justify-content: center; gap: 1.25rem; margin-bottom: 1rem; }
-    footer .f-social a { color: var(--muted); font-size: 1rem; transition: color 0.2s; }
-    footer .f-social a:hover { color: var(--accent); text-decoration: none; }
-    footer .f-copy { font-size: 0.75rem; color: var(--muted); }
-
-    /* ─── Utility ─────────────────────────────────────────────── */
-    .spacer { margin-top: var(--section-gap); }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 0 3rem; }
-
-    /* ─── Responsive ──────────────────────────────────────────── */
-    @media (max-width: 760px) {
-      #hero .hero-content { grid-template-columns: 1fr; text-align: center; }
-      #hero .hero-text .name { font-size: 2.4rem; }
-      #hero .hero-actions, #hero .hero-social { justify-content: center; }
-      #hero .avatar-wrap { display: flex; justify-content: center; }
-      #about .about-grid { grid-template-columns: 1fr; }
-      #skills .skills-grid { grid-template-columns: 1fr; }
-      .two-col { grid-template-columns: 1fr; }
-      .pub-card { grid-template-columns: 1fr; gap: 0.5rem; }
-      .pub-num { display: none; }
-      .project-card { grid-template-columns: 1fr; }
-      #contact .contact-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ─── Photography ────────────────────────────────────────── */
-    #photography .photo-intro {
-      max-width: 620px;
-      margin-bottom: 2.5rem;
-    }
-    /* Filter tabs */
-    .photo-filters {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-    .photo-filter-btn {
-      padding: 0.35rem 0.9rem;
-      border: 1px solid var(--rule);
-      border-radius: 2px;
-      background: var(--paper);
-      font-family: var(--mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .photo-filter-btn:hover,
-    .photo-filter-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-    }
-    /* Masonry-style grid */
-    .photo-grid {
-      columns: 3;
-      column-gap: 1rem;
-    }
-    .photo-item {
-      break-inside: avoid;
-      margin-bottom: 1rem;
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--card-radius);
-      cursor: pointer;
-    }
-    .photo-item img {
-      width: 100%;
-      display: block;
-      transition: transform 0.4s ease;
-      border-radius: var(--card-radius);
-    }
-    .photo-item:hover img { transform: scale(1.04); }
-    .photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(15,36,64,0.85) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      border-radius: var(--card-radius);
-      display: flex;
-      align-items: flex-end;
-      padding: 0.9rem;
-    }
-    .photo-item:hover .photo-overlay { opacity: 1; }
-    .photo-caption {
-      color: #fff;
-      font-size: 0.78rem;
-      line-height: 1.3;
-    }
-    .photo-caption .ph-cat {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.2rem;
-    }
-
-    /* Lightbox */
-    #lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 999;
-      background: rgba(10,18,30,0.95);
-      align-items: center;
-      justify-content: center;
-    }
-    #lightbox.open { display: flex; }
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 88vh;
-      object-fit: contain;
-      border-radius: 2px;
-      box-shadow: 0 8px 60px rgba(0,0,0,0.6);
-    }
-    #lb-close {
-      position: absolute;
-      top: 1.2rem; right: 1.5rem;
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.7);
-      font-size: 1.8rem;
-      cursor: pointer;
-      line-height: 1;
-      transition: color 0.2s;
-    }
-    #lb-close:hover { color: #fff; }
-    #lb-prev, #lb-next {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.8);
-      font-size: 1.2rem;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-    #lb-prev { left: 1.5rem; }
-    #lb-next { right: 1.5rem; }
-    #lb-prev:hover, #lb-next:hover { background: rgba(255,255,255,0.18); }
-    #lb-info {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      text-align: center;
-      color: rgba(255,255,255,0.75);
-      font-size: 0.8rem;
-    }
-    #lb-info .lb-cat {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent2);
-      margin-bottom: 0.2rem;
-    }
-
-    /* Notice box */
-    .photo-notice {
-      background: #e8f0f8;
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1.25rem;
-      border-radius: var(--card-radius);
-      margin-bottom: 2rem;
-      font-size: 0.83rem;
-      color: var(--ink-light);
-    }
-    .photo-notice strong { color: var(--accent); }
-
-    /* ─── Print ───────────────────────────────────────────────── */
-    @media print {
-      #nav, .d-print-none { display: none !important; }
-      #hero { min-height: auto; padding: 2rem 0; }
-      section { padding: 2rem 0; }
-    }
-
-    /* ─── Mobile nav ─────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      #nav-toggle { display: flex; }
-      #nav-menu {
-        display: none;
-        position: absolute;
-        top: 52px;
-        left: 0; right: 0;
-        background: #0f2440;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding: 0.75rem 0;
-      }
-      #nav-menu.open { display: block; }
-      #nav-menu ul {
-        flex-direction: column;
-        gap: 0;
-      }
-      #nav-menu ul li a {
-        padding: 0.6rem 1.5rem;
-        font-size: 0.72rem;
-      }
-      .photo-grid { columns: 2; }
-    }
-    @media (max-width: 500px) {
-      .photo-grid { columns: 1; }
-    }
+  /* ════════════════════════════
+     RESPONSIVE
+  ════════════════════════════ */
+  @media (max-width: 900px) {
+    #nav-toggle { display: flex; }
+    #nav-menu { display: none; position: absolute; top: 54px; left: 0; right: 0; background: rgba(12,12,12,0.98); border-top: 1px solid var(--border); padding: 1rem 0; }
+    #nav-menu.open { display: block; }
+    #nav-menu ul { flex-direction: column; }
+    #nav-menu ul li a { padding: 0.65rem 2rem; font-size: 0.69rem; }
+    #nav-menu ul li a.nav-photo { margin: 0.5rem 2rem; display: block; text-align: center; }
+  }
+  @media (max-width: 760px) {
+    .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
+    .hero-eyebrow { justify-content: center; }
+    .affiliation { border-left: none; border-top: 1px solid var(--border); padding: 1rem 0 0; }
+    .hero-actions, .hero-social { justify-content: center; }
+    .avatar-wrap::after { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .pub-card { grid-template-columns: 1fr; }
+    .pub-num { display: none; }
+    .project-card { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .photo-mosaic { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .photo-mosaic .pm-item:first-child { grid-row: span 1; }
+  }
+  @media (max-width: 460px) { .photo-mosaic { grid-template-columns: 1fr; } }
+  @media print {
+    #nav { display: none; }
+    body { background: #fff; color: #000; }
+    section { padding: 2rem 0; }
+  }
   </style>
 </head>
 <body>
 
-<!-- ░░ Navigation ░░ -->
+<!-- NAV -->
 <nav id="nav">
   <div class="inner">
-    <span class="brand serif">Syed Nahin Hossain</span>
-    <button id="nav-toggle" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
+    <span class="brand">Syed Nahin Hossain</span>
+    <button id="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
     <div id="nav-menu">
       <ul>
         <li><a href="#about">About</a></li>
@@ -807,32 +458,31 @@
         <li><a href="#courses">Courses</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#awards">Awards</a></li>
-        <li><a href="#photography">Photography</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="photography/" class="nav-photo"><i class="fas fa-camera" style="margin-right:0.3rem;font-size:0.69rem;"></i>Photography</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-<!-- ░░ Hero ░░ -->
-<section id="hero" style="border-top:none; padding:0;">
-  <div class="container" style="padding-top:56px;">
+<!-- HERO -->
+<section id="hero" style="padding:0;border-top:none;">
+  <div class="hero-bg"></div>
+  <div class="container" style="padding-top:54px;padding-bottom:6rem;">
     <div class="hero-content">
       <div class="avatar-wrap">
-        <img src="images/avatar.jpg" alt="Syed Nahin Hossain" width="160" height="160">
+        <img src="images/avatar.jpg" alt="Syed Nahin Hossain" width="170" height="170">
       </div>
       <div class="hero-text">
+        <div class="hero-eyebrow">Researcher &amp; Educator</div>
         <h1 class="name">Syed Nahin<br>Hossain</h1>
-        <p class="tagline">Researcher &nbsp;·&nbsp; Educator &nbsp;·&nbsp; Computer Vision</p>
-        <p class="affiliation">
-          <i class="fas fa-university"></i>
-          Lecturer, Department of CSE<br>
-          <span style="padding-left:1.4rem;">Bangladesh Army University of Science &amp; Technology, Khulna</span>
-        </p>
+        <p class="tagline">Computer Vision &nbsp;·&nbsp; Machine Learning &nbsp;·&nbsp; Deep Learning</p>
+        <div class="affiliation">
+          <strong>Lecturer, Dept. of CSE</strong><br>
+          Bangladesh Army University of Science &amp; Technology, Khulna (BAUSTK)
+        </div>
         <div class="hero-actions">
-          <a class="btn-outline-light-custom" href="CV_of_Syed_Nahin_Hossain.pdf">
-            <i class="fas fa-file-pdf" style="margin-right:0.4rem;"></i>Download CV
-          </a>
+          <a class="btn-outline" href="CV_of_Syed_Nahin_Hossain.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Download CV</a>
           <a class="btn-gold" href="#contact">Get in Touch</a>
         </div>
         <div class="hero-social">
@@ -846,208 +496,141 @@
   </div>
 </section>
 
-<!-- ░░ About ░░ -->
+<!-- ABOUT -->
 <section id="about">
   <div class="container">
     <h2 class="section-title">About</h2>
     <div class="about-grid">
       <div class="about-text">
         <p>Welcome to my academic portfolio. I am Nahin — a Computer Vision researcher and educator holding a B.Sc. in Computer Science &amp; Engineering from Khulna University of Engineering &amp; Technology (KUET). Currently, I serve as a Lecturer at Bangladesh Army University of Science &amp; Technology, Khulna (BAUSTK), where I share my passion for cutting-edge technologies with the next generation of engineers.</p>
-        <p style="margin-top:1rem;">My primary research is centered on <strong>Computer Vision</strong> and <strong>Machine Learning</strong>, with multiple published works spanning deep learning-based license plate recognition, vehicle classification, image colorization, and environmental quality prediction. I thrive on bridging theoretical foundations with real-world applications.</p>
-        <p style="margin-top:1rem;">Beyond research, I bring leadership experience from my tenure as President of the Jashore Association of KUET (JAK), where I honed abilities in team management and strategic planning. I approach every challenge with technical rigor, creative thinking, and a commitment to continuous growth.</p>
-        <p style="margin-top:1rem;">I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives.</p>
+        <p style="margin-top:1.1rem;">My primary research is centred on <strong>Computer Vision</strong> and <strong>Machine Learning</strong>, with multiple published works spanning deep learning-based license plate recognition, vehicle classification, image colorization, and environmental quality prediction. I thrive on bridging theoretical foundations with real-world applications.</p>
+        <p style="margin-top:1.1rem;">Beyond research, I bring leadership experience from my tenure as President of the Jashore Association of KUET (JAK), and I find creative expression through photography — a discipline that sharpens the same attention to detail I bring to my academic work.</p>
+        <p style="margin-top:1.1rem;">I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives.</p>
       </div>
-      <div class="bio-card">
-        <h3 class="serif">Biographical Notes</h3>
-        <div class="bio-row">
-          <span class="bio-label"><i class="fas fa-envelope"></i> Email</span>
-          <span class="bio-val"><a href="mailto:syednahinhossain@gmail.com">syednahinhossain@gmail.com</a></span>
-        </div>
-        <div class="bio-row">
-          <span class="bio-label"><i class="fas fa-phone"></i> Phone</span>
-          <span class="bio-val">+880 1521-522856</span>
-        </div>
-        <div class="bio-row">
-          <span class="bio-label"><i class="fas fa-map-marker-alt"></i> Address</span>
-          <span class="bio-val">169, East Barandipara, Dhaka Road, Jashore, Khulna, Bangladesh</span>
-        </div>
-        <div class="bio-row" style="margin-top:0.5rem; padding-top:0.5rem; border-top:1px solid var(--rule);">
-          <span class="bio-label"><i class="fas fa-flask"></i> Research</span>
-          <span class="bio-val">Computer Vision · Machine Learning · Deep Learning</span>
-        </div>
-        <div class="bio-row">
-          <span class="bio-label"><i class="fas fa-book"></i> Teaching</span>
-          <span class="bio-val">AI · Digital Image Processing · Discrete Mathematics</span>
-        </div>
-      </div>
+      <aside class="bio-card">
+        <div class="bio-card-title">Biographical Notes</div>
+        <div class="bio-row"><i class="fas fa-envelope"></i><span class="bio-lbl">Email</span><span class="bio-val"><a href="mailto:syednahinhossain@gmail.com">syednahinhossain@gmail.com</a></span></div>
+        <div class="bio-row"><i class="fas fa-phone"></i><span class="bio-lbl">Phone</span><span class="bio-val">+880 1521-522856</span></div>
+        <div class="bio-row"><i class="fas fa-map-marker-alt"></i><span class="bio-lbl">Address</span><span class="bio-val">169, East Barandipara, Dhaka Road, Jashore, Bangladesh</span></div>
+        <hr class="bio-divider">
+        <div class="bio-row"><i class="fas fa-flask"></i><span class="bio-lbl">Research</span><span class="bio-val">Computer Vision · Machine Learning · Deep Learning</span></div>
+        <div class="bio-row"><i class="fas fa-chalkboard-teacher"></i><span class="bio-lbl">Teaching</span><span class="bio-val">AI · Digital Image Processing · DBMS · DSA</span></div>
+        <div class="bio-row"><i class="fas fa-camera"></i><span class="bio-lbl">Hobby</span><span class="bio-val"><a href="photography/">Photography →</a></span></div>
+      </aside>
     </div>
   </div>
 </section>
 
-<!-- ░░ Skills ░░ -->
+<!-- SKILLS -->
 <section id="skills">
   <div class="container">
     <h2 class="section-title">Professional Skills</h2>
     <div class="skills-grid">
-      <!-- Column 1: Programming Languages -->
       <div>
-        <p class="label" style="margin-bottom:1.2rem;">Programming Languages</p>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Python</span><span class="skill-level">Expert</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.1s;"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">SQL</span><span class="skill-level">Expert</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.15s;"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">C++</span><span class="skill-level">Advanced</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.2s;"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">C</span><span class="skill-level">Advanced</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.25s;"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Java</span><span class="skill-level">Intermediate</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:60%;animation-delay:0.3s;"></div></div> -->
-        </div>
+        <div class="skills-col-lbl">Programming Languages</div>
+        <div class="skill-row"><span class="sk-name">Python</span><span class="sk-lvl expert">Expert</span></div>
+        <div class="skill-row"><span class="sk-name">SQL</span><span class="sk-lvl expert">Expert</span></div>
+        <div class="skill-row"><span class="sk-name">C++</span><span class="sk-lvl advanced">Advanced</span></div>
+        <div class="skill-row"><span class="sk-name">C</span><span class="sk-lvl advanced">Advanced</span></div>
+        <div class="skill-row"><span class="sk-name">Java</span><span class="sk-lvl">Intermediate</span></div>
       </div>
-      <!-- Column 2: Frameworks & Tools -->
       <div>
-        <p class="label" style="margin-bottom:1.2rem;">Frameworks &amp; Tools</p>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">TensorFlow</span><span class="skill-level">Expert</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:85%;animation-delay:0.35s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">OpenCV</span><span class="skill-level">Advanced</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.4s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">Git</span><span class="skill-level">Advanced</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.45s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">LaTeX</span><span class="skill-level">Advanced</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:75%;animation-delay:0.5s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
-        </div>
-        <div class="skill-item">
-          <div class="skill-header"><span class="skill-name">PyTorch</span><span class="skill-level">Beginner</span></div>
-          <!-- <div class="skill-bar"><div class="skill-bar-fill" style="width:40%;animation-delay:0.55s;background:linear-gradient(90deg,var(--teal),var(--success));"></div></div> -->
-        </div>
+        <div class="skills-col-lbl">Frameworks &amp; Tools</div>
+        <div class="skill-row"><span class="sk-name">TensorFlow</span><span class="sk-lvl expert">Expert</span></div>
+        <div class="skill-row"><span class="sk-name">OpenCV</span><span class="sk-lvl advanced">Advanced</span></div>
+        <div class="skill-row"><span class="sk-name">Git</span><span class="sk-lvl advanced">Advanced</span></div>
+        <div class="skill-row"><span class="sk-name">LaTeX</span><span class="sk-lvl advanced">Advanced</span></div>
+        <div class="skill-row"><span class="sk-name">PyTorch</span><span class="sk-lvl">Beginner</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░ Experience ░░ -->
+<!-- EXPERIENCE -->
 <section id="experience">
   <div class="container">
     <h2 class="section-title">Work Experience</h2>
     <div class="timeline">
-
       <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">Lecturer, Computer Science &amp; Engineering</div>
-          <div class="tl-sub">Bangladesh Army University of Science &amp; Technology, Khulna (BAUSTK)</div>
-        </div>
+        <div class="tl-title">Lecturer, Computer Science &amp; Engineering</div>
+        <div class="tl-org">Bangladesh Army University of Science &amp; Technology, Khulna (BAUSTK)</div>
         <div class="tl-date">July 2025 — Present</div>
         <div class="tl-body">Serving as a full-time faculty member, delivering lectures and conducting sessionals in core CSE courses at the undergraduate level.</div>
       </div>
-
       <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">Lecturer, Computer Science &amp; Engineering</div>
-          <div class="tl-sub">Bangladesh Army University of Engineering &amp; Technology (BAUET)</div>
-        </div>
+        <div class="tl-title">Lecturer, Computer Science &amp; Engineering</div>
+        <div class="tl-org">Bangladesh Army University of Engineering &amp; Technology (BAUET)</div>
         <div class="tl-date">July 2023 — July 2025</div>
         <div class="tl-body">Served as a full-time Lecturer, contributing to curriculum delivery and student mentorship in CSE departments.</div>
       </div>
-
       <div class="tl-item">
-        <div class="tl-header">
-          <div class="tl-title">Machine Learning Engineer <span style="font-weight:300;font-size:0.9rem;">(Part-Time)</span></div>
-          <div class="tl-sub">MazeGeek Technologies BD Ltd</div>
-        </div>
+        <div class="tl-title">Machine Learning Engineer <span style="font-weight:300;font-size:0.85rem;">(Part-Time)</span></div>
+        <div class="tl-org">MazeGeek Technologies BD Ltd</div>
         <div class="tl-date">September 2020 — May 2021</div>
-        <div class="tl-body">Collaborated with a research team focused on Augmented Reality; contributed as a member of the virtual makeup research group, exploring ML-driven visual effects and real-time facial feature analysis.</div>
+        <div class="tl-body">Collaborated with a research team on Augmented Reality; contributed as a member of the virtual makeup research group, exploring ML-driven visual effects and real-time facial feature analysis.</div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ░░ Education ░░ -->
+<!-- EDUCATION -->
 <section id="education">
   <div class="container">
     <h2 class="section-title">Education</h2>
     <div class="timeline">
-
-      <div class="tl-item success">
-        <div class="tl-header">
-          <div class="tl-title">B.Sc. in Computer Science &amp; Engineering</div>
-          <div class="tl-sub">Khulna University of Engineering &amp; Technology (KUET)</div>
-        </div>
+      <div class="tl-item edu">
+        <div class="tl-title">B.Sc. in Computer Science &amp; Engineering</div>
+        <div class="tl-org">Khulna University of Engineering &amp; Technology (KUET)</div>
         <div class="tl-date">2018 — 2023</div>
         <div class="tl-body">CGPA: 3.50 / 4.00</div>
         <div class="tl-nested">
-          <p class="tl-nested-title">Co-Curricular Activities</p>
-          <div class="tl-nested-item">
+          <div class="tl-nested-lbl">Co-Curricular Activities</div>
+          <div class="tl-ni">
             <div class="tl-title">President — Jashore Association of KUET (JAK)</div>
             <div class="tl-date">2022 — 2023</div>
             <div class="tl-body">Led, guided, and directed committee members; organised association events and ensured strategic continuity of activities.</div>
           </div>
-          <div class="tl-nested-item">
+          <div class="tl-ni">
             <div class="tl-title">Organizing Secretary — Hardware Acceleration Club of KUET (HACK)</div>
             <div class="tl-date">2022 — 2023</div>
             <div class="tl-body">Coordinated events hosted by the club, managing logistics and participant engagement.</div>
           </div>
-          <div class="tl-nested-item">
+          <div class="tl-ni">
             <div class="tl-title">Assistant General Secretary — Jashore Association of KUET (JAK)</div>
             <div class="tl-date">2019 — 2020</div>
             <div class="tl-body">Supported senior leadership and mentored junior members to ensure successful event outcomes.</div>
           </div>
         </div>
       </div>
-
-      <div class="tl-item success">
-        <div class="tl-header">
-          <div class="tl-title">Higher Secondary Certificate (HSC) — Science</div>
-          <div class="tl-sub">Govt. M. M. College, Jashore</div>
-        </div>
+      <div class="tl-item edu">
+        <div class="tl-title">Higher Secondary Certificate (HSC) — Science</div>
+        <div class="tl-org">Govt. M. M. College, Jashore</div>
         <div class="tl-date">2015 — 2017</div>
         <div class="tl-body">GPA: 5.00 / 5.00</div>
       </div>
-
-      <div class="tl-item success">
-        <div class="tl-header">
-          <div class="tl-title">Secondary School Certificate (SSC) — Science</div>
-          <div class="tl-sub">Jashore Zilla School, Jashore</div>
-        </div>
+      <div class="tl-item edu">
+        <div class="tl-title">Secondary School Certificate (SSC) — Science</div>
+        <div class="tl-org">Jashore Zilla School, Jashore</div>
         <div class="tl-date">2010 — 2015</div>
         <div class="tl-body">GPA: 5.00 / 5.00</div>
         <div class="tl-nested">
-          <p class="tl-nested-title">Co-Curricular Activities</p>
-          <div class="tl-nested-item">
+          <div class="tl-nested-lbl">Co-Curricular Activities</div>
+          <div class="tl-ni">
             <div class="tl-title">Patrol Leader — Jashore Zilla School Scout Team</div>
             <div class="tl-date">2013 — 2015</div>
             <div class="tl-body">Led the scouting patrol, developing teamwork and leadership abilities.</div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ░░ Publications ░░ -->
+<!-- PUBLICATIONS -->
 <section id="research">
   <div class="container">
     <h2 class="section-title">Publications</h2>
     <div class="pub-list">
-
-      <!-- Paper 1: Under Review -->
       <div class="pub-card">
         <div class="pub-num">01</div>
         <div>
@@ -1057,373 +640,149 @@
           <p class="pub-abstract">This study explores image colorization using deep learning, particularly conditional Generative Adversarial Networks (cGANs), which outperform traditional reference-based methods by generating realistic colors more efficiently and without requiring manual reference images.</p>
         </div>
       </div>
-
-      <!-- Paper 2: Journal -->
       <div class="pub-card">
         <div class="pub-num">02</div>
         <div>
           <span class="pub-badge badge-journal">Journal Article</span>
           <div class="pub-title">Comparative Analysis of Machine Learning Models for Predicting Water Quality Index in Dhaka's Rivers of Bangladesh</div>
-          <div class="pub-meta">
-            <em>Environmental Sciences Europe</em> &nbsp;·&nbsp; Springer Nature &nbsp;·&nbsp; 2025<br>
-            <strong style="font-weight:500;">Impact Factor: 6.0 (2023) &nbsp;|&nbsp; 5-Year IF: 6.6</strong>
-          </div>
-          <p class="pub-abstract">This study addresses severe pollution in Dhaka's key rivers due to industrialization and inadequate waste management. Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI). Artificial Neural Network (ANN) and Random Forest Regressor demonstrated the highest accuracy, with ANN achieving top overall performance metrics — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.</p>
-          <a class="pub-link" href="https://link.springer.com/article/10.1186/s12302-025-01078-w" target="_blank">
-            <i class="fas fa-external-link-alt"></i>Read the Paper
-          </a>
+          <div class="pub-meta"><em>Environmental Sciences Europe</em> &nbsp;·&nbsp; Springer Nature &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; IF: 6.0 (2023)</div>
+          <p class="pub-abstract">Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI) in Dhaka's key rivers. ANN and Random Forest Regressor demonstrated the highest accuracy — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.</p>
+          <a class="pub-link" href="https://link.springer.com/article/10.1186/s12302-025-01078-w" target="_blank"><i class="fas fa-external-link-alt"></i> Read the Paper</a>
         </div>
       </div>
-
-      <!-- Paper 3: Conference -->
       <div class="pub-card">
         <div class="pub-num">03</div>
         <div>
           <span class="pub-badge badge-conf">Conference Paper</span>
-          <span class="pub-badge badge-award" style="margin-left:0.4rem;">Best Paper Award</span>
+          <span class="pub-badge badge-award">Best Paper Award</span>
           <div class="pub-title">Automatic License Plate Recognition System for Bangladeshi Vehicles Using Deep Neural Network</div>
-          <div class="pub-meta">
-            International Conference on Big Data, IoT and Machine Learning (BIM 2021) &nbsp;·&nbsp; Springer Singapore &nbsp;·&nbsp; 2022
-          </div>
-          <p class="pub-abstract">This paper proposes an optimal end-to-end ALPR system for Bangladeshi vehicles by experimenting with various DNN models trained on a rich, novel dataset of Bangladeshi vehicles and license plates. A custom algorithm eliminates the typical segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% accuracy in text recognition. Awarded Best Paper in the Machine Learning track.</p>
-          <a class="pub-link" href="https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8" target="_blank">
-            <i class="fas fa-external-link-alt"></i>Read the Paper
-          </a>
+          <div class="pub-meta">BIM 2021 &nbsp;·&nbsp; Springer Singapore &nbsp;·&nbsp; 2022</div>
+          <p class="pub-abstract">An optimal end-to-end ALPR system for Bangladeshi vehicles trained on a novel dataset. A custom algorithm eliminates the segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% in text recognition. Awarded Best Paper in the Machine Learning track.</p>
+          <a class="pub-link" href="https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8" target="_blank"><i class="fas fa-external-link-alt"></i> Read the Paper</a>
         </div>
       </div>
-
-      <!-- Paper 4: Conference -->
       <div class="pub-card">
         <div class="pub-num">04</div>
         <div>
           <span class="pub-badge badge-conf">Conference Paper</span>
           <div class="pub-title">Bangladeshi Local Vehicle Recognition with a Comprehensive Dataset using Transfer Learning Techniques</div>
           <div class="pub-meta">IEEE &nbsp;·&nbsp; 2023</div>
-          <p class="pub-abstract">A challenging dataset of Bangladeshi vehicles was developed to assess model performance on Intelligent Transport System (ITS) tasks. Various pre-trained models were trained and evaluated; the proposed model achieved leading results in both localization and categorization. The dataset was shown to better reflect real-life scenarios than pre-existing alternatives.</p>
-          <a class="pub-link" href="https://ieeexplore.ieee.org/document/10103325" target="_blank">
-            <i class="fas fa-external-link-alt"></i>Read the Paper
-          </a>
+          <p class="pub-abstract">A challenging dataset of Bangladeshi vehicles was developed for ITS tasks. Various pre-trained models were evaluated; the proposed model achieved leading results in both localization and categorization, better reflecting real-life scenarios than pre-existing alternatives.</p>
+          <a class="pub-link" href="https://ieeexplore.ieee.org/document/10103325" target="_blank"><i class="fas fa-external-link-alt"></i> Read the Paper</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ░░ Courses Taught ░░ -->
+<!-- COURSES -->
 <section id="courses">
   <div class="container">
     <h2 class="section-title">Courses Taught</h2>
     <div class="courses-grid">
-      <div class="course-card">
-        <div class="course-name">Digital Image Processing</div>
-        <div class="course-type">Theory &amp; Sessional</div>
-      </div>
-      <div class="course-card">
-        <div class="course-name">Artificial Intelligence</div>
-        <div class="course-type">Theory &amp; Sessional</div>
-      </div>
-      <div class="course-card">
-        <div class="course-name">Database Management System</div>
-        <div class="course-type">Theory &amp; Sessional</div>
-      </div>
-      <div class="course-card">
-        <div class="course-name">Data Structures and Algorithms</div>
-        <div class="course-type">Theory &amp; Sessional</div>
-      </div>
-      <div class="course-card">
-        <div class="course-name">Numerical Analysis</div>
-        <div class="course-type">Theory &amp; Sessional</div>
-      </div>
-      <div class="course-card">
-        <div class="course-name">Discrete Mathematics</div>
-        <div class="course-type">Theory</div>
-      </div>
+      <div class="course-card"><div class="course-name">Digital Image Processing</div><div class="course-type">Theory &amp; Sessional</div></div>
+      <div class="course-card"><div class="course-name">Artificial Intelligence</div><div class="course-type">Theory &amp; Sessional</div></div>
+      <div class="course-card"><div class="course-name">Database Management System</div><div class="course-type">Theory &amp; Sessional</div></div>
+      <div class="course-card"><div class="course-name">Data Structures &amp; Algorithms</div><div class="course-type">Theory &amp; Sessional</div></div>
+      <div class="course-card"><div class="course-name">Numerical Analysis</div><div class="course-type">Theory &amp; Sessional</div></div>
+      <div class="course-card"><div class="course-name">Discrete Mathematics</div><div class="course-type">Theory</div></div>
     </div>
   </div>
 </section>
 
-<!-- ░░ Projects ░░ -->
+<!-- PROJECTS -->
 <section id="projects">
   <div class="container">
     <h2 class="section-title">Selected Projects</h2>
     <div class="projects-list">
-
       <div class="project-card">
-        <div class="media-side">
-          <video controls>
-            <source src="images/project_1.mkv" type="video/mp4">
-            Your browser does not support HTML video.
-          </video>
-        </div>
+        <div class="media-side"><video controls><source src="images/project_1.mkv" type="video/mp4">Your browser does not support HTML video.</video></div>
         <div class="info-side">
-          <div class="proj-tech">Python &nbsp;·&nbsp; YOLOv4 &nbsp;·&nbsp; TensorFlow &nbsp;·&nbsp; OpenCV</div>
-          <h3>Automatic License Plate Recognizer</h3>
-          <p>An end-to-end AI pipeline for automatically detecting Bangladeshi license plates and recognising the inscribed characters. Results (timestamp, plate number) are logged to CSV. Seven DNN architectures were benchmarked including EfficientDet variants, SSD MobileNet, and SSD ResNet50, before arriving at the final optimised configuration. Developed as an undergraduate capstone project.</p>
-          <a class="repo-link" href="https://github.com/NAHIN-JZS/License-Plate-Recognizer" target="_blank">
-            <i class="fab fa-github"></i>View on GitHub
-          </a>
+          <div class="proj-tech">Python · YOLOv4 · TensorFlow · OpenCV</div>
+          <div class="proj-title">Automatic License Plate Recognizer</div>
+          <p>An end-to-end AI pipeline for detecting Bangladeshi license plates and recognising inscribed characters. Results are logged to CSV. Seven DNN architectures were benchmarked before arriving at the final optimised configuration.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/License-Plate-Recognizer" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
-
       <div class="project-card">
-        <div class="media-side">
-          <video controls>
-            <source src="images/kill_the_man_game.mkv" type="video/mp4">
-            Your browser does not support HTML video.
-          </video>
-        </div>
+        <div class="media-side"><video controls><source src="images/kill_the_man_game.mkv" type="video/mp4">Your browser does not support HTML video.</video></div>
         <div class="info-side">
-          <div class="proj-tech">C++ &nbsp;·&nbsp; OpenGL</div>
-          <h3>Kill The Man — OpenGL Game</h3>
-          <p>A 2D video game implemented entirely in C++ with OpenGL, built as a Computer Graphics laboratory project. The gameplay involves intercepting a target character passing through the scene by vehicle.</p>
-          <a class="repo-link" href="https://github.com/NAHIN-JZS/kill_the_man_game_OpenGL" target="_blank">
-            <i class="fab fa-github"></i>View on GitHub
-          </a>
+          <div class="proj-tech">C++ · OpenGL</div>
+          <div class="proj-title">Kill The Man — OpenGL Game</div>
+          <p>A 2D video game in C++ with OpenGL as a Computer Graphics laboratory project. The gameplay involves intercepting a target character passing through the scene by vehicle.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/kill_the_man_game_OpenGL" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
-
       <div class="project-card">
-        <div class="media-side">
-          <a href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank">
-            <img src="images/project-2.png" alt="Home Rental Website screenshot">
-          </a>
-        </div>
+        <div class="media-side"><a href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank"><img src="images/project-2.png" alt="Home Rental Website screenshot"></a></div>
         <div class="info-side">
-          <div class="proj-tech">PHP &nbsp;·&nbsp; MySQLi &nbsp;·&nbsp; HTML &nbsp;·&nbsp; CSS</div>
-          <h3>Home Rental Web Platform</h3>
-          <p>A web application where tenants can search for available properties by location, and property owners can list vacant houses for prospective renters. Built with PHP and MySQLi and hosted locally using XAMPP. Developed as an undergraduate project.</p>
-          <a class="repo-link" href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank">
-            <i class="fab fa-github"></i>View on GitHub
-          </a>
+          <div class="proj-tech">PHP · MySQLi · HTML · CSS</div>
+          <div class="proj-title">Home Rental Web Platform</div>
+          <p>A web application where tenants can search for available properties by location, and owners can list vacant houses. Built with PHP and MySQLi, hosted locally via XAMPP.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/ghor_bari_web" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
-
       <div class="project-card">
-        <div class="media-side">
-          <video controls>
-            <source src="images/project_ghor_bariHD.mp4" type="video/mp4">
-            Your browser does not support HTML video.
-          </video>
-        </div>
+        <div class="media-side"><video controls><source src="images/project_ghor_bariHD.mp4" type="video/mp4">Your browser does not support HTML video.</video></div>
         <div class="info-side">
-          <div class="proj-tech">Java &nbsp;·&nbsp; Firebase</div>
-          <h3>Ghorbari — Android Housing App</h3>
-          <p>An Android application analogous to the web platform, enabling location-based property discovery for tenants and advertisement tools for owners. Built with Java and Firebase as a real-time backend. Developed as an undergraduate project.</p>
-          <a class="repo-link" href="https://github.com/NAHIN-JZS/Ghorbari" target="_blank">
-            <i class="fab fa-github"></i>View on GitHub
-          </a>
+          <div class="proj-tech">Java · Firebase</div>
+          <div class="proj-title">Ghorbari — Android Housing App</div>
+          <p>An Android application enabling location-based property discovery for tenants and advertisement tools for owners. Built with Java and Firebase as a real-time backend.</p>
+          <a class="repo-link" href="https://github.com/NAHIN-JZS/Ghorbari" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ░░ Awards & Scholarships ░░ -->
+<!-- AWARDS -->
 <section id="awards">
   <div class="container">
     <h2 class="section-title">Awards &amp; Scholarships</h2>
     <div class="awards-list">
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-trophy"></i></div>
-        <div>
-          <div class="award-title">Dean's Award</div>
-          <div class="award-sub">Khulna University of Engineering &amp; Technology</div>
-        </div>
-      </div>
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-medal"></i></div>
-        <div>
-          <div class="award-title">Best Paper Award — Machine Learning Track</div>
-          <div class="award-sub">International Conference on Big Data, IoT and Machine Learning (BIM 2021)</div>
-        </div>
-      </div>
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-award"></i></div>
-        <div>
-          <div class="award-title">Board Scholarship for Higher Secondary Certificate (HSC)</div>
-          <div class="award-sub">Jashore Education Board &nbsp;·&nbsp; 2017</div>
-        </div>
-      </div>
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-award"></i></div>
-        <div>
-          <div class="award-title">Board Scholarship for Secondary School Certificate (SSC)</div>
-          <div class="award-sub">Jashore Education Board &nbsp;·&nbsp; 2015</div>
-        </div>
-      </div>
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-award"></i></div>
-        <div>
-          <div class="award-title">Board Scholarship for Junior School Certificate (JSC)</div>
-          <div class="award-sub">Jashore Education Board &nbsp;·&nbsp; 2012</div>
-        </div>
-      </div>
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-star"></i></div>
-        <div>
-          <div class="award-title">Non-Government Scholarship for Academic Excellence</div>
-          <div class="award-sub">Jashore Students Welfare Foundation &nbsp;·&nbsp; 2011</div>
-        </div>
-      </div>
-
-      <div class="award-item">
-        <div class="award-icon"><i class="fas fa-star"></i></div>
-        <div>
-          <div class="award-title">Non-Government Scholarship for Academic Excellence</div>
-          <div class="award-sub">Jashore Students Welfare Foundation &nbsp;·&nbsp; 2006</div>
-        </div>
-      </div>
-
+      <div class="award-item"><div class="award-icon"><i class="fas fa-trophy"></i></div><div><div class="award-title">Dean's Award</div><div class="award-sub">Khulna University of Engineering &amp; Technology</div></div></div>
+      <div class="award-item"><div class="award-icon"><i class="fas fa-medal"></i></div><div><div class="award-title">Best Paper Award — Machine Learning Track</div><div class="award-sub">International Conference on Big Data, IoT and Machine Learning (BIM 2021)</div></div></div>
+      <div class="award-item"><div class="award-icon"><i class="fas fa-award"></i></div><div><div class="award-title">Board Scholarship — Higher Secondary Certificate (HSC)</div><div class="award-sub">Jashore Education Board · 2017</div></div></div>
+      <div class="award-item"><div class="award-icon"><i class="fas fa-award"></i></div><div><div class="award-title">Board Scholarship — Secondary School Certificate (SSC)</div><div class="award-sub">Jashore Education Board · 2015</div></div></div>
+      <div class="award-item"><div class="award-icon"><i class="fas fa-award"></i></div><div><div class="award-title">Board Scholarship — Junior School Certificate (JSC)</div><div class="award-sub">Jashore Education Board · 2012</div></div></div>
+      <div class="award-item"><div class="award-icon"><i class="fas fa-star"></i></div><div><div class="award-title">Non-Government Scholarship for Academic Excellence</div><div class="award-sub">Jashore Students Welfare Foundation · 2011</div></div></div>
+      <div class="award-item"><div class="award-icon"><i class="fas fa-star"></i></div><div><div class="award-title">Non-Government Scholarship for Academic Excellence</div><div class="award-sub">Jashore Students Welfare Foundation · 2006</div></div></div>
     </div>
   </div>
 </section>
 
-<!-- ░░ Photography ░░ -->
+<!-- PHOTOGRAPHY TEASER -->
 <section id="photography">
   <div class="container">
     <h2 class="section-title">Photography</h2>
-
-
-    <p class="photo-intro">Beyond research and teaching, I find creative expression through the lens. I photograph nature, architecture, urban life, and the quiet moments of everyday existence — an exercise in careful observation that mirrors the attention to detail I bring to my academic work.</p>
-
-    <div class="photo-filters">
-      <button class="photo-filter-btn active" data-filter="all">All</button>
-      <button class="photo-filter-btn" data-filter="nature">Nature</button>
-      <button class="photo-filter-btn" data-filter="urban">Urban</button>
-      <button class="photo-filter-btn" data-filter="architecture">Architecture</button>
-      <button class="photo-filter-btn" data-filter="portrait">Portrait</button>
-      <button class="photo-filter-btn" data-filter="travel">Travel</button>
+    <p class="photo-intro">Beyond research and teaching, I find creative expression through the lens — photographing nature, architecture, urban life, and the quiet moments of everyday existence. An exercise in careful observation that mirrors the attention to detail I bring to academic work.</p>
+    <div class="photo-mosaic">
+      <div class="pm-item">
+        <img src="images/photography/PXL_20231201_004906707.MP-01.jpg" alt="Morning Light" loading="lazy">
+        <div class="pm-overlay"><span class="pm-label">Nature</span></div>
+      </div>
+      <div class="pm-item">
+        <img src="images/photography/PXL_20251023_001737809.MP.jpg" alt="City Pulse" loading="lazy">
+        <div class="pm-overlay"><span class="pm-label">Urban</span></div>
+      </div>
+      <div class="pm-item">
+        <img src="images/photography/IMG_1772965317219.jpg" alt="Mosque" loading="lazy">
+        <div class="pm-overlay"><span class="pm-label">Architecture</span></div>
+      </div>
+      <div class="pm-item">
+        <img src="images/photography/1000066279.jpg" alt="Flowers" loading="lazy">
+        <div class="pm-overlay"><span class="pm-label">Nature</span></div>
+      </div>
+      <div class="pm-item">
+        <img src="images/photography/PXL_20250201_003606402.MP.jpg" alt="Man in the Sea" loading="lazy">
+        <div class="pm-overlay"><span class="pm-label">Nature</span></div>
+      </div>
     </div>
-
-    <div class="photo-grid" id="photoGrid">
-      <!--
-        ═══════════════════════════════════════════════════════════════
-        HOW TO ADD YOUR OWN PHOTOS:
-        1. Upload your photos to:  images/photography/
-        2. Copy one of the blocks below and change:
-             src="images/photography/YOUR-FILE.jpg"
-             data-category="nature"  ← one of: nature, urban, architecture, portrait, travel
-             data-title="Your Caption"
-        ═══════════════════════════════════════════════════════════════
-
-        PLACEHOLDER tiles are shown below so the grid looks good right away.
-        Replace each src with your own image path.
-      -->
-
-      <div class="photo-item" data-category="nature" data-title="Morning Light" data-cat-label="Nature">
-        <img src="images/photography/PXL_20231201_004906707.MP-01.jpg" alt="Morning Light — Nature" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Nature</div>
-            Morning Light
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="urban" data-title="City Pulse" data-cat-label="Urban">
-        <img src="images/photography/PXL_20251023_001737809.MP.jpg" alt="City Pulse — Urban" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Urban</div>
-            City Pulse
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="architecture" data-title="Mosque" data-cat-label="Architecture">
-        <img src="images/photography/IMG_1772965317219.jpg" alt="Mosque — Architecture" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Architecture</div>
-            <!-- Lines &amp; Angles -->
-             Mosque
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="nature" data-title="Flowers" data-cat-label="Nature">
-        <img src="images/photography/1000066279.jpg" alt="Flowers — Nature" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Nature</div>
-            Flowers
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="travel" data-title="On the Road" data-cat-label="Travel">
-        <img src="images/photography/PXL_20231006_022357310.MP~2-01.jpg" alt="On the Road — Travel" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Travel</div>
-            On the Road
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="urban" data-title="Tea Stall" data-cat-label="Urban">
-        <img src="images/photography/PXL_20231116_135620967.MP~2-01.jpg" alt="Tea Stall — Urban" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Urban</div>
-            Tea Stall
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="portrait" data-title="In Thought" data-cat-label="Portrait">
-        <img src="images/photography/received_870893850063708~3.jpg" alt="In Thought — Portrait" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Portrait</div>
-            In Thought
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="architecture" data-title="Symmetry" data-cat-label="Architecture">
-        <img src="images/photography/PXL_20250510_160220182.MP.jpg" alt="Symmetry — Architecture" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Architecture</div>
-            Symmetry
-          </div>
-        </div>
-      </div>
-
-      <div class="photo-item" data-category="nature" data-title="Man in the Sea" data-cat-label="Nature">
-        <img src="images/photography/PXL_20250201_003606402.MP.jpg" alt="Man in the Sea — Nature" loading="lazy">
-        <div class="photo-overlay">
-          <div class="photo-caption">
-            <div class="ph-cat">Nature</div>
-            Man in the Sea
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /photo-grid -->
+    <a class="photo-cta" href="photography/">View Full Photography Portfolio &nbsp;<i class="fas fa-arrow-right"></i></a>
   </div>
 </section>
 
-<!-- Lightbox -->
-<div id="lightbox" role="dialog" aria-modal="true">
-  <button id="lb-close" aria-label="Close">&times;</button>
-  <button id="lb-prev" aria-label="Previous">&#8249;</button>
-  <img id="lb-img" src="" alt="">
-  <button id="lb-next" aria-label="Next">&#8250;</button>
-  <div id="lb-info">
-    <div class="lb-cat" id="lb-cat"></div>
-    <div id="lb-title"></div>
-  </div>
-</div>
+<!-- CONTACT -->
 <section id="contact">
   <div class="container">
     <h2 class="section-title">Contact</h2>
@@ -1436,35 +795,24 @@
           <div class="ci-row"><i class="fab fa-linkedin"></i><a href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" target="_blank">LinkedIn Profile</a></div>
           <div class="ci-row"><i class="fab fa-orcid"></i><a href="https://orcid.org/0000-0003-2528-7573" target="_blank">ORCID: 0000-0003-2528-7573</a></div>
         </div>
-
         <form class="contact-form" action="https://formspree.io/f/mqknyewj" method="POST">
           <label for="name">Your Name</label>
           <input type="text" id="name" name="name" required placeholder="Full name">
-
           <label for="email">Email Address</label>
           <input type="email" id="email" name="email" required placeholder="you@example.com">
-
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required placeholder="Your message…"></textarea>
-
-          <button class="btn-primary-custom" type="submit">Send Message</button>
+          <button class="btn-submit" type="submit">Send Message</button>
         </form>
       </div>
-
-    
-
       <div class="contact-map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.8680397226103!2d89.49883187570836!3d22.9182376202129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff990020b76255%3A0x3aa12c98d71c8d22!2sBangladesh%20Army%20University%20of%20Science%20and%20Technology%20Khulna!5e0!3m2!1sen!2sbd!4v1779695395116!5m2!1sen!2sbd"
-          allowfullscreen
-          loading="lazy"
-          title="BAUST, Khulna, Bangladesh"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.8680397226103!2d89.49883187570836!3d22.9182376202129!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39ff990020b76255%3A0x3aa12c98d71c8d22!2sBangladesh%20Army%20University%20of%20Science%20and%20Technology%20Khulna!5e0!3m2!1sen!2sbd!4v1779695395116!5m2!1sen!2sbd" allowfullscreen loading="lazy" title="BAUST Khulna"></iframe>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ░░ Footer ░░ -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="f-name">Syed Nahin Hossain</div>
@@ -1472,107 +820,33 @@
       <a href="https://www.linkedin.com/in/syed-nahin-hossain-658189176/" title="LinkedIn" target="_blank"><i class="fab fa-linkedin"></i></a>
       <a href="https://orcid.org/0000-0003-2528-7573" title="ORCID" target="_blank"><i class="fab fa-orcid"></i></a>
       <a href="https://github.com/NAHIN-JZS" title="GitHub" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://scholar.google.com/citations?user=25LhIz0AAAAJ&hl=en" title="Google Scholar" target="_blank"><i class="fas fa-graduation-cap"></i></a>
     </div>
-    <p class="f-copy">&copy; Syed Nahin Hossain. All rights reserved.</p>
+    <p class="f-copy">&copy; 2025 Syed Nahin Hossain &nbsp;·&nbsp; All rights reserved</p>
   </div>
 </footer>
 
-<!-- Photography & Nav Scripts -->
 <script>
-  // ── Mobile nav toggle ─────────────────────────────────────
-  const toggle = document.getElementById('nav-toggle');
-  const menu   = document.getElementById('nav-menu');
-  toggle.addEventListener('click', () => menu.classList.toggle('open'));
+  // Nav toggle
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu   = document.getElementById('nav-menu');
+  navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
   document.querySelectorAll('#nav-menu a').forEach(a =>
-    a.addEventListener('click', () => menu.classList.remove('open'))
+    a.addEventListener('click', () => navMenu.classList.remove('open'))
   );
-
-  // ── Photo filter ──────────────────────────────────────────
-  const filterBtns = document.querySelectorAll('.photo-filter-btn');
-  const photoItems = document.querySelectorAll('.photo-item');
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const cat = btn.dataset.filter;
-      photoItems.forEach(item => {
-        const show = cat === 'all' || item.dataset.category === cat;
-        item.style.display = show ? 'block' : 'none';
-      });
+  // Active nav on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#nav-menu ul li a:not(.nav-photo)');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const a = document.querySelector(`#nav-menu a[href="#${e.target.id}"]`);
+        if (a) a.classList.add('active');
+      }
     });
-  });
-
-  // ── Lightbox ──────────────────────────────────────────────
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lb-img');
-  const lbTitle = document.getElementById('lb-title');
-  const lbCat   = document.getElementById('lb-cat');
-  const lbClose = document.getElementById('lb-close');
-  const lbPrev  = document.getElementById('lb-prev');
-  const lbNext  = document.getElementById('lb-next');
-
-  let visibleItems = [];
-  let currentIdx = 0;
-
-  function getVisible() {
-    return [...photoItems].filter(i => i.style.display !== 'none');
-  }
-
-  function openLightbox(item) {
-    visibleItems = getVisible();
-    currentIdx = visibleItems.indexOf(item);
-    showLbItem(currentIdx);
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function showLbItem(idx) {
-    const item = visibleItems[idx];
-    if (!item) return;
-    lbImg.src = item.querySelector('img').src;
-    lbImg.alt = item.dataset.title || '';
-    lbTitle.textContent = item.dataset.title || '';
-    lbCat.textContent   = item.dataset.catLabel || item.dataset.category || '';
-  }
-
-  function closeLightbox() {
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-    lbImg.src = '';
-  }
-
-  photoItems.forEach(item => {
-    item.addEventListener('click', () => openLightbox(item));
-  });
-
-  lbClose.addEventListener('click', closeLightbox);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-
-  lbPrev.addEventListener('click', e => {
-    e.stopPropagation();
-    visibleItems = getVisible();
-    currentIdx = (currentIdx - 1 + visibleItems.length) % visibleItems.length;
-    showLbItem(currentIdx);
-  });
-  lbNext.addEventListener('click', e => {
-    e.stopPropagation();
-    visibleItems = getVisible();
-    currentIdx = (currentIdx + 1) % visibleItems.length;
-    showLbItem(currentIdx);
-  });
-
-  document.addEventListener('keydown', e => {
-    if (!lb.classList.contains('open')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft')  lbPrev.click();
-    if (e.key === 'ArrowRight') lbNext.click();
-  });
+  }, { threshold: 0.3 });
+  sections.forEach(s => io.observe(s));
 </script>
-
-<script src="scripts/mdb.min.js?ver=1.2.1"></script>
-<script src="scripts/aos.js?ver=1.2.1"></script>
-<script src="scripts/main.js?ver=1.2.1"></script>
-
 </body>
 </html>
