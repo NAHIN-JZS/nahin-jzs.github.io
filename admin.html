@@ -67,7 +67,7 @@ padding:11px 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;c
 .nested>.eyebrow{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
 .nested .item{padding:16px;background:var(--paper)}
 .imgfield{display:flex;gap:14px;align-items:flex-start}
-.imgfield img,.imgfield video{width:110px;height:74px;object-fit:cover;border:1px solid var(--hair);background:#000;filter:grayscale(1)}
+.imgfield img,.imgfield video{width:110px;height:74px;object-fit:cover;border:1px solid var(--hair);background:#000}
 .imgfield .col{flex:1}
 .imgfield .path{font-family:var(--mono);font-size:11px;color:var(--muted);word-break:break-all;margin:6px 0}
 .addbar{margin-top:6px}
@@ -174,6 +174,16 @@ async function gh(path, opts = {}){
   if (!res.ok){
     let detail = '';
     try { detail = (await res.json()).message || ''; } catch(e){}
+    const writing = opts.method && opts.method !== 'GET';
+    if (res.status === 404 && writing){
+      throw new Error('GitHub refused the write (404). This almost always means the token cannot write to this repository. Open your token settings on GitHub and check: (1) Repository access includes ' + OWNER + '/' + REPO + ', and (2) Contents permission is set to Read and write. Then log out here and sign in again.');
+    }
+    if (res.status === 401){
+      throw new Error('Token rejected (401). It may have expired or been revoked — create a new fine-grained token and sign in again.');
+    }
+    if (res.status === 409){
+      throw new Error('Conflict (409). The file changed on GitHub since it was loaded — press Publish once more.');
+    }
     throw new Error(res.status + ' ' + detail);
   }
   return res.json();
@@ -193,6 +203,9 @@ async function login(){
   try {
     const repo = await gh(`/repos/${OWNER}/${REPO}`);
     BRANCH = repo.default_branch || 'main';
+    if (repo.permissions && !repo.permissions.push){
+      throw new Error('this token can read but not write to ' + OWNER + '/' + REPO + '. In your token settings, grant this repository under Repository access and set Contents to Read and write.');
+    }
     await loadContent();
     const store = $('rememberBox').checked ? localStorage : sessionStorage;
     store.setItem('pf_token', TOKEN);
@@ -260,7 +273,7 @@ $('publishBtn').addEventListener('click', async () => {
     setStatus('Published — the live site updates within a minute or two');
     toast('✓ Published. GitHub Pages will refresh the site shortly.');
   } catch (err) {
-    toast('Publish failed: ' + err.message, 6000);
+    toast('Publish failed: ' + err.message, 12000);
   }
   btn.disabled = false; btn.textContent = 'Publish';
 });
@@ -298,7 +311,7 @@ async function uploadFile(file, onDone){
     toast('✓ Uploaded');
     onDone(path);
   } catch (err) {
-    toast('Upload failed: ' + err.message, 6000);
+    toast('Upload failed: ' + err.message, 12000);
   }
 }
 
