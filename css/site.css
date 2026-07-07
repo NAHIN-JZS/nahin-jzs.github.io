@@ -185,10 +185,7 @@ a { color: inherit; }
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
-  filter: grayscale(1) contrast(1.05);
-  transition: filter 1.2s ease;
 }
-.hero-portrait:hover img { filter: grayscale(0) contrast(1); }
 .hero-portrait::after {
   content: '';
   position: absolute; inset: 14px -14px -14px 14px;
@@ -357,10 +354,7 @@ a { color: inherit; }
 .project-media { border: 1px solid var(--hairline); background: #000; }
 .project-media img, .project-media video {
   width: 100%; aspect-ratio: 16/10; object-fit: cover;
-  filter: grayscale(1);
-  transition: filter .8s ease;
 }
-.project:hover .project-media img, .project:hover .project-media video { filter: grayscale(0); }
 .project .tags { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .project h3 { font-family: var(--display); font-weight: 400; font-size: 24px; margin: 10px 0 8px; }
 .project p { font-size: 15.5px; color: var(--ink-soft); max-width: 56ch; }
@@ -393,10 +387,9 @@ a { color: inherit; }
 }
 .photo-grid img {
   width: 100%;
-  filter: grayscale(1) contrast(1.06);
-  transition: filter .9s ease, transform 1.4s ease;
+  transition: transform 1.4s ease;
 }
-.photo-grid figure:hover img { filter: grayscale(0) contrast(1); transform: scale(1.025); }
+.photo-grid figure:hover img { transform: scale(1.025); }
 .photo-grid figcaption {
   position: absolute; left: 0; right: 0; bottom: 0;
   padding: 26px 14px 10px;
