@@ -1,0 +1,228 @@
+{
+  "profile": {
+    "name": "Syed Nahin Hossain",
+    "tagline": "Researcher & Educator",
+    "fields": "Computer Vision · Machine Learning · Deep Learning",
+    "role": "Lecturer, Dept. of CSE",
+    "institution": "Bangladesh Army University of Science & Technology, Khulna (BAUSTK)",
+    "email": "syednahinhossain@gmail.com",
+    "phone": "+880 1521-522856",
+    "address": "169, East Barandipara, Dhaka Road, Jashore, Bangladesh",
+    "avatar": "images/avatar.jpg",
+    "cv": "CV_of_Syed_Nahin_Hossain.pdf",
+    "github": "https://github.com/NAHIN-JZS",
+    "linkedin": "https://www.linkedin.com/in/syed-nahin-hossain-658189176/",
+    "scholar": "https://scholar.google.com/citations?user=25LhIz0AAAAJ&hl=en",
+    "orcid": "https://orcid.org/0000-0003-2528-7573"
+  },
+  "about": {
+    "paragraphs": [
+      "Welcome to my academic portfolio. I am Nahin — a Computer Vision researcher and educator holding a B.Sc. in Computer Science & Engineering from Khulna University of Engineering & Technology (KUET). Currently, I serve as a Lecturer at Bangladesh Army University of Science & Technology, Khulna (BAUSTK), where I share my passion for cutting-edge technologies with the next generation of engineers.",
+      "My primary research is centred on Computer Vision and Machine Learning, with multiple published works spanning deep learning-based license plate recognition, vehicle classification, image colorization, and environmental quality prediction. I thrive on bridging theoretical foundations with real-world applications.",
+      "Beyond research, I bring leadership experience from my tenure as President of the Jashore Association of KUET (JAK), and I find creative expression through photography — a discipline that sharpens the same attention to detail I bring to my academic work.",
+      "I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives."
+    ],
+    "notes": [
+      { "label": "Research", "value": "Computer Vision · Machine Learning · Deep Learning" },
+      { "label": "Teaching", "value": "AI · Digital Image Processing · DBMS · DSA" },
+      { "label": "Hobby", "value": "Photography" }
+    ]
+  },
+  "news": [
+    {
+      "date": "2026",
+      "title": "Admitted to the MS in Computer Science program at the University at Buffalo",
+      "text": "Beginning Fall 2026, recipient of the SEAS Graduate Excellence Award.",
+      "link": ""
+    },
+    {
+      "date": "2025",
+      "title": "Joined BAUSTK as Lecturer, Dept. of CSE",
+      "text": "Teaching Digital Image Processing, Artificial Intelligence, Database Management Systems, and Data Structures & Algorithms.",
+      "link": ""
+    },
+    {
+      "date": "2025",
+      "title": "Journal article published in Environmental Sciences Europe (Springer Nature, IF 6.0)",
+      "text": "Comparative analysis of fourteen machine learning models for predicting the Water Quality Index in Dhaka's rivers.",
+      "link": "https://link.springer.com/article/10.1186/s12302-025-01078-w"
+    }
+  ],
+  "skills": [
+    {
+      "group": "Programming Languages",
+      "items": [
+        { "name": "Python", "level": "Expert" },
+        { "name": "SQL", "level": "Expert" },
+        { "name": "C++", "level": "Advanced" },
+        { "name": "C", "level": "Advanced" },
+        { "name": "Java", "level": "Intermediate" }
+      ]
+    },
+    {
+      "group": "Frameworks & Tools",
+      "items": [
+        { "name": "TensorFlow", "level": "Expert" },
+        { "name": "OpenCV", "level": "Advanced" },
+        { "name": "Git", "level": "Advanced" },
+        { "name": "LaTeX", "level": "Advanced" },
+        { "name": "PyTorch", "level": "Beginner" }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Lecturer, Computer Science & Engineering",
+      "org": "Bangladesh Army University of Science & Technology, Khulna (BAUSTK)",
+      "period": "July 2025 — Present",
+      "text": "Serving as a full-time faculty member, delivering lectures and conducting sessionals in core CSE courses at the undergraduate level."
+    },
+    {
+      "title": "Lecturer, Computer Science & Engineering",
+      "org": "Bangladesh Army University of Engineering & Technology (BAUET)",
+      "period": "July 2023 — July 2025",
+      "text": "Served as a full-time Lecturer, contributing to curriculum delivery and student mentorship in CSE departments."
+    },
+    {
+      "title": "Machine Learning Engineer (Part-Time)",
+      "org": "MazeGeek Technologies BD Ltd",
+      "period": "September 2020 — May 2021",
+      "text": "Collaborated with a research team on Augmented Reality; contributed as a member of the virtual makeup research group, exploring ML-driven visual effects and real-time facial feature analysis."
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.Sc. in Computer Science & Engineering",
+      "org": "Khulna University of Engineering & Technology (KUET)",
+      "period": "2018 — 2023",
+      "result": "CGPA: 3.50 / 4.00",
+      "activities": [
+        { "title": "President — Jashore Association of KUET (JAK)", "period": "2022 — 2023", "text": "Led, guided, and directed committee members; organised association events and ensured strategic continuity of activities." },
+        { "title": "Organizing Secretary — Hardware Acceleration Club of KUET (HACK)", "period": "2022 — 2023", "text": "Coordinated events hosted by the club, managing logistics and participant engagement." },
+        { "title": "Assistant General Secretary — Jashore Association of KUET (JAK)", "period": "2019 — 2020", "text": "Supported senior leadership and mentored junior members to ensure successful event outcomes." }
+      ]
+    },
+    {
+      "degree": "Higher Secondary Certificate (HSC) — Science",
+      "org": "Govt. M. M. College, Jashore",
+      "period": "2015 — 2017",
+      "result": "GPA: 5.00 / 5.00",
+      "activities": []
+    },
+    {
+      "degree": "Secondary School Certificate (SSC) — Science",
+      "org": "Jashore Zilla School, Jashore",
+      "period": "2010 — 2015",
+      "result": "GPA: 5.00 / 5.00",
+      "activities": [
+        { "title": "Patrol Leader — Jashore Zilla School Scout Team", "period": "2013 — 2015", "text": "Led the scouting patrol, developing teamwork and leadership abilities." }
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "year": "2025",
+      "type": "Under Review",
+      "badge": "",
+      "title": "Gray Scale to Color Image Conversion using Generative Adversarial Networks",
+      "venue": "Under review in a Q1 journal",
+      "text": "This study explores image colorization using deep learning, particularly conditional Generative Adversarial Networks (cGANs), which outperform traditional reference-based methods by generating realistic colors more efficiently and without requiring manual reference images.",
+      "link": ""
+    },
+    {
+      "year": "2025",
+      "type": "Journal Article",
+      "badge": "",
+      "title": "Comparative Analysis of Machine Learning Models for Predicting Water Quality Index in Dhaka's Rivers of Bangladesh",
+      "venue": "Environmental Sciences Europe · Springer Nature · IF: 6.0 (2023)",
+      "text": "Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI) in Dhaka's key rivers. ANN and Random Forest Regressor demonstrated the highest accuracy — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.",
+      "link": "https://link.springer.com/article/10.1186/s12302-025-01078-w"
+    },
+    {
+      "year": "2022",
+      "type": "Conference Paper",
+      "badge": "Best Paper Award",
+      "title": "Automatic License Plate Recognition System for Bangladeshi Vehicles Using Deep Neural Network",
+      "venue": "BIM 2021 · Springer Singapore",
+      "text": "An optimal end-to-end ALPR system for Bangladeshi vehicles trained on a novel dataset. A custom algorithm eliminates the segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% in text recognition. Awarded Best Paper in the Machine Learning track.",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8"
+    },
+    {
+      "year": "2023",
+      "type": "Conference Paper",
+      "badge": "",
+      "title": "Bangladeshi Local Vehicle Recognition with a Comprehensive Dataset using Transfer Learning Techniques",
+      "venue": "IEEE",
+      "text": "A challenging dataset of Bangladeshi vehicles was developed for ITS tasks. Various pre-trained models were evaluated; the proposed model achieved leading results in both localization and categorization, better reflecting real-life scenarios than pre-existing alternatives.",
+      "link": "https://ieeexplore.ieee.org/document/10103325"
+    }
+  ],
+  "courses": [
+    { "name": "Digital Image Processing", "mode": "Theory & Sessional" },
+    { "name": "Artificial Intelligence", "mode": "Theory & Sessional" },
+    { "name": "Database Management System", "mode": "Theory & Sessional" },
+    { "name": "Data Structures & Algorithms", "mode": "Theory & Sessional" },
+    { "name": "Numerical Analysis", "mode": "Theory & Sessional" },
+    { "name": "Discrete Mathematics", "mode": "Theory" }
+  ],
+  "projects": [
+    {
+      "tags": "Python · YOLOv4 · TensorFlow · OpenCV",
+      "title": "Automatic License Plate Recognizer",
+      "text": "An end-to-end AI pipeline for detecting Bangladeshi license plates and recognising inscribed characters. Results are logged to CSV. Seven DNN architectures were benchmarked before arriving at the final optimised configuration.",
+      "link": "https://github.com/NAHIN-JZS/License-Plate-Recognizer",
+      "mediaType": "video",
+      "media": "images/project-alpr.mp4"
+    },
+    {
+      "tags": "C++ · OpenGL",
+      "title": "Kill The Man — OpenGL Game",
+      "text": "A 2D video game in C++ with OpenGL as a Computer Graphics laboratory project. The gameplay involves intercepting a target character passing through the scene by vehicle.",
+      "link": "https://github.com/NAHIN-JZS/kill_the_man_game_OpenGL",
+      "mediaType": "video",
+      "media": "images/project-game.mp4"
+    },
+    {
+      "tags": "PHP · MySQLi · HTML · CSS",
+      "title": "Home Rental Web Platform",
+      "text": "A web application where tenants can search for available properties by location, and owners can list vacant houses. Built with PHP and MySQLi, hosted locally via XAMPP.",
+      "link": "https://github.com/NAHIN-JZS/ghor_bari_web",
+      "mediaType": "image",
+      "media": "images/project-2.jpg"
+    },
+    {
+      "tags": "Java · Firebase",
+      "title": "Ghorbari — Android Housing App",
+      "text": "An Android application enabling location-based property discovery for tenants and advertisement tools for owners. Built with Java and Firebase as a real-time backend.",
+      "link": "https://github.com/NAHIN-JZS/Ghorbari",
+      "mediaType": "video",
+      "media": "images/project-ghorbari.mp4"
+    }
+  ],
+  "awards": [
+    { "title": "Dean's Award", "org": "Khulna University of Engineering & Technology" },
+    { "title": "SEAS Graduate Excellence Award", "org": "University at Buffalo · 2026" },
+    { "title": "Best Paper Award — Machine Learning Track", "org": "International Conference on Big Data, IoT and Machine Learning (BIM 2021)" },
+    { "title": "Board Scholarship — Higher Secondary Certificate (HSC)", "org": "Jashore Education Board · 2017" },
+    { "title": "Board Scholarship — Secondary School Certificate (SSC)", "org": "Jashore Education Board · 2015" },
+    { "title": "Board Scholarship — Junior School Certificate (JSC)", "org": "Jashore Education Board · 2012" },
+    { "title": "Non-Government Scholarship for Academic Excellence", "org": "Jashore Students Welfare Foundation · 2011" },
+    { "title": "Non-Government Scholarship for Academic Excellence", "org": "Jashore Students Welfare Foundation · 2006" }
+  ],
+  "photography": {
+    "intro": "Beyond research and teaching, I find creative expression through the lens — photographing nature, architecture, urban life, and the quiet moments of everyday existence. Every frame rests in black and white; look closer, and the colour returns.",
+    "items": [
+      { "src": "images/photography/1000066279.jpg", "caption": "Nature" },
+      { "src": "images/photography/PXL_20250530_122601970.jpg", "caption": "Nature" },
+      { "src": "images/photography/PXL_20231006_022357310.MP_2-01.jpg", "caption": "Urban" },
+      { "src": "images/photography/PXL_20231201_004906707.MP-01.jpg", "caption": "Architecture" },
+      { "src": "images/photography/PXL_20250201_003606402.MP.jpg", "caption": "Nature" },
+      { "src": "images/photography/PXL_20251023_001737809.MP.jpg", "caption": "Nature" },
+      { "src": "images/photography/PXL_20231116_135620967.MP_2-01.jpg", "caption": "Nature" },
+      { "src": "images/photography/PXL_20240419_161611104.NIGHT_3-01.jpg", "caption": "Night" },
+      { "src": "images/photography/PXL_20250510_160220182.MP.jpg", "caption": "Nature" },
+      { "src": "images/photography/IMG_1772965317219.jpg", "caption": "Moments" },
+      { "src": "images/photography/received_870893850063708_3.jpg", "caption": "Moments" }
+    ]
+  }
+}
