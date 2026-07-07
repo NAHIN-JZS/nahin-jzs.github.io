@@ -23,18 +23,21 @@
       "I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives."
     ],
     "notes": [
-      { "label": "Research", "value": "Computer Vision · Machine Learning · Deep Learning" },
-      { "label": "Teaching", "value": "AI · Digital Image Processing · DBMS · DSA" },
-      { "label": "Hobby", "value": "Photography" }
+      {
+        "label": "Research",
+        "value": "Computer Vision · Machine Learning · Deep Learning"
+      },
+      {
+        "label": "Teaching",
+        "value": "AI · Digital Image Processing · DBMS · DSA"
+      },
+      {
+        "label": "Hobby",
+        "value": "Photography"
+      }
     ]
   },
   "news": [
-    {
-      "date": "2026",
-      "title": "Admitted to the MS in Computer Science program at the University at Buffalo",
-      "text": "Beginning Fall 2026, recipient of the SEAS Graduate Excellence Award.",
-      "link": ""
-    },
     {
       "date": "2025",
       "title": "Joined BAUSTK as Lecturer, Dept. of CSE",
@@ -52,21 +55,51 @@
     {
       "group": "Programming Languages",
       "items": [
-        { "name": "Python", "level": "Expert" },
-        { "name": "SQL", "level": "Expert" },
-        { "name": "C++", "level": "Advanced" },
-        { "name": "C", "level": "Advanced" },
-        { "name": "Java", "level": "Intermediate" }
+        {
+          "name": "Python",
+          "level": "Expert"
+        },
+        {
+          "name": "SQL",
+          "level": "Expert"
+        },
+        {
+          "name": "C++",
+          "level": "Advanced"
+        },
+        {
+          "name": "C",
+          "level": "Advanced"
+        },
+        {
+          "name": "Java",
+          "level": "Intermediate"
+        }
       ]
     },
     {
       "group": "Frameworks & Tools",
       "items": [
-        { "name": "TensorFlow", "level": "Expert" },
-        { "name": "OpenCV", "level": "Advanced" },
-        { "name": "Git", "level": "Advanced" },
-        { "name": "LaTeX", "level": "Advanced" },
-        { "name": "PyTorch", "level": "Beginner" }
+        {
+          "name": "TensorFlow",
+          "level": "Expert"
+        },
+        {
+          "name": "OpenCV",
+          "level": "Advanced"
+        },
+        {
+          "name": "Git",
+          "level": "Advanced"
+        },
+        {
+          "name": "LaTeX",
+          "level": "Advanced"
+        },
+        {
+          "name": "PyTorch",
+          "level": "Beginner"
+        }
       ]
     }
   ],
@@ -97,9 +130,21 @@
       "period": "2018 — 2023",
       "result": "CGPA: 3.50 / 4.00",
       "activities": [
-        { "title": "President — Jashore Association of KUET (JAK)", "period": "2022 — 2023", "text": "Led, guided, and directed committee members; organised association events and ensured strategic continuity of activities." },
-        { "title": "Organizing Secretary — Hardware Acceleration Club of KUET (HACK)", "period": "2022 — 2023", "text": "Coordinated events hosted by the club, managing logistics and participant engagement." },
-        { "title": "Assistant General Secretary — Jashore Association of KUET (JAK)", "period": "2019 — 2020", "text": "Supported senior leadership and mentored junior members to ensure successful event outcomes." }
+        {
+          "title": "President — Jashore Association of KUET (JAK)",
+          "period": "2022 — 2023",
+          "text": "Led, guided, and directed committee members; organised association events and ensured strategic continuity of activities."
+        },
+        {
+          "title": "Organizing Secretary — Hardware Acceleration Club of KUET (HACK)",
+          "period": "2022 — 2023",
+          "text": "Coordinated events hosted by the club, managing logistics and participant engagement."
+        },
+        {
+          "title": "Assistant General Secretary — Jashore Association of KUET (JAK)",
+          "period": "2019 — 2020",
+          "text": "Supported senior leadership and mentored junior members to ensure successful event outcomes."
+        }
       ]
     },
     {
@@ -115,7 +160,11 @@
       "period": "2010 — 2015",
       "result": "GPA: 5.00 / 5.00",
       "activities": [
-        { "title": "Patrol Leader — Jashore Zilla School Scout Team", "period": "2013 — 2015", "text": "Led the scouting patrol, developing teamwork and leadership abilities." }
+        {
+          "title": "Patrol Leader — Jashore Zilla School Scout Team",
+          "period": "2013 — 2015",
+          "text": "Led the scouting patrol, developing teamwork and leadership abilities."
+        }
       ]
     }
   ],
@@ -158,12 +207,30 @@
     }
   ],
   "courses": [
-    { "name": "Digital Image Processing", "mode": "Theory & Sessional" },
-    { "name": "Artificial Intelligence", "mode": "Theory & Sessional" },
-    { "name": "Database Management System", "mode": "Theory & Sessional" },
-    { "name": "Data Structures & Algorithms", "mode": "Theory & Sessional" },
-    { "name": "Numerical Analysis", "mode": "Theory & Sessional" },
-    { "name": "Discrete Mathematics", "mode": "Theory" }
+    {
+      "name": "Digital Image Processing",
+      "mode": "Theory & Sessional"
+    },
+    {
+      "name": "Artificial Intelligence",
+      "mode": "Theory & Sessional"
+    },
+    {
+      "name": "Database Management System",
+      "mode": "Theory & Sessional"
+    },
+    {
+      "name": "Data Structures & Algorithms",
+      "mode": "Theory & Sessional"
+    },
+    {
+      "name": "Numerical Analysis",
+      "mode": "Theory & Sessional"
+    },
+    {
+      "name": "Discrete Mathematics",
+      "mode": "Theory"
+    }
   ],
   "projects": [
     {
@@ -200,29 +267,86 @@
     }
   ],
   "awards": [
-    { "title": "Dean's Award", "org": "Khulna University of Engineering & Technology" },
-    { "title": "SEAS Graduate Excellence Award", "org": "University at Buffalo · 2026" },
-    { "title": "Best Paper Award — Machine Learning Track", "org": "International Conference on Big Data, IoT and Machine Learning (BIM 2021)" },
-    { "title": "Board Scholarship — Higher Secondary Certificate (HSC)", "org": "Jashore Education Board · 2017" },
-    { "title": "Board Scholarship — Secondary School Certificate (SSC)", "org": "Jashore Education Board · 2015" },
-    { "title": "Board Scholarship — Junior School Certificate (JSC)", "org": "Jashore Education Board · 2012" },
-    { "title": "Non-Government Scholarship for Academic Excellence", "org": "Jashore Students Welfare Foundation · 2011" },
-    { "title": "Non-Government Scholarship for Academic Excellence", "org": "Jashore Students Welfare Foundation · 2006" }
+    {
+      "title": "Dean's Award",
+      "org": "Khulna University of Engineering & Technology"
+    },
+    {
+      "title": "SEAS Graduate Excellence Award",
+      "org": "University at Buffalo · 2026"
+    },
+    {
+      "title": "Best Paper Award — Machine Learning Track",
+      "org": "International Conference on Big Data, IoT and Machine Learning (BIM 2021)"
+    },
+    {
+      "title": "Board Scholarship — Higher Secondary Certificate (HSC)",
+      "org": "Jashore Education Board · 2017"
+    },
+    {
+      "title": "Board Scholarship — Secondary School Certificate (SSC)",
+      "org": "Jashore Education Board · 2015"
+    },
+    {
+      "title": "Board Scholarship — Junior School Certificate (JSC)",
+      "org": "Jashore Education Board · 2012"
+    },
+    {
+      "title": "Non-Government Scholarship for Academic Excellence",
+      "org": "Jashore Students Welfare Foundation · 2011"
+    },
+    {
+      "title": "Non-Government Scholarship for Academic Excellence",
+      "org": "Jashore Students Welfare Foundation · 2006"
+    }
   ],
   "photography": {
     "intro": "Beyond research and teaching, I find creative expression through the lens — photographing nature, architecture, urban life, and the quiet moments of everyday existence. Every frame rests in black and white; look closer, and the colour returns.",
     "items": [
-      { "src": "images/photography/1000066279.jpg", "caption": "Nature" },
-      { "src": "images/photography/PXL_20250530_122601970.jpg", "caption": "Nature" },
-      { "src": "images/photography/PXL_20231006_022357310.MP_2-01.jpg", "caption": "Urban" },
-      { "src": "images/photography/PXL_20231201_004906707.MP-01.jpg", "caption": "Architecture" },
-      { "src": "images/photography/PXL_20250201_003606402.MP.jpg", "caption": "Nature" },
-      { "src": "images/photography/PXL_20251023_001737809.MP.jpg", "caption": "Nature" },
-      { "src": "images/photography/PXL_20231116_135620967.MP_2-01.jpg", "caption": "Nature" },
-      { "src": "images/photography/PXL_20240419_161611104.NIGHT_3-01.jpg", "caption": "Night" },
-      { "src": "images/photography/PXL_20250510_160220182.MP.jpg", "caption": "Nature" },
-      { "src": "images/photography/IMG_1772965317219.jpg", "caption": "Moments" },
-      { "src": "images/photography/received_870893850063708_3.jpg", "caption": "Moments" }
+      {
+        "src": "images/photography/1000066279.jpg",
+        "caption": "Nature"
+      },
+      {
+        "src": "images/photography/PXL_20250530_122601970.jpg",
+        "caption": "Nature"
+      },
+      {
+        "src": "images/photography/PXL_20231006_022357310.MP_2-01.jpg",
+        "caption": "Urban"
+      },
+      {
+        "src": "images/photography/PXL_20231201_004906707.MP-01.jpg",
+        "caption": "Architecture"
+      },
+      {
+        "src": "images/photography/PXL_20250201_003606402.MP.jpg",
+        "caption": "Nature"
+      },
+      {
+        "src": "images/photography/PXL_20251023_001737809.MP.jpg",
+        "caption": "Nature"
+      },
+      {
+        "src": "images/photography/PXL_20231116_135620967.MP_2-01.jpg",
+        "caption": "Nature"
+      },
+      {
+        "src": "images/photography/PXL_20240419_161611104.NIGHT_3-01.jpg",
+        "caption": "Night"
+      },
+      {
+        "src": "images/photography/PXL_20250510_160220182.MP.jpg",
+        "caption": "Nature"
+      },
+      {
+        "src": "images/photography/IMG_1772965317219.jpg",
+        "caption": "Moments"
+      },
+      {
+        "src": "images/photography/received_870893850063708_3.jpg",
+        "caption": "Moments"
+      }
     ]
   }
 }
