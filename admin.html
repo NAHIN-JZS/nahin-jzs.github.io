@@ -29,7 +29,13 @@ font-family:var(--body);font-size:15px;color:var(--ink);outline:none;border-radi
 input:focus,textarea:focus,select:focus{border-color:var(--ink)}
 textarea{resize:vertical;min-height:80px}
 label.f{display:block;margin-bottom:16px}
-label.f>span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+label.f>span,.flabel{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+
+/* formatting toolbar */
+.fmtbar{display:flex;gap:6px;margin-bottom:6px}
+.fmtbar button{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--hair);background:var(--white);color:var(--ink)}
+.fmtbar button:hover{border-color:var(--ink)}
+.fmthint{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:.04em}
 
 /* login */
 #login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -56,6 +62,7 @@ display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0
 padding:11px 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border-left:2px solid transparent}
 .side button:hover{color:var(--ink)}
 .side button.on{color:var(--ink);border-left-color:var(--ink);background:var(--paper)}
+.side .sep{border-top:1px solid var(--hair);margin:12px 22px}
 .main{padding:36px 40px 120px;max-width:900px}
 .main h2{font-family:var(--display);font-weight:400;font-size:26px;margin-bottom:4px}
 .main .desc{color:var(--muted);font-style:italic;font-size:14.5px;margin-bottom:28px}
@@ -71,12 +78,20 @@ padding:11px 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;c
 .imgfield .col{flex:1}
 .imgfield .path{font-family:var(--mono);font-size:11px;color:var(--muted);word-break:break-all;margin:6px 0}
 .addbar{margin-top:6px}
+
+/* arrange page */
+.arr-row{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--hair);padding:14px 18px;margin-bottom:10px}
+.arr-row .name{flex:1;font-size:16px}
+.arr-row .name .sub{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block;margin-top:2px}
+.arr-row select{width:150px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:8px 10px}
+.arr-row .movers{display:flex;gap:6px}
+
 .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--paper);
 font-family:var(--mono);font-size:12px;letter-spacing:.08em;padding:13px 24px;display:none;z-index:99;max-width:90vw;text-align:center}
 @media(max-width:820px){.layout{grid-template-columns:1fr}.side{display:flex;overflow-x:auto;border-right:0;border-bottom:1px solid var(--hair);padding:0}
 .side button{white-space:nowrap;border-left:0;border-bottom:2px solid transparent;padding:14px 16px}
-.side button.on{border-bottom-color:var(--ink)}.main{padding:26px 20px 120px}
-#status{display:none}}
+.side button.on{border-bottom-color:var(--ink)}.side .sep{display:none}.main{padding:26px 20px 120px}
+#status{display:none}.arr-row{flex-wrap:wrap}}
 </style>
 </head>
 <body>
@@ -134,6 +149,7 @@ let content = null, contentSha = null, dirty = false, currentSection = 'news';
 /* ---------- utilities ---------- */
 const $ = id => document.getElementById(id);
 const esc = s => String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const slugify = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
 
 function toast(msg, ms = 3200){ const t = $('toast'); t.textContent = msg; t.style.display = 'block';
   clearTimeout(t._h); t._h = setTimeout(() => t.style.display = 'none', ms); }
@@ -216,7 +232,7 @@ async function login(){
     renderSection(currentSection);
     setStatus(`Connected to ${OWNER}/${REPO} (${BRANCH})`);
   } catch (err) {
-    toast('Sign-in failed: ' + err.message, 5000);
+    toast('Sign-in failed: ' + err.message, 8000);
   }
   $('loginBtn').disabled = false; $('loginBtn').textContent = 'Sign in';
 }
@@ -248,13 +264,20 @@ async function loadContent(){
   const file = await gh(`/repos/${OWNER}/${REPO}/contents/data/content.json?ref=${BRANCH}`);
   content = JSON.parse(b64DecodeUtf8(file.content));
   contentSha = file.sha;
+  ensureCustomIds();
+}
+
+function ensureCustomIds(){
+  if (!Array.isArray(content.custom)) return;
+  content.custom.forEach((cs, i) => {
+    if (cs && !cs.id) cs.id = 'c-' + Date.now().toString(36) + '-' + i;
+  });
 }
 
 $('publishBtn').addEventListener('click', async () => {
   const btn = $('publishBtn');
   btn.disabled = true; btn.textContent = 'Publishing…';
   try {
-    // refresh sha in case it changed elsewhere
     try {
       const f = await gh(`/repos/${OWNER}/${REPO}/contents/data/content.json?ref=${BRANCH}`);
       contentSha = f.sha;
@@ -280,7 +303,7 @@ $('publishBtn').addEventListener('click', async () => {
 
 /* ---------- image / media upload ---------- */
 async function resizeImage(file, maxDim = 1600, quality = 0.85){
-  if (!/^image\/(jpeg|png|webp)/.test(file.type)) return file; // leave gif/video/pdf untouched
+  if (!/^image\/(jpeg|png|webp)/.test(file.type)) return file;
   const img = await new Promise((ok, no) => {
     const i = new Image();
     i.onload = () => ok(i); i.onerror = no;
@@ -316,6 +339,42 @@ async function uploadFile(file, onDone){
 }
 
 /* ============================================================
+   Section registry & ordering
+   ============================================================ */
+
+const BUILTIN_TITLES = {
+  news: 'Research Updates', about: 'About', publications: 'Publications',
+  experience: 'Experience', education: 'Education', skills: 'Skills',
+  courses: 'Courses Taught', projects: 'Projects', awards: 'Awards',
+  photography: 'Photography', contact: 'Contact'
+};
+const LAYOUTS = ['ledger', 'stacked', 'centered'];
+const DEFAULT_ORDER = ['news','about','publications','experience','education','skills','courses','projects','awards','photography','contact'];
+
+function customId(cs){ return cs.id || 'c-' + slugify(cs.title || 'section'); }
+
+/* Returns the normalized [{id, layout}] list: keeps saved order, drops
+   sections that no longer exist, appends anything new. */
+function normalizedSections(){
+  ensureCustomIds();
+  const customs = Array.isArray(content.custom) ? content.custom.filter(c => c && c.title) : [];
+  const validIds = new Set(DEFAULT_ORDER.concat(customs.map(customId)));
+  let cfg = Array.isArray(content.sections) ? content.sections.filter(s => s && validIds.has(s.id)) : [];
+  const present = new Set(cfg.map(s => s.id));
+  const defaults = DEFAULT_ORDER.slice(0, 9).concat(customs.map(customId)).concat(['photography','contact']);
+  defaults.forEach(id => { if (!present.has(id)) { cfg.push({ id, layout: 'ledger' }); present.add(id); } });
+  cfg.forEach(s => { if (!LAYOUTS.includes(s.layout)) s.layout = 'ledger'; });
+  content.sections = cfg;
+  return cfg;
+}
+
+function sectionDisplayName(id){
+  if (BUILTIN_TITLES[id]) return BUILTIN_TITLES[id];
+  const cs = (content.custom || []).find(c => customId(c) === id);
+  return cs ? cs.title : id;
+}
+
+/* ============================================================
    Schema-driven editors
    ============================================================ */
 
@@ -328,7 +387,10 @@ const F = {
 };
 
 const SECTIONS = [
-  { id: 'news', title: 'Research Updates', desc: 'News shown at the top of the site — new papers, awards, appointments. Newest first.',
+  { id: 'arrange', title: 'Arrange & Layout', special: true,
+    desc: 'Reorder the sections of your site and choose a layout for each. Ledger = title on the left. Stacked = title above, full width. Centered = everything centered.' },
+
+  { id: 'news', title: 'Research Updates', desc: 'News shown on the site — new papers, awards, appointments. Newest first.',
     type: 'list', itemName: 'update',
     fields: [F.text('Date (e.g. 2026 or Mar 2026)', 'date'), F.text('Title', 'title'), F.area('Details', 'text'), F.text('Link (optional)', 'link')] },
 
@@ -381,14 +443,23 @@ const SECTIONS = [
     type: 'list', itemName: 'award',
     fields: [F.text('Award', 'title'), F.text('Awarding body · year', 'org')] },
 
-  { id: 'photography', title: 'Photography', desc: 'Your gallery. Photos display in black & white and reveal colour on hover.',
+  { id: 'custom', title: 'Custom Sections', desc: 'Create your own sections — Research, Talks, Service, anything. Reorder them on the Arrange & Layout page.',
+    type: 'list', itemName: 'section',
+    fields: [F.text('Section title (e.g. Research)', 'title'), F.area('Introduction (optional)', 'intro', 2),
+      F.select('Entry style', 'style', ['list', 'cards']),
+      F.list('Entries', 'entries',
+        [F.text('Date / label (e.g. 2026)', 'meta'), F.text('Title', 'title'), F.area('Details', 'text'),
+         F.text('Link (optional)', 'link'), F.media('Image (optional)', 'image')], 'entry')] },
+
+  { id: 'photography', title: 'Photography', desc: 'Your gallery.',
     type: 'object',
     fields: [F.area('Introduction', 'intro', 3),
       F.list('Photographs', 'items', [F.media('Photo', 'src'), F.text('Caption', 'caption')], 'photo')] }
 ];
 
 function buildNav(){
-  $('sideNav').innerHTML = SECTIONS.map(s =>
+  $('sideNav').innerHTML = SECTIONS.map((s, i) =>
+    (i === 1 ? '<div class="sep"></div>' : '') +
     `<button data-id="${s.id}" class="${s.id === currentSection ? 'on' : ''}">${esc(s.title)}</button>`).join('');
   $('sideNav').querySelectorAll('button').forEach(b =>
     b.addEventListener('click', () => { currentSection = b.dataset.id; buildNav(); renderSection(currentSection); }));
@@ -405,6 +476,13 @@ function renderSection(id){
   const root = $('editor');
   root.innerHTML = `<h2>${esc(s.title)}</h2><p class="desc">${esc(s.desc)}</p><div id="secBody"></div>`;
   const body = $('secBody');
+  if (s.id === 'arrange'){ renderArrange(body); return; }
+  if (s.id === 'custom'){
+    if (!Array.isArray(content.custom)) content.custom = [];
+    const wrap = listEditor(content.custom, s.fields, s.itemName, () => { ensureCustomIds(); renderSection(id); });
+    body.appendChild(wrap);
+    return;
+  }
   if (s.type === 'list'){
     if (!Array.isArray(content[s.id])) content[s.id] = [];
     body.appendChild(listEditor(content[s.id], s.fields, s.itemName, () => renderSection(id)));
@@ -414,6 +492,45 @@ function renderSection(id){
   }
 }
 
+/* ---------- Arrange & Layout page ---------- */
+function renderArrange(root){
+  const cfg = normalizedSections();
+  root.innerHTML = '';
+  cfg.forEach((sc, i) => {
+    const row = document.createElement('div'); row.className = 'arr-row';
+
+    const movers = document.createElement('div'); movers.className = 'movers';
+    const mk = (txt, fn, dis) => { const b = document.createElement('button'); b.className = 'btn small ghost';
+      b.textContent = txt; b.disabled = !!dis; b.addEventListener('click', fn); return b; };
+    movers.appendChild(mk('↑', () => { [cfg[i-1], cfg[i]] = [cfg[i], cfg[i-1]]; markDirty(); renderArrange(root); }, i === 0));
+    movers.appendChild(mk('↓', () => { [cfg[i+1], cfg[i]] = [cfg[i], cfg[i+1]]; markDirty(); renderArrange(root); }, i === cfg.length - 1));
+
+    const name = document.createElement('div'); name.className = 'name';
+    const isCustom = !BUILTIN_TITLES[sc.id];
+    name.innerHTML = esc(sectionDisplayName(sc.id)) +
+      `<span class="sub">${isCustom ? 'custom section' : 'built-in'}${sc.id === 'photography' ? ' · dark gallery (fixed layout)' : ''}</span>`;
+
+    row.appendChild(movers);
+    row.appendChild(name);
+
+    if (sc.id !== 'photography'){
+      const sel = document.createElement('select');
+      LAYOUTS.forEach(l => { const o = document.createElement('option'); o.value = l;
+        o.textContent = l.charAt(0).toUpperCase() + l.slice(1); sel.appendChild(o); });
+      sel.value = sc.layout || 'ledger';
+      sel.addEventListener('change', () => { sc.layout = sel.value; markDirty(); });
+      row.appendChild(sel);
+    }
+    root.appendChild(row);
+  });
+  const note = document.createElement('p');
+  note.className = 'fmthint';
+  note.style.marginTop = '14px';
+  note.textContent = 'Sections with no content are hidden on the site automatically. Press Publish to apply.';
+  root.appendChild(note);
+}
+
+/* ---------- list & field editors ---------- */
 function listEditor(arr, fields, itemName, rerender){
   const wrap = document.createElement('div');
   arr.forEach((item, i) => {
@@ -437,6 +554,38 @@ function listEditor(arr, fields, itemName, rerender){
   return wrap;
 }
 
+/* formatting toolbar for textareas */
+function makeToolbar(ta){
+  const bar = document.createElement('div'); bar.className = 'fmtbar';
+  const apply = (before, after) => {
+    const s = ta.selectionStart, e = ta.selectionEnd;
+    const sel = ta.value.slice(s, e) || 'text';
+    ta.value = ta.value.slice(0, s) + before + sel + after + ta.value.slice(e);
+    ta.dispatchEvent(new Event('input'));
+    ta.focus();
+    ta.setSelectionRange(s + before.length, s + before.length + sel.length);
+  };
+  const mk = (label, fn, title) => { const b = document.createElement('button'); b.type = 'button';
+    b.textContent = label; b.title = title; b.addEventListener('click', fn); return b; };
+  bar.appendChild(mk('B', () => apply('**', '**'), 'Bold'));
+  bar.appendChild(mk('I', () => apply('*', '*'), 'Italic'));
+  bar.appendChild(mk('Link', () => {
+    const url = prompt('Link URL (https://…)');
+    if (!url) return;
+    const s = ta.selectionStart, e = ta.selectionEnd;
+    const sel = ta.value.slice(s, e) || 'link text';
+    ta.value = ta.value.slice(0, s) + '[' + sel + '](' + url + ')' + ta.value.slice(e);
+    ta.dispatchEvent(new Event('input'));
+    ta.focus();
+  }, 'Insert link'));
+  return bar;
+}
+function fmtHint(){
+  const p = document.createElement('div'); p.className = 'fmthint';
+  p.textContent = '**bold** · *italic* · [link text](https://…)';
+  return p;
+}
+
 function fieldEditor(obj, f, rerender){
   if (f.kind === 'list'){
     const box = document.createElement('div'); box.className = 'nested';
@@ -454,13 +603,19 @@ function fieldEditor(obj, f, rerender){
     const ta = document.createElement('textarea'); ta.rows = f.rows || 10;
     ta.value = (obj[f.key] || []).join('\n\n');
     ta.addEventListener('input', () => { obj[f.key] = ta.value.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean); markDirty(); });
-    label.appendChild(ta); return label;
+    label.appendChild(makeToolbar(ta));
+    label.appendChild(ta);
+    label.appendChild(fmtHint());
+    return label;
   }
   if (f.kind === 'area'){
     const ta = document.createElement('textarea'); ta.rows = f.rows;
     ta.value = obj[f.key] || '';
     ta.addEventListener('input', () => { obj[f.key] = ta.value; markDirty(); });
-    label.appendChild(ta); return label;
+    label.appendChild(makeToolbar(ta));
+    label.appendChild(ta);
+    label.appendChild(fmtHint());
+    return label;
   }
   if (f.kind === 'select'){
     const sel = document.createElement('select');
@@ -488,7 +643,6 @@ function fieldEditor(obj, f, rerender){
     row.appendChild(prev); row.appendChild(col);
     label.appendChild(row); return label;
   }
-  // text
   const inp = document.createElement('input'); inp.type = 'text';
   inp.value = obj[f.key] || '';
   inp.addEventListener('input', () => { obj[f.key] = inp.value; markDirty(); });
