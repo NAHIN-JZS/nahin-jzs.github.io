@@ -390,6 +390,9 @@ const SECTIONS = [
   { id: 'arrange', title: 'Arrange & Layout', special: true,
     desc: 'Reorder the sections of your site and choose a layout for each. Ledger = title on the left. Stacked = title above, full width. Centered = everything centered.' },
 
+  { id: 'colors', title: 'Colors', special: true,
+    desc: 'The colour palette of the whole site. Every part of the design follows these. Use Reset to return any colour to the original black & white.' },
+
   { id: 'news', title: 'Research Updates', desc: 'News shown on the site — new papers, awards, appointments. Newest first.',
     type: 'list', itemName: 'update',
     fields: [F.text('Date (e.g. 2026 or Mar 2026)', 'date'), F.text('Title', 'title'), F.area('Details', 'text'), F.text('Link (optional)', 'link')] },
@@ -477,6 +480,7 @@ function renderSection(id){
   root.innerHTML = `<h2>${esc(s.title)}</h2><p class="desc">${esc(s.desc)}</p><div id="secBody"></div>`;
   const body = $('secBody');
   if (s.id === 'arrange'){ renderArrange(body); return; }
+  if (s.id === 'colors'){ renderColors(body); return; }
   if (s.id === 'custom'){
     if (!Array.isArray(content.custom)) content.custom = [];
     const wrap = listEditor(content.custom, s.fields, s.itemName, () => { ensureCustomIds(); renderSection(id); });
@@ -490,6 +494,55 @@ function renderSection(id){
     if (!content[s.id]) content[s.id] = {};
     s.fields.forEach(f => body.appendChild(fieldEditor(content[s.id], f, () => renderSection(id))));
   }
+}
+
+/* ---------- Colors page ---------- */
+const PALETTE = [
+  ['paper',       'Page background',            '#fafaf8'],
+  ['ink',         'Main text & headings',       '#111111'],
+  ['inkSoft',     'Secondary text',             '#3d3d3d'],
+  ['muted',       'Muted text (dates, labels)', '#767676'],
+  ['hairline',    'Lines & borders',            '#e2e2e0'],
+  ['paperRaised', 'Card background',            '#ffffff'],
+  ['accent',      'Links',                      '#111111'],
+  ['dark',        'Hero & gallery background',  '#111111'],
+  ['darkText',    'Hero & gallery text',        '#fafaf8']
+];
+
+function themeColors(){
+  if (!content.theme) content.theme = {};
+  if (!content.theme.colors) content.theme.colors = {};
+  return content.theme.colors;
+}
+
+function renderColors(root){
+  const colors = themeColors();
+  root.innerHTML = '';
+  PALETTE.forEach(([key, label, def]) => {
+    const row = document.createElement('div'); row.className = 'arr-row';
+    const name = document.createElement('div'); name.className = 'name';
+    name.innerHTML = esc(label) + '<span class="sub">' + (colors[key] ? esc(colors[key]) : 'default · ' + def) + '</span>';
+    const inp = document.createElement('input'); inp.type = 'color';
+    inp.value = colors[key] || def;
+    inp.style.width = '52px'; inp.style.height = '34px'; inp.style.padding = '2px'; inp.style.cursor = 'pointer';
+    inp.addEventListener('input', () => { colors[key] = inp.value; markDirty(); renderColors(root); });
+    const reset = document.createElement('button'); reset.className = 'btn small ghost'; reset.textContent = 'Reset';
+    reset.disabled = !colors[key];
+    reset.addEventListener('click', () => { delete colors[key]; markDirty(); renderColors(root); });
+    row.appendChild(name); row.appendChild(inp); row.appendChild(reset);
+    root.appendChild(row);
+  });
+  const all = document.createElement('button'); all.className = 'btn'; all.style.marginTop = '10px';
+  all.textContent = 'Reset all colors';
+  all.addEventListener('click', () => {
+    if (confirm('Return the whole site to the original black & white palette?')){
+      content.theme.colors = {}; markDirty(); renderColors(root);
+    }
+  });
+  root.appendChild(all);
+  const note = document.createElement('p'); note.className = 'fmthint'; note.style.marginTop = '14px';
+  note.textContent = 'Each section can additionally have its own colours — set those on the Arrange & Layout page. Press Publish to apply.';
+  root.appendChild(note);
 }
 
 /* ---------- Arrange & Layout page ---------- */
@@ -521,6 +574,7 @@ function renderArrange(root){
       sel.addEventListener('change', () => { sc.layout = sel.value; markDirty(); });
       row.appendChild(sel);
     }
+    row.appendChild(sectionColorControls(sc, () => renderArrange(root)));
     root.appendChild(row);
   });
   const note = document.createElement('p');
@@ -528,6 +582,27 @@ function renderArrange(root){
   note.style.marginTop = '14px';
   note.textContent = 'Sections with no content are hidden on the site automatically. Press Publish to apply.';
   root.appendChild(note);
+}
+
+/* per-section colour chips used on the Arrange page */
+function sectionColorControls(sc, rerender){
+  const wrap = document.createElement('div');
+  wrap.style.display = 'flex'; wrap.style.gap = '6px'; wrap.style.alignItems = 'center';
+  const chip = (key, title, def) => {
+    const inp = document.createElement('input'); inp.type = 'color';
+    inp.title = title; inp.value = sc[key] || def;
+    inp.style.width = '34px'; inp.style.height = '30px'; inp.style.padding = '2px'; inp.style.cursor = 'pointer';
+    inp.style.opacity = sc[key] ? '1' : '.35';
+    inp.addEventListener('input', () => { sc[key] = inp.value; markDirty(); inp.style.opacity = '1'; });
+    return inp;
+  };
+  wrap.appendChild(chip('bg', 'Section background colour', '#fafaf8'));
+  wrap.appendChild(chip('text', 'Section text colour', '#111111'));
+  const clear = document.createElement('button'); clear.className = 'btn small ghost'; clear.textContent = '×';
+  clear.title = 'Remove this section\'s colours';
+  clear.addEventListener('click', () => { delete sc.bg; delete sc.text; markDirty(); rerender(); });
+  wrap.appendChild(clear);
+  return wrap;
 }
 
 /* ---------- list & field editors ---------- */
@@ -569,6 +644,24 @@ function makeToolbar(ta){
     b.textContent = label; b.title = title; b.addEventListener('click', fn); return b; };
   bar.appendChild(mk('B', () => apply('**', '**'), 'Bold'));
   bar.appendChild(mk('I', () => apply('*', '*'), 'Italic'));
+  const colorInput = document.createElement('input'); colorInput.type = 'color';
+  colorInput.style.position = 'absolute'; colorInput.style.opacity = '0'; colorInput.style.width = '1px';
+  colorInput.style.height = '1px'; colorInput.style.pointerEvents = 'none';
+  bar.appendChild(colorInput);
+  let savedSel = [0, 0];
+  colorInput.addEventListener('input', () => {
+    const s = savedSel[0], e = savedSel[1];
+    const sel = ta.value.slice(s, e) || 'text';
+    ta.value = ta.value.slice(0, s) + '{' + colorInput.value + '|' + sel + '}' + ta.value.slice(e);
+    ta.dispatchEvent(new Event('input'));
+    ta.focus();
+  });
+  bar.appendChild(mk('Color', () => {
+    savedSel = [ta.selectionStart, ta.selectionEnd];
+    colorInput.style.pointerEvents = 'auto';
+    colorInput.click();
+    colorInput.style.pointerEvents = 'none';
+  }, 'Colour the selected text'));
   bar.appendChild(mk('Link', () => {
     const url = prompt('Link URL (https://…)');
     if (!url) return;
@@ -582,7 +675,7 @@ function makeToolbar(ta){
 }
 function fmtHint(){
   const p = document.createElement('div'); p.className = 'fmthint';
-  p.textContent = '**bold** · *italic* · [link text](https://…)';
+  p.textContent = '**bold** · *italic* · [link text](https://…) · {#c0392b|colored text}';
   return p;
 }
 
