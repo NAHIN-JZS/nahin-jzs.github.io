@@ -401,21 +401,5 @@
       "layout": "ledger"
     }
   ],
-  "custom": [
-    {
-      "title": "Ongoing Research",
-      "intro": "",
-      "style": "list",
-      "entries": [
-        {
-          "meta": "2026",
-          "title": "Monocular 3D Vision for Vehicle Distance Estimation Toward Digital Twin Traffic Systems.",
-          "text": "",
-          "link": "",
-          "image": ""
-        }
-      ],
-      "id": "c-ms2pvkux-0"
-    }
-  ]
+  "custom": []
 }
