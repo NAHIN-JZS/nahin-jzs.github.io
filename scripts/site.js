@@ -19,6 +19,7 @@
 
   /* inline formatting: escape first, then apply **bold**, *italic*, [text](url) */
   const fmt = s => esc(s)
+    .replace(/\{(#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6}))\|([^{}]+)\}/g, '<span style="color:$1">$2</span>')
     .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
@@ -26,6 +27,31 @@
   const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
 
   const P = C.profile || {};
+
+  /* ---- theme colours (set from the admin Colors page) ---- */
+  const HEX = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/;
+  const T = (C.theme && C.theme.colors) || {};
+  const varMap = { paper:'--paper', paperRaised:'--paper-raised', ink:'--ink', inkSoft:'--ink-soft',
+    muted:'--muted', hairline:'--hairline', accent:'--accent', dark:'--dark', darkText:'--dark-text' };
+  const decl = Object.keys(varMap).filter(k => HEX.test(T[k] || '')).map(k => varMap[k] + ':' + T[k]).join(';');
+  if (decl){
+    const st = document.createElement('style');
+    st.textContent = ':root{' + decl + '}';
+    document.head.appendChild(st);
+  }
+  /* per-section colour overrides from the Arrange page */
+  const secStyle = sc => {
+    const bg = HEX.test(sc.bg || '') ? sc.bg : null;
+    const tx = HEX.test(sc.text || '') ? sc.text : null;
+    if (!bg && !tx) return '';
+    const b = bg || 'var(--paper)', t = tx || 'var(--ink)';
+    return ' style="background:' + b +
+      ';--ink:' + t +
+      ';--ink-soft:color-mix(in srgb, ' + t + ' 80%, ' + b + ')' +
+      ';--muted:color-mix(in srgb, ' + t + ' 56%, ' + b + ')' +
+      ';--hairline:color-mix(in srgb, ' + t + ' 18%, ' + b + ')' +
+      ';--paper-raised:color-mix(in srgb, ' + b + ' 94%, ' + t + ')"';
+  };
 
   const icons = {
     github: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.54-3.87-1.54-.53-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.5 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.41-2.69 5.38-5.25 5.67.41.35.78 1.05.78 2.12v3.14c0 .31.2.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"/></svg>',
@@ -76,10 +102,10 @@
   </header>`;
 
   const LAYOUTS = ['ledger', 'stacked', 'centered'];
-  const section = (id, title, body, layout) => {
+  const section = (id, title, body, layout, sc) => {
     const cls = LAYOUTS.includes(layout) && layout !== 'ledger' ? ' layout-' + layout : '';
     return `
-  <section class="section${cls}" id="${id}">
+  <section class="section${cls}" id="${id}"${secStyle(sc || {})}>
     <div class="wrap">
       <div class="section-head"></div>
       <div class="section-grid">
@@ -232,12 +258,20 @@
   }};
 
   /* photography renders its own dark full-width shell */
-  function renderPhotography(){
+  function renderPhotography(sc){
     const PH = C.photography || {};
     if (!PH.items || !PH.items.length) return '';
     navItems.push({ id: 'photography', label: 'Photography' });
+    const HEXok = v => HEX.test(v || '');
+    let st = '';
+    if (HEXok(sc.bg) || HEXok(sc.text)){
+      const parts = [];
+      if (HEXok(sc.bg)) parts.push('--dark:' + sc.bg);
+      if (HEXok(sc.text)) parts.push('--dark-text:' + sc.text);
+      st = ' style="' + parts.join(';') + '"';
+    }
     return `
-  <section class="photo-section" id="photography">
+  <section class="photo-section" id="photography"${st}>
     <div class="wrap">
       <div class="section-head"></div>
       <div class="section-grid">
@@ -262,7 +296,8 @@
   const customId = cs => cs.id || 'c-' + slug(cs.title);
   const usedIds = new Set(Object.keys(BUILTIN).concat(['photography', 'top']));
 
-  function renderCustom(cs, layout){
+  function renderCustom(cs, sc){
+    const layout = sc.layout;
     let id = customId(cs), n = 2;
     while (usedIds.has(id)) id = customId(cs) + '-' + (n++);
     usedIds.add(id);
@@ -287,7 +322,7 @@
     }
     const body = (cs.intro ? `<p class="section-intro rv">${fmt(cs.intro)}</p>` : '') + entries;
     navItems.push({ id, label: cs.title });
-    return section(id, esc(cs.title), body, layout);
+    return section(id, esc(cs.title), body, layout, sc);
   }
 
   /* ---------- ordering ---------- */
@@ -299,17 +334,17 @@
   DEFAULT_ORDER.forEach(id => { if (!present.has(id)) { cfg.push({ id, layout: 'ledger' }); present.add(id); } });
 
   cfg.forEach(sc => {
-    if (sc.id === 'photography'){ html += renderPhotography(); return; }
+    if (sc.id === 'photography'){ html += renderPhotography(sc); return; }
     if (BUILTIN[sc.id]){
       const b = BUILTIN[sc.id];
       const body = b.body();
       if (body == null) return;
       if (b.nav) navItems.push({ id: sc.id, label: b.nav });
-      html += section(sc.id, b.title, body, sc.layout);
+      html += section(sc.id, b.title, body, sc.layout, sc);
       return;
     }
     const cs = customs.find(c => customId(c) === sc.id);
-    if (cs) html += renderCustom(cs, sc.layout);
+    if (cs) html += renderCustom(cs, sc);
   });
 
   app.innerHTML = html;
