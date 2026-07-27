@@ -438,3 +438,27 @@ a { color: inherit; }
 .social a { color: var(--muted); transition: color .2s; }
 .social a:hover { color: var(--ink); }
 .social svg { width: 18px; height: 18px; display: block; }
+
+/* ---------- custom sections ---------- */
+.section-intro { font-style: italic; color: var(--ink-soft); max-width: 60ch; margin-bottom: 10px; font-size: 17px; }
+.entry-img { margin-top: 14px; max-width: 420px; width: 100%; border: 1px solid var(--hairline); }
+
+/* ---------- section layout variants ---------- */
+.section.layout-stacked .section-grid { grid-template-columns: 1fr; gap: 26px; }
+.section.layout-stacked .section-label { position: static; }
+.section.layout-stacked .section-body { max-width: 100%; }
+.section.layout-centered .section-grid { grid-template-columns: 1fr; gap: 30px; }
+.section.layout-centered .section-label { position: static; text-align: center; }
+.section.layout-centered .section-body { max-width: 720px; margin: 0 auto; }
+
+/* ---------- card style for custom section entries ---------- */
+.cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.card { border: 1px solid var(--hairline); background: var(--paper-raised); padding: 24px; }
+.card h3 { font-family: var(--display); font-weight: 400; font-size: 20px; margin-bottom: 6px; }
+.card p { font-size: 15px; color: var(--ink-soft); }
+.entry-meta { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--muted); display: block; margin-bottom: 8px; }
+
+/* ---------- inline formatted links in body text ---------- */
+.section-body p a, .photo-intro a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--ink); transition: opacity .2s; }
+.section-body p a:hover, .photo-intro a:hover { opacity: .55; }
+.photo-intro a { border-bottom-color: var(--paper); }
