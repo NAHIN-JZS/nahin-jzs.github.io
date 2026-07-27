@@ -41,7 +41,7 @@
     {
       "date": "2026",
       "title": "Reached 100+ citations on Google Scholar.",
-      "text": "Reached 100+ citations on Google Scholar, reflecting the growing academic impact and recognition of my research contributions in computer vision, deep learning, and machine learning.",
+      "text": "Reached **100+ citations** on Google Scholar, reflecting the growing academic impact and recognition of my research contributions in computer vision, deep learning, and machine learning. Have a tour in my [google scholar](https://scholar.google.com/citations?user=25LhIz0AAAAJ&hl=en).",
       "link": ""
     },
     {
@@ -358,10 +358,6 @@
     },
     {
       "id": "about",
-      "layout": "ledger"
-    },
-    {
-      "id": "c-ms2pvkux-0",
       "layout": "ledger"
     },
     {
