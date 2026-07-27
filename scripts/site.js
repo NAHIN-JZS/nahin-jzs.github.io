@@ -1,4 +1,7 @@
-/* Renders the portfolio from data/content.json */
+/* Renders the portfolio from data/content.json
+   Supports: section ordering & layouts (content.sections),
+   inline formatting (**bold**, *italic*, [text](url)),
+   custom sections with list or card entry styles. */
 (async function () {
   const app = document.getElementById('app');
 
@@ -14,6 +17,14 @@
   const esc = s => String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+  /* inline formatting: escape first, then apply **bold**, *italic*, [text](url) */
+  const fmt = s => esc(s)
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+
+  const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
+
   const P = C.profile || {};
 
   const icons = {
@@ -24,7 +35,7 @@
     mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="m3 7 9 6 9-6"/></svg>'
   };
 
-  const socialLinks = (cls) => {
+  const socialLinks = () => {
     let h = '';
     if (P.github) h += `<a href="${esc(P.github)}" target="_blank" rel="noopener" aria-label="GitHub">${icons.github}</a>`;
     if (P.linkedin) h += `<a href="${esc(P.linkedin)}" target="_blank" rel="noopener" aria-label="LinkedIn">${icons.linkedin}</a>`;
@@ -39,8 +50,11 @@
   const firstNames = nameParts.join(' ');
 
   let html = '';
+  let secNo = 0;
+  const nextNum = () => '§ ' + String(++secNo).padStart(2, '0');
+  const navItems = [];
 
-  /* ---- hero ---- */
+  /* ---- hero (always first) ---- */
   html += `
   <header class="hero">
     <div class="wrap hero-grid">
@@ -56,41 +70,47 @@
       </div>
       <figure class="hero-portrait rv">
         <img src="${esc(P.avatar)}" alt="${esc(P.name)}">
-        <figcaption>fig. 01 — grayscale, until observed</figcaption>
+        <figcaption>fig. 01 — the researcher at work</figcaption>
       </figure>
     </div>
   </header>`;
 
-  const section = (id, num, title, body, extraClass = '') => `
-  <section class="section ${extraClass}" id="${id}">
+  const LAYOUTS = ['ledger', 'stacked', 'centered'];
+  const section = (id, title, body, layout) => {
+    const cls = LAYOUTS.includes(layout) && layout !== 'ledger' ? ' layout-' + layout : '';
+    return `
+  <section class="section${cls}" id="${id}">
     <div class="wrap">
       <div class="section-head"></div>
       <div class="section-grid">
-        <div class="section-label rv"><span class="num">${num}</span><h2>${title}</h2></div>
+        <div class="section-label rv"><span class="num">${nextNum()}</span><h2>${title}</h2></div>
         <div class="section-body">${body}</div>
       </div>
     </div>
   </section>`;
+  };
 
-  /* ---- news / research updates ---- */
-  if (C.news && C.news.length) {
-    const items = C.news.map(n => `
+  /* ---------- built-in section body builders (return null when empty) ---------- */
+  const BUILTIN = {};
+
+  BUILTIN.news = { title: 'Research<br>Updates', nav: 'Updates', body(){
+    if (!C.news || !C.news.length) return null;
+    return C.news.map(n => `
       <div class="news-item rv">
         <span class="news-date">${esc(n.date)}</span>
         <div>
           <h3>${esc(n.title)}</h3>
-          ${n.text ? `<p>${esc(n.text)}</p>` : ''}
+          ${n.text ? `<p>${fmt(n.text)}</p>` : ''}
           ${n.link ? `<a class="textlink" href="${esc(n.link)}" target="_blank" rel="noopener">Read more</a>` : ''}
         </div>
       </div>`).join('');
-    html += section('news', '§ 01', 'Research<br>Updates', items);
-  }
+  }};
 
-  /* ---- about ---- */
-  const A = C.about || {};
-  const aboutBody = `
+  BUILTIN.about = { title: 'About', nav: 'About', body(){
+    const A = C.about || {};
+    return `
     <div class="about-grid">
-      <div class="about-prose rv">${(A.paragraphs || []).map(p => `<p>${esc(p)}</p>`).join('')}</div>
+      <div class="about-prose rv">${(A.paragraphs || []).map(p => `<p>${fmt(p)}</p>`).join('')}</div>
       <aside class="bio-card rv">
         <h3>Biographical Notes</h3>
         <div class="bio-row"><span class="k">Email</span><a href="mailto:${esc(P.email)}">${esc(P.email)}</a></div>
@@ -99,10 +119,11 @@
         ${(A.notes || []).map(n => `<div class="bio-row"><span class="k">${esc(n.label)}</span>${esc(n.value)}</div>`).join('')}
       </aside>
     </div>`;
-  html += section('about', '§ 02', 'About', aboutBody);
+  }};
 
-  /* ---- publications ---- */
-  const pubs = (C.publications || []).map(p => `
+  BUILTIN.publications = { title: 'Publications', nav: 'Publications', body(){
+    if (!C.publications || !C.publications.length) return null;
+    return C.publications.map(p => `
     <article class="pub rv">
       <span class="year">${esc(p.year)}</span>
       <div>
@@ -112,24 +133,26 @@
         </div>
         <h3>${esc(p.title)}</h3>
         <p class="venue">${esc(p.venue)}</p>
-        <p class="abstract">${esc(p.text)}</p>
+        <p class="abstract">${fmt(p.text)}</p>
         ${p.link ? `<a class="textlink" href="${esc(p.link)}" target="_blank" rel="noopener">Read the paper</a>` : ''}
       </div>
     </article>`).join('');
-  html += section('publications', '§ 03', 'Publications', pubs);
+  }};
 
-  /* ---- experience ---- */
-  const exp = (C.experience || []).map(e => `
+  BUILTIN.experience = { title: 'Experience', nav: 'Experience', body(){
+    if (!C.experience || !C.experience.length) return null;
+    return C.experience.map(e => `
     <div class="timeline-item rv">
       <span class="period">${esc(e.period)}</span>
       <h3>${esc(e.title)}</h3>
       <p class="org">${esc(e.org)}</p>
-      <p class="desc">${esc(e.text)}</p>
+      <p class="desc">${fmt(e.text)}</p>
     </div>`).join('');
-  html += section('experience', '§ 04', 'Experience', exp);
+  }};
 
-  /* ---- education ---- */
-  const edu = (C.education || []).map(e => `
+  BUILTIN.education = { title: 'Education', nav: null, body(){
+    if (!C.education || !C.education.length) return null;
+    return C.education.map(e => `
     <div class="timeline-item rv">
       <span class="period">${esc(e.period)}</span>
       <h3>${esc(e.degree)}</h3>
@@ -142,29 +165,33 @@
             <div class="activity">
               <h4>${esc(a.title)}</h4>
               <span class="period">${esc(a.period)}</span>
-              <p>${esc(a.text)}</p>
+              <p>${fmt(a.text)}</p>
             </div>`).join('')}
         </div>` : ''}
     </div>`).join('');
-  html += section('education', '§ 05', 'Education', edu);
+  }};
 
-  /* ---- skills + courses ---- */
-  const skills = `
+  BUILTIN.skills = { title: 'Skills', nav: null, body(){
+    if (!C.skills || !C.skills.length) return null;
+    return `
     <div class="skills-grid">
-      ${(C.skills || []).map(g => `
+      ${C.skills.map(g => `
         <div class="skill-group rv">
           <h3>${esc(g.group)}</h3>
           ${(g.items || []).map(s => `<div class="skill-row"><span>${esc(s.name)}</span><span class="lvl">${esc(s.level)}</span></div>`).join('')}
         </div>`).join('')}
     </div>`;
-  html += section('skills', '§ 06', 'Skills', skills);
+  }};
 
-  const courses = `<div class="courses">${(C.courses || []).map(c =>
-    `<div class="course-row rv"><span>${esc(c.name)}</span><span class="mode">${esc(c.mode)}</span></div>`).join('')}</div>`;
-  html += section('courses', '§ 07', 'Courses<br>Taught', courses);
+  BUILTIN.courses = { title: 'Courses<br>Taught', nav: null, body(){
+    if (!C.courses || !C.courses.length) return null;
+    return `<div class="courses">${C.courses.map(c =>
+      `<div class="course-row rv"><span>${esc(c.name)}</span><span class="mode">${esc(c.mode)}</span></div>`).join('')}</div>`;
+  }};
 
-  /* ---- projects ---- */
-  const projects = (C.projects || []).map(p => `
+  BUILTIN.projects = { title: 'Selected<br>Projects', nav: 'Projects', body(){
+    if (!C.projects || !C.projects.length) return null;
+    return C.projects.map(p => `
     <article class="project rv">
       <div class="project-media">
         ${p.mediaType === 'video'
@@ -174,41 +201,20 @@
       <div>
         <span class="tags">${esc(p.tags)}</span>
         <h3>${esc(p.title)}</h3>
-        <p>${esc(p.text)}</p>
+        <p>${fmt(p.text)}</p>
         ${p.link ? `<a class="textlink" href="${esc(p.link)}" target="_blank" rel="noopener">View on GitHub</a>` : ''}
       </div>
     </article>`).join('');
-  html += section('projects', '§ 08', 'Selected<br>Projects', projects);
+  }};
 
-  /* ---- awards ---- */
-  const awards = (C.awards || []).map(a =>
-    `<div class="award-row rv"><span class="t">${esc(a.title)}</span><span class="o">${esc(a.org)}</span></div>`).join('');
-  html += section('awards', '§ 09', 'Awards &amp;<br>Scholarships', awards);
+  BUILTIN.awards = { title: 'Awards &amp;<br>Scholarships', nav: null, body(){
+    if (!C.awards || !C.awards.length) return null;
+    return C.awards.map(a =>
+      `<div class="award-row rv"><span class="t">${esc(a.title)}</span><span class="o">${esc(a.org)}</span></div>`).join('');
+  }};
 
-  /* ---- photography (inverted signature section) ---- */
-  const PH = C.photography || {};
-  html += `
-  <section class="photo-section" id="photography">
-    <div class="wrap">
-      <div class="section-head"></div>
-      <div class="section-grid">
-        <div class="section-label rv"><span class="num">§ 10</span><h2>Photography</h2></div>
-        <div style="max-width:100%">
-          <p class="photo-intro rv">${esc(PH.intro)}</p>
-          <div class="photo-grid">
-            ${(PH.items || []).map(p => `
-              <figure class="rv" data-full="${esc(p.src)}">
-                <img src="${esc(p.src)}" alt="${esc(p.caption)}" loading="lazy">
-                <figcaption>${esc(p.caption)}</figcaption>
-              </figure>`).join('')}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>`;
-
-  /* ---- contact ---- */
-  const contact = `
+  BUILTIN.contact = { title: 'Contact', nav: 'Contact', body(){
+    return `
     <div class="contact-grid">
       <div class="rv">
         <p class="contact-note">I welcome conversations about research collaborations, graduate study, and academic initiatives in computer vision and machine learning.</p>
@@ -223,7 +229,88 @@
         ${P.scholar ? `<li><span class="k">Scholar</span><a href="${esc(P.scholar)}" target="_blank" rel="noopener">Google Scholar</a></li>` : ''}
       </ul>
     </div>`;
-  html += section('contact', '§ 11', 'Contact', contact);
+  }};
+
+  /* photography renders its own dark full-width shell */
+  function renderPhotography(){
+    const PH = C.photography || {};
+    if (!PH.items || !PH.items.length) return '';
+    navItems.push({ id: 'photography', label: 'Photography' });
+    return `
+  <section class="photo-section" id="photography">
+    <div class="wrap">
+      <div class="section-head"></div>
+      <div class="section-grid">
+        <div class="section-label rv"><span class="num">${nextNum()}</span><h2>Photography</h2></div>
+        <div style="max-width:100%">
+          <p class="photo-intro rv">${fmt(PH.intro)}</p>
+          <div class="photo-grid">
+            ${PH.items.map(p => `
+              <figure class="rv" data-full="${esc(p.src)}">
+                <img src="${esc(p.src)}" alt="${esc(p.caption)}" loading="lazy">
+                <figcaption>${esc(p.caption)}</figcaption>
+              </figure>`).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+  }
+
+  /* ---------- custom sections ---------- */
+  const customs = Array.isArray(C.custom) ? C.custom.filter(cs => cs && cs.title) : [];
+  const customId = cs => cs.id || 'c-' + slug(cs.title);
+  const usedIds = new Set(Object.keys(BUILTIN).concat(['photography', 'top']));
+
+  function renderCustom(cs, layout){
+    let id = customId(cs), n = 2;
+    while (usedIds.has(id)) id = customId(cs) + '-' + (n++);
+    usedIds.add(id);
+    const entry = (en, showMeta) => `
+      <div>
+        ${showMeta && en.meta ? `<span class="entry-meta">${esc(en.meta)}</span>` : ''}
+        <h3>${esc(en.title)}</h3>
+        ${en.text ? `<p>${fmt(en.text)}</p>` : ''}
+        ${en.image ? `<img class="entry-img" src="${esc(en.image)}" alt="${esc(en.title)}" loading="lazy">` : ''}
+        ${en.link ? `<a class="textlink" href="${esc(en.link)}" target="_blank" rel="noopener">Read more</a>` : ''}
+      </div>`;
+    let entries;
+    if (cs.style === 'cards'){
+      entries = `<div class="cards-grid">${(cs.entries || []).map(en =>
+        `<div class="card rv">${entry(en, true)}</div>`).join('')}</div>`;
+    } else {
+      entries = (cs.entries || []).map(en => `
+      <div class="news-item rv">
+        <span class="news-date">${esc(en.meta)}</span>
+        ${entry(en, false)}
+      </div>`).join('');
+    }
+    const body = (cs.intro ? `<p class="section-intro rv">${fmt(cs.intro)}</p>` : '') + entries;
+    navItems.push({ id, label: cs.title });
+    return section(id, esc(cs.title), body, layout);
+  }
+
+  /* ---------- ordering ---------- */
+  const DEFAULT_ORDER = ['news','about','publications','experience','education','skills','courses','projects','awards']
+    .concat(customs.map(customId)).concat(['photography','contact']);
+
+  let cfg = Array.isArray(C.sections) ? C.sections.filter(s => s && s.id) : [];
+  const present = new Set(cfg.map(s => s.id));
+  DEFAULT_ORDER.forEach(id => { if (!present.has(id)) { cfg.push({ id, layout: 'ledger' }); present.add(id); } });
+
+  cfg.forEach(sc => {
+    if (sc.id === 'photography'){ html += renderPhotography(); return; }
+    if (BUILTIN[sc.id]){
+      const b = BUILTIN[sc.id];
+      const body = b.body();
+      if (body == null) return;
+      if (b.nav) navItems.push({ id: sc.id, label: b.nav });
+      html += section(sc.id, b.title, body, sc.layout);
+      return;
+    }
+    const cs = customs.find(c => customId(c) === sc.id);
+    if (cs) html += renderCustom(cs, sc.layout);
+  });
 
   app.innerHTML = html;
 
@@ -232,6 +319,10 @@
   document.getElementById('year').textContent = '© ' + new Date().getFullYear() + ' ' + (P.name || '');
   document.getElementById('brand').textContent = P.name || 'Portfolio';
   document.title = (P.name || 'Portfolio') + ' — ' + (P.tagline || '');
+
+  /* nav rebuilt from rendered sections, in order */
+  const links = document.getElementById('navLinks');
+  links.innerHTML = navItems.map(n => `<li><a href="#${n.id}">${esc(n.label)}</a></li>`).join('');
 
   /* reveal on scroll */
   const io = new IntersectionObserver(entries => {
@@ -250,7 +341,6 @@
 
   /* mobile nav */
   const toggle = document.getElementById('navToggle');
-  const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => links.classList.toggle('open'));
   links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
 })();
