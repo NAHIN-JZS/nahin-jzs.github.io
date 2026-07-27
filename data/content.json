@@ -350,5 +350,72 @@
         "caption": "Moments"
       }
     ]
-  }
+  },
+  "sections": [
+    {
+      "id": "news",
+      "layout": "ledger"
+    },
+    {
+      "id": "about",
+      "layout": "ledger"
+    },
+    {
+      "id": "c-ms2pvkux-0",
+      "layout": "ledger"
+    },
+    {
+      "id": "publications",
+      "layout": "ledger"
+    },
+    {
+      "id": "experience",
+      "layout": "ledger"
+    },
+    {
+      "id": "education",
+      "layout": "ledger"
+    },
+    {
+      "id": "skills",
+      "layout": "ledger"
+    },
+    {
+      "id": "courses",
+      "layout": "ledger"
+    },
+    {
+      "id": "projects",
+      "layout": "ledger"
+    },
+    {
+      "id": "awards",
+      "layout": "ledger"
+    },
+    {
+      "id": "photography",
+      "layout": "ledger"
+    },
+    {
+      "id": "contact",
+      "layout": "ledger"
+    }
+  ],
+  "custom": [
+    {
+      "title": "Ongoing Research",
+      "intro": "",
+      "style": "list",
+      "entries": [
+        {
+          "meta": "2026",
+          "title": "Monocular 3D Vision for Vehicle Distance Estimation Toward Digital Twin Traffic Systems.",
+          "text": "",
+          "link": "",
+          "image": ""
+        }
+      ],
+      "id": "c-ms2pvkux-0"
+    }
+  ]
 }
