@@ -39,6 +39,12 @@
   },
   "news": [
     {
+      "date": "August 2026",
+      "title": "Bone Fracture Detection and Localization Using Transfer Learning Techniques on a Comprehensive Dataset",
+      "text": "The manuscript has been completed and submitted to a Q1 journal, where it is currently under review.",
+      "link": ""
+    },
+    {
       "date": "2026",
       "title": "Reached 100+ citations on Google Scholar.",
       "text": "Reached **100+ citations** on Google Scholar, reflecting the growing academic impact and recognition of my research contributions in computer vision, deep learning, and machine learning. Take a look at my [Google Scholar](https://scholar.google.com/citations?user=25LhIz0AAAAJ&hl=en) profile.",
