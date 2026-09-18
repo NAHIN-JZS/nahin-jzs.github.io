@@ -183,15 +183,6 @@
   "publications": [
     {
       "year": "2025",
-      "type": "Under Review",
-      "badge": "",
-      "title": "Gray Scale to Color Image Conversion using Generative Adversarial Networks",
-      "venue": "Under review in a Q1 journal",
-      "text": "This study explores image colorization using deep learning, particularly conditional Generative Adversarial Networks (cGANs), which outperform traditional reference-based methods by generating realistic colors more efficiently and without requiring manual reference images.",
-      "link": ""
-    },
-    {
-      "year": "2025",
       "type": "Journal Article",
       "badge": "",
       "title": "Comparative Analysis of Machine Learning Models for Predicting Water Quality Index in Dhaka's Rivers of Bangladesh",
@@ -200,13 +191,13 @@
       "link": "https://link.springer.com/article/10.1186/s12302-025-01078-w"
     },
     {
-      "year": "2022",
+      "year": "2026",
       "type": "Conference Paper",
-      "badge": "Best Paper Award",
-      "title": "Automatic License Plate Recognition System for Bangladeshi Vehicles Using Deep Neural Network",
-      "venue": "BIM 2021 · Springer Singapore",
-      "text": "An optimal end-to-end ALPR system for Bangladeshi vehicles trained on a novel dataset. A custom algorithm eliminates the segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% in text recognition. Awarded Best Paper in the Machine Learning track.",
-      "link": "https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8"
+      "badge": "",
+      "title": "Transfer Learning for Vehicle Recognition: A Comprehensive Dataset and Evaluation on Bangladeshi Roads",
+      "venue": "2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence & Networking (QPAIN)",
+      "text": "### Summary\n\nThis study presents a **vehicle detection model specifically designed for Bangladeshi roads** to support Intelligent Transportation Systems (ITS), traffic monitoring, congestion management, and road safety. A new dataset containing **44,476 images across 10 common vehicle categories** was developed. The proposed model achieved **92% accuracy**, demonstrating strong performance on this newly introduced benchmark and showing potential for improving transportation safety and efficiency in Bangladesh.\n",
+      "link": "https://ieeexplore.ieee.org/abstract/document/11545960"
     },
     {
       "year": "2023",
@@ -216,6 +207,15 @@
       "venue": "IEEE",
       "text": "A challenging dataset of Bangladeshi vehicles was developed for ITS tasks. Various pre-trained models were evaluated; the proposed model achieved leading results in both localization and categorization, better reflecting real-life scenarios than pre-existing alternatives.",
       "link": "https://ieeexplore.ieee.org/document/10103325"
+    },
+    {
+      "year": "2022",
+      "type": "Conference Paper",
+      "badge": "Best Paper Award",
+      "title": "Automatic License Plate Recognition System for Bangladeshi Vehicles Using Deep Neural Network",
+      "venue": "BIM 2021 · Springer Singapore",
+      "text": "An optimal end-to-end ALPR system for Bangladeshi vehicles trained on a novel dataset. A custom algorithm eliminates the segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% in text recognition. Awarded Best Paper in the Machine Learning track.",
+      "link": "https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8"
     }
   ],
   "courses": [
