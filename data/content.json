@@ -77,7 +77,7 @@
         },
         {
           "name": "C++",
-          "level": "Advanced"
+          "level": "Expert"
         },
         {
           "name": "C",
@@ -240,8 +240,8 @@
       "mode": "Theory & Sessional"
     },
     {
-      "name": "Discrete Mathematics",
-      "mode": "Theory"
+      "name": "Object Oriented Programming",
+      "mode": "Theory & Sessional"
     }
   ],
   "projects": [
