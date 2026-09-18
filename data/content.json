@@ -196,7 +196,7 @@
       "badge": "",
       "title": "Transfer Learning for Vehicle Recognition: A Comprehensive Dataset and Evaluation on Bangladeshi Roads",
       "venue": "2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence & Networking (QPAIN)",
-      "text": "### Summary\n\nThis study presents a **vehicle detection model specifically designed for Bangladeshi roads** to support Intelligent Transportation Systems (ITS), traffic monitoring, congestion management, and road safety. A new dataset containing **44,476 images across 10 common vehicle categories** was developed. The proposed model achieved **92% accuracy**, demonstrating strong performance on this newly introduced benchmark and showing potential for improving transportation safety and efficiency in Bangladesh.\n",
+      "text": "This study presents a **vehicle detection model specifically designed for Bangladeshi roads** to support Intelligent Transportation Systems (ITS), traffic monitoring, congestion management, and road safety. A new dataset containing **44,476 images across 10 common vehicle categories** was developed. The proposed model achieved **92% accuracy**, demonstrating strong performance on this newly introduced benchmark and showing potential for improving transportation safety and efficiency in Bangladesh.\n",
       "link": "https://ieeexplore.ieee.org/abstract/document/11545960"
     },
     {
