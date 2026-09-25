@@ -24,6 +24,14 @@
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
 
+  const ALIGN_OK = a => ['left','center','right','justify'].includes(a);
+  const para = (s, attrs = '') => {
+    let t = String(s == null ? '' : s), st = '';
+    const m = t.match(/^\s*\{(left|center|right|justify)\}\s*/);
+    if (m){ t = t.slice(m[0].length); st = ' style="text-align:' + m[1] + '"'; }
+    return '<p' + attrs + st + '>' + fmt(t) + '</p>';
+  };
+
   const slug = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'section';
 
   const P = C.profile || {};
@@ -33,7 +41,9 @@
   const T = (C.theme && C.theme.colors) || {};
   const varMap = { paper:'--paper', paperRaised:'--paper-raised', ink:'--ink', inkSoft:'--ink-soft',
     muted:'--muted', hairline:'--hairline', accent:'--accent', dark:'--dark', darkText:'--dark-text' };
-  const decl = Object.keys(varMap).filter(k => HEX.test(T[k] || '')).map(k => varMap[k] + ':' + T[k]).join(';');
+  const declParts = Object.keys(varMap).filter(k => HEX.test(T[k] || '')).map(k => varMap[k] + ':' + T[k]);
+  if (C.theme && ALIGN_OK(C.theme.align)) declParts.push('--align:' + C.theme.align);
+  const decl = declParts.join(';');
   if (decl){
     const st = document.createElement('style');
     st.textContent = ':root{' + decl + '}';
@@ -41,16 +51,19 @@
   }
   /* per-section colour overrides from the Arrange page */
   const secStyle = sc => {
+    const parts = [];
     const bg = HEX.test(sc.bg || '') ? sc.bg : null;
     const tx = HEX.test(sc.text || '') ? sc.text : null;
-    if (!bg && !tx) return '';
-    const b = bg || 'var(--paper)', t = tx || 'var(--ink)';
-    return ' style="background:' + b +
-      ';--ink:' + t +
-      ';--ink-soft:color-mix(in srgb, ' + t + ' 80%, ' + b + ')' +
-      ';--muted:color-mix(in srgb, ' + t + ' 56%, ' + b + ')' +
-      ';--hairline:color-mix(in srgb, ' + t + ' 18%, ' + b + ')' +
-      ';--paper-raised:color-mix(in srgb, ' + b + ' 94%, ' + t + ')"';
+    if (bg || tx){
+      const b = bg || 'var(--paper)', t = tx || 'var(--ink)';
+      parts.push('background:' + b, '--ink:' + t,
+        '--ink-soft:color-mix(in srgb, ' + t + ' 80%, ' + b + ')',
+        '--muted:color-mix(in srgb, ' + t + ' 56%, ' + b + ')',
+        '--hairline:color-mix(in srgb, ' + t + ' 18%, ' + b + ')',
+        '--paper-raised:color-mix(in srgb, ' + b + ' 94%, ' + t + ')');
+    }
+    if (ALIGN_OK(sc.align)) parts.push('--align:' + sc.align);
+    return parts.length ? ' style="' + parts.join(';') + '"' : '';
   };
 
   const icons = {
@@ -126,7 +139,7 @@
         <span class="news-date">${esc(n.date)}</span>
         <div>
           <h3>${esc(n.title)}</h3>
-          ${n.text ? `<p>${fmt(n.text)}</p>` : ''}
+          ${n.text ? `${para(n.text, '')}` : ''}
           ${n.link ? `<a class="textlink" href="${esc(n.link)}" target="_blank" rel="noopener">Read more</a>` : ''}
         </div>
       </div>`).join('');
@@ -136,7 +149,7 @@
     const A = C.about || {};
     return `
     <div class="about-grid">
-      <div class="about-prose rv">${(A.paragraphs || []).map(p => `<p>${fmt(p)}</p>`).join('')}</div>
+      <div class="about-prose rv">${(A.paragraphs || []).map(p => `${para(p, '')}`).join('')}</div>
       <aside class="bio-card rv">
         <h3>Biographical Notes</h3>
         <div class="bio-row"><span class="k">Email</span><a href="mailto:${esc(P.email)}">${esc(P.email)}</a></div>
@@ -159,7 +172,7 @@
         </div>
         <h3>${esc(p.title)}</h3>
         <p class="venue">${esc(p.venue)}</p>
-        <p class="abstract">${fmt(p.text)}</p>
+        ${para(p.text, ' class="abstract"')}
         ${p.link ? `<a class="textlink" href="${esc(p.link)}" target="_blank" rel="noopener">Read the paper</a>` : ''}
       </div>
     </article>`).join('');
@@ -172,7 +185,7 @@
       <span class="period">${esc(e.period)}</span>
       <h3>${esc(e.title)}</h3>
       <p class="org">${esc(e.org)}</p>
-      <p class="desc">${fmt(e.text)}</p>
+      ${para(e.text, ' class="desc"')}
     </div>`).join('');
   }};
 
@@ -191,7 +204,7 @@
             <div class="activity">
               <h4>${esc(a.title)}</h4>
               <span class="period">${esc(a.period)}</span>
-              <p>${fmt(a.text)}</p>
+              ${para(a.text, '')}
             </div>`).join('')}
         </div>` : ''}
     </div>`).join('');
@@ -227,7 +240,7 @@
       <div>
         <span class="tags">${esc(p.tags)}</span>
         <h3>${esc(p.title)}</h3>
-        <p>${fmt(p.text)}</p>
+        ${para(p.text, '')}
         ${p.link ? `<a class="textlink" href="${esc(p.link)}" target="_blank" rel="noopener">View on GitHub</a>` : ''}
       </div>
     </article>`).join('');
@@ -263,13 +276,11 @@
     if (!PH.items || !PH.items.length) return '';
     navItems.push({ id: 'photography', label: 'Photography' });
     const HEXok = v => HEX.test(v || '');
-    let st = '';
-    if (HEXok(sc.bg) || HEXok(sc.text)){
-      const parts = [];
-      if (HEXok(sc.bg)) parts.push('--dark:' + sc.bg);
-      if (HEXok(sc.text)) parts.push('--dark-text:' + sc.text);
-      st = ' style="' + parts.join(';') + '"';
-    }
+    const parts = [];
+    if (HEXok(sc.bg)) parts.push('--dark:' + sc.bg);
+    if (HEXok(sc.text)) parts.push('--dark-text:' + sc.text);
+    if (ALIGN_OK(sc.align)) parts.push('--align:' + sc.align);
+    const st = parts.length ? ' style="' + parts.join(';') + '"' : '';
     return `
   <section class="photo-section" id="photography"${st}>
     <div class="wrap">
@@ -277,7 +288,7 @@
       <div class="section-grid">
         <div class="section-label rv"><span class="num">${nextNum()}</span><h2>Photography</h2></div>
         <div style="max-width:100%">
-          <p class="photo-intro rv">${fmt(PH.intro)}</p>
+          ${para(PH.intro, ' class="photo-intro rv"')}
           <div class="photo-grid">
             ${PH.items.map(p => `
               <figure class="rv" data-full="${esc(p.src)}">
@@ -305,7 +316,7 @@
       <div>
         ${showMeta && en.meta ? `<span class="entry-meta">${esc(en.meta)}</span>` : ''}
         <h3>${esc(en.title)}</h3>
-        ${en.text ? `<p>${fmt(en.text)}</p>` : ''}
+        ${en.text ? `${para(en.text, '')}` : ''}
         ${en.image ? `<img class="entry-img" src="${esc(en.image)}" alt="${esc(en.title)}" loading="lazy">` : ''}
         ${en.link ? `<a class="textlink" href="${esc(en.link)}" target="_blank" rel="noopener">Read more</a>` : ''}
       </div>`;
@@ -320,7 +331,7 @@
         ${entry(en, false)}
       </div>`).join('');
     }
-    const body = (cs.intro ? `<p class="section-intro rv">${fmt(cs.intro)}</p>` : '') + entries;
+    const body = (cs.intro ? `${para(cs.intro, ' class="section-intro rv"')}` : '') + entries;
     navItems.push({ id, label: cs.title });
     return section(id, esc(cs.title), body, layout, sc);
   }
