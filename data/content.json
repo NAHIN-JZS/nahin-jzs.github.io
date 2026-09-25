@@ -39,6 +39,12 @@
   },
   "news": [
     {
+      "date": "September 2026",
+      "title": "Two Papers Accepted at IEEE CSDE 2026",
+      "text": "Two of my research papers on GAN-based image colorization have been accepted at [IEEE CSDE 2026](https://www.ieee-csde.org/) : “Region Weighted Conditional GAN for Human Skin-Focused Grayscale Image Colorization” and “Influence of Color Space on GAN-Based Image Colorization with a Grayscale to Color Network.” The first explores region-weighted colorization for improved human skin tones, while the second compares different color spaces and proposes a generic grayscale-to-colorization network for automatically colorizing black-and-white images.",
+      "link": ""
+    },
+    {
       "date": "August 2026",
       "title": "Bone Fracture Detection and Localization Using Transfer Learning Techniques on a Comprehensive Dataset",
       "text": "The manuscript has been completed and submitted to a Q1 journal, where it is currently under review.",
