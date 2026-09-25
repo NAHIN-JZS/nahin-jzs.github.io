@@ -466,3 +466,8 @@ a { color: inherit; }
 .section-body p a, .photo-intro a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); transition: opacity .2s; }
 .section-body p a:hover, .photo-intro a:hover { opacity: .55; }
 .photo-intro a { color: var(--dark-text); border-bottom-color: var(--dark-text); }
+
+/* ---------- text alignment (default justified; admin can override) ---------- */
+:root { --align: justify; }
+.section-body p, .photo-intro { text-align: var(--align); }
+.section.layout-centered { --align: center; }
