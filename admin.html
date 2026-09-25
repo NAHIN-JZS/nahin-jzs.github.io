@@ -32,7 +32,7 @@ label.f{display:block;margin-bottom:16px}
 label.f>span,.flabel{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
 
 /* formatting toolbar */
-.fmtbar{display:flex;gap:6px;margin-bottom:6px}
+.fmtbar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:6px}
 .fmtbar button{font-family:var(--mono);font-size:11px;padding:4px 10px;border:1px solid var(--hair);background:var(--white);color:var(--ink)}
 .fmtbar button:hover{border-color:var(--ink)}
 .fmthint{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:.04em}
@@ -390,8 +390,8 @@ const SECTIONS = [
   { id: 'arrange', title: 'Arrange & Layout', special: true,
     desc: 'Reorder the sections of your site and choose a layout for each. Ledger = title on the left. Stacked = title above, full width. Centered = everything centered.' },
 
-  { id: 'colors', title: 'Colors', special: true,
-    desc: 'The colour palette of the whole site. Every part of the design follows these. Use Reset to return any colour to the original black & white.' },
+  { id: 'colors', title: 'Colors & Text', special: true,
+    desc: 'The default text alignment and the colour palette of the whole site. Every part of the design follows these.' },
 
   { id: 'news', title: 'Research Updates', desc: 'News shown on the site — new papers, awards, appointments. Newest first.',
     type: 'list', itemName: 'update',
@@ -515,9 +515,22 @@ function themeColors(){
   return content.theme.colors;
 }
 
+const ALIGNS = ['justify', 'left', 'center', 'right'];
+const cap1 = s => s.charAt(0).toUpperCase() + s.slice(1);
+
 function renderColors(root){
   const colors = themeColors();
   root.innerHTML = '';
+  const arow = document.createElement('div'); arow.className = 'arr-row';
+  const aname = document.createElement('div'); aname.className = 'name';
+  aname.innerHTML = 'Text alignment<span class="sub">default for all body text on the site</span>';
+  const asel = document.createElement('select');
+  ALIGNS.forEach(a => { const o = document.createElement('option'); o.value = a; o.textContent = cap1(a); asel.appendChild(o); });
+  asel.value = content.theme.align || 'justify';
+  asel.addEventListener('change', () => { content.theme.align = asel.value; markDirty(); });
+  arow.appendChild(aname); arow.appendChild(asel);
+  root.appendChild(arow);
+  const gap = document.createElement('div'); gap.style.height = '14px'; root.appendChild(gap);
   PALETTE.forEach(([key, label, def]) => {
     const row = document.createElement('div'); row.className = 'arr-row';
     const name = document.createElement('div'); name.className = 'name';
@@ -574,6 +587,12 @@ function renderArrange(root){
       sel.addEventListener('change', () => { sc.layout = sel.value; markDirty(); });
       row.appendChild(sel);
     }
+    const al = document.createElement('select');
+    [['', 'Align: default']].concat(ALIGNS.map(a => [a, cap1(a)])).forEach(([v, t]) => {
+      const o = document.createElement('option'); o.value = v; o.textContent = t; al.appendChild(o); });
+    al.value = sc.align || '';
+    al.addEventListener('change', () => { if (al.value) sc.align = al.value; else delete sc.align; markDirty(); });
+    row.appendChild(al);
     row.appendChild(sectionColorControls(sc, () => renderArrange(root)));
     root.appendChild(row);
   });
@@ -630,7 +649,7 @@ function listEditor(arr, fields, itemName, rerender){
 }
 
 /* formatting toolbar for textareas */
-function makeToolbar(ta){
+function makeToolbar(ta, multiPara){
   const bar = document.createElement('div'); bar.className = 'fmtbar';
   const apply = (before, after) => {
     const s = ta.selectionStart, e = ta.selectionEnd;
@@ -671,11 +690,28 @@ function makeToolbar(ta){
     ta.dispatchEvent(new Event('input'));
     ta.focus();
   }, 'Insert link'));
+
+  /* alignment: puts {left} / {center} / {right} / {justify} at the start of the paragraph.
+     Clicking the same alignment again removes it (back to the default). */
+  const setAlign = a => {
+    const v = ta.value, pos = ta.selectionStart;
+    let start = 0;
+    if (multiPara){ const i = v.lastIndexOf('\n\n', Math.max(0, pos - 1)); start = i === -1 ? 0 : i + 2; }
+    const rest = v.slice(start);
+    const m = rest.match(/^\{(left|center|right|justify)\}\s*/);
+    const body = m ? rest.slice(m[0].length) : rest;
+    const marker = (m && m[1] === a) ? '' : '{' + a + '}';
+    ta.value = v.slice(0, start) + marker + body;
+    ta.dispatchEvent(new Event('input'));
+    ta.focus();
+  };
+  const sep = document.createElement('span'); sep.style.width = '10px'; bar.appendChild(sep);
+  ALIGNS.forEach(a => bar.appendChild(mk(cap1(a), () => setAlign(a), 'Align this paragraph ' + a)));
   return bar;
 }
 function fmtHint(){
   const p = document.createElement('div'); p.className = 'fmthint';
-  p.textContent = '**bold** · *italic* · [link text](https://…) · {#c0392b|colored text}';
+  p.textContent = '**bold** · *italic* · [link text](https://…) · {#c0392b|colored text} · {center} at the start of a paragraph aligns it';
   return p;
 }
 
@@ -696,7 +732,7 @@ function fieldEditor(obj, f, rerender){
     const ta = document.createElement('textarea'); ta.rows = f.rows || 10;
     ta.value = (obj[f.key] || []).join('\n\n');
     ta.addEventListener('input', () => { obj[f.key] = ta.value.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean); markDirty(); });
-    label.appendChild(makeToolbar(ta));
+    label.appendChild(makeToolbar(ta, true));
     label.appendChild(ta);
     label.appendChild(fmtHint());
     return label;
@@ -705,7 +741,7 @@ function fieldEditor(obj, f, rerender){
     const ta = document.createElement('textarea'); ta.rows = f.rows;
     ta.value = obj[f.key] || '';
     ta.addEventListener('input', () => { obj[f.key] = ta.value; markDirty(); });
-    label.appendChild(makeToolbar(ta));
+    label.appendChild(makeToolbar(ta, false));
     label.appendChild(ta);
     label.appendChild(fmtHint());
     return label;
