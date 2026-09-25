@@ -17,7 +17,7 @@
   },
   "about": {
     "paragraphs": [
-      "Welcome to my academic portfolio. I am Nahin — a Computer Vision researcher and educator holding a B.Sc. in Computer Science & Engineering from Khulna University of Engineering & Technology (KUET). Currently, I serve as a Lecturer at Bangladesh Army University of Science & Technology, Khulna (BAUSTK), where I share my passion for cutting-edge technologies with the next generation of engineers.",
+      "{justify}Welcome to my academic portfolio. I am Nahin — a Computer Vision researcher and educator holding a B.Sc. in Computer Science & Engineering from Khulna University of Engineering & Technology (KUET). Currently, I serve as a Lecturer at Bangladesh Army University of Science & Technology, Khulna (BAUSTK), where I share my passion for cutting-edge technologies with the next generation of engineers.",
       "My primary research is centred on Computer Vision and Machine Learning, with multiple published works spanning deep learning-based license plate recognition, vehicle classification, image colorization, and environmental quality prediction. I thrive on bridging theoretical foundations with real-world applications.",
       "Beyond research, I bring leadership experience from my tenure as President of the Jashore Association of KUET (JAK), and I find creative expression through photography — a discipline that sharpens the same attention to detail I bring to my academic work.",
       "I invite you to explore my work and connect to discuss potential collaborations in computer vision or academic initiatives."
@@ -126,19 +126,19 @@
       "title": "Lecturer, Computer Science & Engineering",
       "org": "Bangladesh Army University of Science & Technology, Khulna (BAUSTK)",
       "period": "July 2025 — Present",
-      "text": "Serving as a full-time faculty member, delivering lectures and conducting sessionals in core CSE courses at the undergraduate level."
+      "text": "{justify}Serving as a full-time faculty member, delivering lectures and conducting sessionals in core CSE courses at the undergraduate level."
     },
     {
       "title": "Lecturer, Computer Science & Engineering",
       "org": "Bangladesh Army University of Engineering & Technology (BAUET)",
       "period": "July 2023 — July 2025",
-      "text": "Served as a full-time Lecturer, contributing to curriculum delivery and student mentorship in CSE departments."
+      "text": "{justify}Served as a full-time Lecturer, contributing to curriculum delivery and student mentorship in CSE departments."
     },
     {
       "title": "Machine Learning Engineer (Part-Time)",
       "org": "MazeGeek Technologies BD Ltd",
       "period": "September 2020 — May 2021",
-      "text": "Collaborated with a research team on Augmented Reality; contributed as a member of the virtual makeup research group, exploring ML-driven visual effects and real-time facial feature analysis."
+      "text": "{justify}Collaborated with a research team on Augmented Reality; contributed as a member of the virtual makeup research group, exploring ML-driven visual effects and real-time facial feature analysis."
     }
   ],
   "education": [
@@ -193,7 +193,7 @@
       "badge": "",
       "title": "Comparative Analysis of Machine Learning Models for Predicting Water Quality Index in Dhaka's Rivers of Bangladesh",
       "venue": "Environmental Sciences Europe · Springer Nature · IF: 6.0 (2023)",
-      "text": "Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI) in Dhaka's key rivers. ANN and Random Forest Regressor demonstrated the highest accuracy — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.",
+      "text": "{justify}Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI) in Dhaka's key rivers. ANN and Random Forest Regressor demonstrated the highest accuracy — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.",
       "link": "https://link.springer.com/article/10.1186/s12302-025-01078-w"
     },
     {
@@ -202,7 +202,7 @@
       "badge": "",
       "title": "Transfer Learning for Vehicle Recognition: A Comprehensive Dataset and Evaluation on Bangladeshi Roads",
       "venue": "2026 IEEE 2nd International Conference on Quantum Photonics, Artificial Intelligence & Networking (QPAIN)",
-      "text": "This study presents a vehicle detection model specifically designed for Bangladeshi roads to support Intelligent Transportation Systems (ITS), traffic monitoring, congestion management, and road safety. A new dataset containing 44,476 images across 10 common vehicle categories was developed. The proposed model achieved 92% accuracy, demonstrating strong performance on this newly introduced benchmark and showing potential for improving transportation safety and efficiency in Bangladesh.\n",
+      "text": "{justify}This study presents a vehicle detection model specifically designed for Bangladeshi roads to support Intelligent Transportation Systems (ITS), traffic monitoring, congestion management, and road safety. A new dataset containing 44,476 images across 10 common vehicle categories was developed. The proposed model achieved 92% accuracy, demonstrating strong performance on this newly introduced benchmark and showing potential for improving transportation safety and efficiency in Bangladesh.\n",
       "link": "https://ieeexplore.ieee.org/abstract/document/11545960"
     },
     {
@@ -211,7 +211,7 @@
       "badge": "",
       "title": "Bangladeshi Local Vehicle Recognition with a Comprehensive Dataset using Transfer Learning Techniques",
       "venue": "IEEE",
-      "text": "A challenging dataset of Bangladeshi vehicles was developed for ITS tasks. Various pre-trained models were evaluated; the proposed model achieved leading results in both localization and categorization, better reflecting real-life scenarios than pre-existing alternatives.",
+      "text": "{justify}A challenging dataset of Bangladeshi vehicles was developed for ITS tasks. Various pre-trained models were evaluated; the proposed model achieved leading results in both localization and categorization, better reflecting real-life scenarios than pre-existing alternatives.",
       "link": "https://ieeexplore.ieee.org/document/10103325"
     },
     {
@@ -220,7 +220,7 @@
       "badge": "Best Paper Award",
       "title": "Automatic License Plate Recognition System for Bangladeshi Vehicles Using Deep Neural Network",
       "venue": "BIM 2021 · Springer Singapore",
-      "text": "An optimal end-to-end ALPR system for Bangladeshi vehicles trained on a novel dataset. A custom algorithm eliminates the segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% in text recognition. Awarded Best Paper in the Machine Learning track.",
+      "text": "{justify}An optimal end-to-end ALPR system for Bangladeshi vehicles trained on a novel dataset. A custom algorithm eliminates the segmentation phase, yielding 99.37% accuracy in plate localization and 96.31% in text recognition. Awarded Best Paper in the Machine Learning track.",
       "link": "https://link.springer.com/chapter/10.1007/978-981-16-6636-0_8"
     }
   ],
@@ -254,7 +254,7 @@
     {
       "tags": "Python · YOLOv4 · TensorFlow · OpenCV",
       "title": "Automatic License Plate Recognizer",
-      "text": "An end-to-end AI pipeline for detecting Bangladeshi license plates and recognising inscribed characters. Results are logged to CSV. Seven DNN architectures were benchmarked before arriving at the final optimised configuration.",
+      "text": "{justify}An end-to-end AI pipeline for detecting Bangladeshi license plates and recognising inscribed characters. Results are logged to CSV. Seven DNN architectures were benchmarked before arriving at the final optimised configuration.",
       "link": "https://github.com/NAHIN-JZS/License-Plate-Recognizer",
       "mediaType": "video",
       "media": "images/project-alpr.mp4"
@@ -262,7 +262,7 @@
     {
       "tags": "C++ · OpenGL",
       "title": "Kill The Man — OpenGL Game",
-      "text": "A 2D video game in C++ with OpenGL as a Computer Graphics laboratory project. The gameplay involves intercepting a target character passing through the scene by vehicle.",
+      "text": "{justify}A 2D video game in C++ with OpenGL as a Computer Graphics laboratory project. The gameplay involves intercepting a target character passing through the scene by vehicle.",
       "link": "https://github.com/NAHIN-JZS/kill_the_man_game_OpenGL",
       "mediaType": "video",
       "media": "images/project-game.mp4"
@@ -270,7 +270,7 @@
     {
       "tags": "PHP · MySQLi · HTML · CSS",
       "title": "Home Rental Web Platform",
-      "text": "A web application where tenants can search for available properties by location, and owners can list vacant houses. Built with PHP and MySQLi, hosted locally via XAMPP.",
+      "text": "{justify}A web application where tenants can search for available properties by location, and owners can list vacant houses. Built with PHP and MySQLi, hosted locally via XAMPP.",
       "link": "https://github.com/NAHIN-JZS/ghor_bari_web",
       "mediaType": "image",
       "media": "images/project-2.jpg"
@@ -278,7 +278,7 @@
     {
       "tags": "Java · Firebase",
       "title": "Ghorbari — Android Housing App",
-      "text": "An Android application enabling location-based property discovery for tenants and advertisement tools for owners. Built with Java and Firebase as a real-time backend.",
+      "text": "{justify}An Android application enabling location-based property discovery for tenants and advertisement tools for owners. Built with Java and Firebase as a real-time backend.",
       "link": "https://github.com/NAHIN-JZS/Ghorbari",
       "mediaType": "video",
       "media": "images/project-ghorbari.mp4"
@@ -315,7 +315,7 @@
     }
   ],
   "photography": {
-    "intro": "Beyond research and teaching, I find creative expression through the lens — photographing nature, architecture, urban life, and the quiet moments of everyday existence. Every frame rests in black and white; look closer, and the colour returns.",
+    "intro": "{justify}Beyond research and teaching, I find creative expression through the lens — photographing nature, architecture, urban life, and the quiet moments of everyday existence. Every frame rests in black and white; look closer, and the colour returns.",
     "items": [
       {
         "src": "images/photography/1000066279.jpg",
