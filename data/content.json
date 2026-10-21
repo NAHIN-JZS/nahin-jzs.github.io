@@ -4,7 +4,7 @@
     "tagline": "Researcher & Educator",
     "fields": "3D Vision · Computer Vision · Machine Learning · Deep Learning",
     "role": "Lecturer, Dept. of CSE",
-    "institution": "Bangladesh Army University of Science & Technology Khulna (BAUSTK)",
+    "institution": "Bangladesh Army University of Science & Technology, Khulna (BAUSTK)",
     "email": "syednahinhossain@gmail.com",
     "phone": "+880 1521-522856",
     "address": "169, East Barandipara, Dhaka Road, Jashore, Bangladesh",
@@ -25,7 +25,7 @@
     "notes": [
       {
         "label": "Research",
-        "value": "3D Vision · Computer Vision · Machine Learning · Deep Learning"
+        "value": "Computer Vision · Machine Learning · Deep Learning"
       },
       {
         "label": "Teaching",
@@ -195,6 +195,24 @@
       "venue": "Environmental Sciences Europe · Springer Nature · IF: 6.0 (2023)",
       "text": "{justify}Fourteen machine learning models were evaluated for predicting the Water Quality Index (WQI) in Dhaka's key rivers. ANN and Random Forest Regressor demonstrated the highest accuracy — offering a reliable, cost-effective method for environmental monitoring and policy decision-making.",
       "link": "https://link.springer.com/article/10.1186/s12302-025-01078-w"
+    },
+    {
+      "year": "2026",
+      "type": "Conference Paper",
+      "badge": "",
+      "title": "Influence of Color Space on GAN-Based Image Colorization with a Grayscale to Color Network",
+      "venue": "11th IEEE Asia-Pacific Conference on Computer Science and Data Engineering (CSDE 2026)",
+      "text": "This study investigates how different color spaces affect image colorization using cGANs. Results show that Lab produces smoother images, while YCbCr better matches original colors. The best model, RTwL-6, uses a ResNet-50 generator trained in Lab space, achieving competitive results on the DIV2K benchmark.",
+      "link": ""
+    },
+    {
+      "year": "2026",
+      "type": "Conference Paper",
+      "badge": "",
+      "title": "Region Weighted Conditional GAN for Human Skin-Focused Grayscale Image Colorization",
+      "venue": "11th IEEE Asia-Pacific Conference on Computer Science and Data Engineering (CSDE 2026)",
+      "text": "This study improves image colorization by adding a skin-focused loss function to a cGAN model. Results show more accurate and realistic skin colors, supported by better numerical scores and human evaluations. However, some automated metrics disagreed with human preferences, highlighting limitations in evaluating colorization quality.",
+      "link": ""
     },
     {
       "year": "2026",
