@@ -103,7 +103,7 @@
           "level": "Expert"
         },
         {
-          "name": "OpenCV",
+          "name": "PyTorch",
           "level": "Advanced"
         },
         {
@@ -112,10 +112,6 @@
         },
         {
           "name": "LaTeX",
-          "level": "Advanced"
-        },
-        {
-          "name": "PyTorch",
           "level": "Advanced"
         }
       ]
