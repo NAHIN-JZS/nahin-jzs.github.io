@@ -266,6 +266,14 @@
   ],
   "projects": [
     {
+      "tags": "YOLOv8 · Depth Anything 3 · Open3D",
+      "title": "Monocular 3D Vehicle Ranging with Depth Anything 3",
+      "text": "This project measures how far away each vehicle is using a single camera image. YOLOv8 detects the vehicles, Depth Anything 3 predicts metric depth for every pixel, and the depth map is turned into a 3D point cloud using the camera’s intrinsics. Each vehicle’s distance comes from the 3D points inside its box. The results were checked against LiDAR on the KITTI dataset, and a handful of accurate points were used to correct the camera’s scale, the same way radar would be used in a camera and radar fusion system.",
+      "link": "https://github.com/NAHIN-JZS/Monocular-image-depth-estimation",
+      "mediaType": "video",
+      "media": "images/uploads/1793981648870_depth_to_pointcloud.mp4"
+    },
+    {
       "tags": "Python · YOLOv4 · TensorFlow · OpenCV",
       "title": "Automatic License Plate Recognizer",
       "text": "{justify}An end-to-end AI pipeline for detecting Bangladeshi license plates and recognising inscribed characters. Results are logged to CSV. Seven DNN architectures were benchmarked before arriving at the final optimised configuration.",
