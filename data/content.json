@@ -39,13 +39,19 @@
   },
   "news": [
     {
-      "date": "September 2026",
+      "date": "2026",
       "title": "Two Papers Accepted at IEEE CSDE 2026",
       "text": "{justify}Two of my research papers on GAN-based image colorization have been accepted at [IEEE CSDE 2026](https://www.ieee-csde.org/) : “Region Weighted Conditional GAN for Human Skin-Focused Grayscale Image Colorization” and “Influence of Color Space on GAN-Based Image Colorization with a Grayscale to Color Network.” The first explores region-weighted colorization for improved human skin tones, while the second compares different color spaces and proposes a generic grayscale-to-colorization network for automatically colorizing black-and-white images.",
       "link": ""
     },
     {
-      "date": "August 2026",
+      "date": "2026",
+      "title": "Monocular 3D Vision for Vehicle Distance Estimation Toward Digital Twin Traffic Systems.",
+      "text": "Driven by my interest in computer vision and intelligent transportation systems, I explored monocular 3D vision techniques for accurate vehicle distance estimation, contributing to the development of digital twin–enabled traffic monitoring and management.",
+      "link": ""
+    },
+    {
+      "date": "2026",
       "title": "Bone Fracture Detection and Localization Using Transfer Learning Techniques on a Comprehensive Dataset",
       "text": "The manuscript has been completed and submitted to a Q1 journal, where it is currently under review.",
       "link": ""
@@ -54,12 +60,6 @@
       "date": "2026",
       "title": "Reached 100+ citations on Google Scholar.",
       "text": "Reached **100+ citations** on Google Scholar, reflecting the growing academic impact and recognition of my research contributions in computer vision, deep learning, and machine learning. Take a look at my [Google Scholar](https://scholar.google.com/citations?user=25LhIz0AAAAJ&hl=en) profile.",
-      "link": ""
-    },
-    {
-      "date": "2026",
-      "title": "Monocular 3D Vision for Vehicle Distance Estimation Toward Digital Twin Traffic Systems.",
-      "text": "Driven by my interest in computer vision and intelligent transportation systems, I explored monocular 3D vision techniques for accurate vehicle distance estimation, contributing to the development of digital twin–enabled traffic monitoring and management.",
       "link": ""
     },
     {
