@@ -391,6 +391,10 @@
       "layout": "ledger"
     },
     {
+      "id": "projects",
+      "layout": "ledger"
+    },
+    {
       "id": "experience",
       "layout": "ledger"
     },
@@ -404,10 +408,6 @@
     },
     {
       "id": "courses",
-      "layout": "ledger"
-    },
-    {
-      "id": "projects",
       "layout": "ledger"
     },
     {
