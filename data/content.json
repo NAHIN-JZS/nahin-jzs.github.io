@@ -274,6 +274,14 @@
       "media": "images/uploads/1793981648870_depth_to_pointcloud.mp4"
     },
     {
+      "tags": "Next.js · React · PostgreSQL (Supabase) · CodeMirror · Judge0 · Vercel",
+      "title": "CodeClass: a programming classroom that shows the work behind every answer.",
+      "text": "Students write and run C, C++, Python and Java in the browser, with pasting blocked and submissions judged on hidden tests. Teachers see how each solution was written (paste attempts, time away from the tab, typing rhythm, and a replay of the code growing), alongside marking, comments, folders and progress tracking.\n\nDesigned and built solo with an AI coding agent.",
+      "link": "https://codeclass-nu.vercel.app/",
+      "mediaType": "video",
+      "media": "images/uploads/1795023373339_codeclass-promo-16x9.mp4"
+    },
+    {
       "tags": "Python · YOLOv4 · TensorFlow · OpenCV",
       "title": "Automatic License Plate Recognizer",
       "text": "{justify}An end-to-end AI pipeline for detecting Bangladeshi license plates and recognising inscribed characters. Results are logged to CSV. Seven DNN architectures were benchmarked before arriving at the final optimised configuration.",
